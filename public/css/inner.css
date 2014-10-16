@@ -1,0 +1,327 @@
+/* 
+
+GrandHotel - CSS File
+
+USE THIS STYLE SHEET FOR INNER PAGE
+
+*/
+
+
+/* Page Navi*/
+.wp-pagenavi{margin-bottom:0px;}
+.wp-pagenavi .pages{padding-right:10px; border:0px;}
+.wp-pagenavi a, .wp-pagenavi a:visited{padding:3px 7px!important; margin:0 0px; border:0px !important; font-weight:bold;}
+.wp-pagenavi .current{padding:3px 7px!important; margin:0 0px; border:0px !important;}
+
+
+
+/* BLOG */
+.post{clear:both; margin-bottom:40px}
+
+.pageimg, .postimg{padding-top:12px;}
+.postimg img{display:block;}
+.pageimg, .single .postimg{ margin-bottom:20px;}
+
+.entry-content{ margin:0px 20px 0 20px; padding:0 0 36px 0; word-wrap:break-word;}
+.single .entry-content { padding-bottom:15px;}
+.more, .more-link{font-size:12px; }
+a.more:hover, a.more-link:hover{text-decoration:none;}
+.post .button{margin:10px 0 ; display:inline-block; float:left}
+
+
+
+.posttitle{padding:27px 20px 0px 20px; margin-bottom:4px; word-wrap:break-word;}
+.posttitle, .posttitle a{font-size:18px; text-transform:none}
+.posttitle a:hover{text-decoration:none;}
+
+.entry-utility{
+	font-size:11px;
+	margin:0px 20px 14px 20px; 
+	padding:3px 0px 13px;
+	
+}
+.entry-utility div{
+	display:inline-block;
+	line-height:100%;
+}
+.entry-utility .user, .entry-utility .tag, .entry-utility .like{
+	margin-left:6px;
+	padding-left:8px;
+	border-style:solid;
+	border-width:0px 0px 0px 1px;
+}
+
+.last .entry-content{ margin-bottom:15px;}
+
+
+#postattachment .entry-utility{width:100%; float:none; padding:0}
+.entry-attachment{margin-bottom:20px;}
+
+.price{ font-size:24px; font-weight:bold; padding-top:5px; }
+.price span{ font-size:14px;}
+
+
+/* Tags */
+.entry-tag{ margin: 0 20px 0; padding:30px 0 40px; font-size:12px;}
+.tag-text{ margin-right:5px}
+.tag-items {
+    display: inline;
+}
+.tag-items span {
+    display: inline-block;
+    padding: 0 3px;
+}
+.tag-items a{padding:3px 15px; font-size:12px; display:inline-block; margin-bottom:5px;}
+.tag-items a:hover{ text-decoration:none;}
+
+
+/* author */
+#entry-author-info {
+	clear: both;
+	margin:40px 0px;
+	position:relative;
+	padding:30px 20px 36px 20px;
+
+}
+#entry-author-info h2{ margin-bottom:24px;}
+#entry-author-info #author-avatar {
+	margin: 0 0 0 0;
+	position:absolute;
+	top:73px;
+	left:20px;
+	
+}
+
+.archive #entry-author-info #author-avatar { top:30px;}
+#entry-author-info #author-avatar img{ width:77px; height:77px;}
+
+.avatar{display:block; 
+-webkit-border-radius: 77px;
+-moz-border-radius: 77px;
+border-radius: 77px;
+width:77px;
+}
+#entry-author-info #author-description {
+	margin: 0px 0px 10px 100px; vertical-align:top; line-height:18px;
+}
+#entry-author-info #author-description  h2{font-size:14px; margin-bottom:5px;}
+#entry-author-info #author-description h3{ margin-bottom:5px;}
+#author-description span.author{display:block; }
+
+
+
+.related-post{margin-bottom:20px; float:left}
+
+#comment{ padding:30px 20px 0; margin-bottom:0px;}
+#comment h3{ display:block; margin-bottom:30px; font-size:18px;}
+.commentlist{
+	list-style-type:none;
+	padding:0;
+	margin:0;
+}
+.commentlist ol{
+	list-style-type:none;
+	padding:30px 0 0 80px;
+	margin:0;
+}
+
+.commentlist li{
+	position:relative;
+	padding:0 0 25px 0;
+}
+.commentlist li li{
+	position:relative;
+	padding:0;
+}
+
+
+.avatar-img{
+	position:absolute;
+	top:5px;
+	left:0px;
+
+}
+.avatar{display:block}
+.fn{display:block;}
+
+.commenttext{}
+.tdate, .reply{ font-size:11px;}
+.reply a, .reply a:visited{}
+.reply a:hover{text-decoration:underline;}
+.fn, .fn a, .fn a:visited{}
+
+.comment-body{margin:0 0 0 0px; padding:0px 0 20px 98px;}
+.comment-body p{ margin-bottom:5px; margin-top:10px;}
+.comment-body .more{ padding:0px 0px;}
+.comment-arrow{ width:8px; height:18px; position:absolute; left:72px; top:10px;}
+#commentform {margin-bottom:20px}
+#commentform label{display:block}
+#commentform .text-input{
+	margin-bottom:8px;
+	padding:8px 5px;
+	vertical-align:middle;
+}
+#commentform .textarea{
+	margin-bottom:20px;
+	padding:8px 5px;
+	vertical-align:top;
+}
+
+
+/* Room*/
+
+#roomslider{ padding-top:10px;}
+#roomslider.flexslider {
+    border: 0 none;
+    border-radius: 0 0 0 0;
+    box-shadow: none;
+    margin: 0 0 0;
+    position: relative;
+}
+
+#roomslider .flex-direction-nav a {width: 38px; height: 38px;}
+#roomslider .flexslider:hover .flex-next {opacity: 0.8; right: 20px;}
+#roomslider .flexslider:hover .flex-prev {opacity: 0.8; left: 20px;}
+
+/* PORTFOLIO */
+#ts-portfolio{ padding-bottom:10px; float:left; width:100%; margin-bottom:-40px}
+#ts-portfolio .item{ margin-bottom:30px;}
+
+.ts-clear{clear:both; height:1px !important; line-height:1px !important; float:none!important}
+
+.ts-pf-text{padding:0 20px 30px;}
+.ts-pf-text .pftitle{ padding:12px 0 12px 0; margin:0px 0 14px; text-transform:none; font-size:16px;}
+.ts-pf-text a.more-link{ display:inline-block; margin-bottom:0px; margin-top: 24px;}
+
+.ts-pf-info{ padding:5px 20px; }
+.ts-pf-info .cat{ text-transform:capitalize; float:left;}
+.ts-pf-info .btn-zoom{ float:right; text-indent:-9999px; width:12px; height:12px; margin-top:5px;}
+
+.ts-pf-img{position:relative; padding:15px 0;}
+.ts-pf-img img{ display:block;}
+
+.pfzoom, .pflink, .pfdetail {
+    display: block;
+    overflow: hidden;
+    position: relative;
+}
+.ts-pf-img a.image{
+	display:block;
+	position:relative;
+	overflow:hidden;
+}
+.ts-pf-img a.pfzoom .rollover{
+	background:url(../images/hover-zoom.png);
+	background-color:#000;
+	background-repeat:no-repeat;
+	background-position:center;
+	display:block;
+    position:absolute;
+	z-index:10;
+	display:none;
+	cursor:pointer;
+	width:100%;
+	height:100%;
+}
+.ts-pf-img a.pflink .rollover{
+	background:url(../images/hover-link.png);
+	background-color:#000;
+	background-repeat:no-repeat;
+	background-position:center;
+	display:block;
+    position:absolute;
+	z-index:10;
+	display:none;
+	cursor:pointer;
+	width:100%;
+	height:100%;
+}
+.ts-pf-img a.pfdetail .rollover{
+	background:url(../images/hover-doc.png);
+	background-color:#000;
+	background-repeat:no-repeat;
+	background-position:center;
+	display:block;
+    position:absolute;
+	z-index:10;
+	display:none;
+	cursor:pointer;
+	width:100%;
+	height:100%;
+}
+
+
+/* ---------------------------- */
+/*       Isotope plugin
+/* ---------------------------- */
+
+.isotope-item {
+	z-index: 2;
+}
+
+.isotope-hidden.isotope-item {
+	pointer-events: none;
+	z-index: 1;
+}
+
+.isotope,
+.isotope .isotope-item {
+	-webkit-transition-duration: 0.8s;
+	-moz-transition-duration: 0.8s;
+	-o-transition-duration: 0.8s;
+	transition-duration: 0.8s;
+}
+
+.isotope {
+	-webkit-transition-property: height, width;
+	-moz-transition-property: height, width;
+	-o-transition-property: height, width;
+	transition-property: height, width;
+}
+
+.isotope .isotope-item {
+	-webkit-transition-property: -webkit-transform, opacity;
+	-moz-transition-property: -moz-transform, opacity;
+	-o-transition-property: top, left, opacity;
+	transition-property: transform, opacity;
+}
+
+/**** disabling Isotope CSS3 transitions ****/
+
+.isotope.no-transition,
+.isotope.no-transition .isotope-item,
+.isotope .isotope-item.no-transition {
+	-webkit-transition-duration: 0s;
+	-moz-transition-duration: 0s;
+	-o-transition-duration: 0s;
+	transition-duration: 0s;
+}
+
+/* End: Recommended Isotope styles */
+
+
+/* CONTACT */
+
+form{margin:0; padding:0;}
+fieldset{border:0px;}
+#contactform{margin:0 auto 0px; position:relative; }
+#contactform label{display:block; width:100%; padding-bottom:5px;}
+span.error{color:red;text-align:left; font-size:11px; padding-bottom:15px; display:block;}
+#contactform input.text-input{
+	margin-bottom:15px;
+	vertical-align:middle;
+	padding:10px;
+	width:95%;
+	border:0px;
+}
+#contactform textarea{ width:90%; height:140px; border:0px;} 
+#message{ margin-left:0px; font-weight:bold;}
+#message h2	{}
+#message p{margin:6px 0px; }
+
+#contactform .button{
+	cursor:pointer;
+	margin-top:18px;
+	border:0px;
+	font-family: 'Droid Sans', sans-serif;
+ }
