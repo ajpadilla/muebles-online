@@ -19,7 +19,7 @@
             "app/tests/TestCase.php"
         ],
         "psr-4": {
-            "Larabook\\": "app/Larabook"
+            "Muebles\\": "app/Muebles"
         }
     },
     "scripts": {
@@ -42,6 +42,7 @@
     "require-dev": {
         "codeception/codeception": "2.0.6",
         "way/generators": "~2.0",
-        "laracasts/testdummy": "~1.0"
+        "laracasts/testdummy": "~1.0",
+        "barryvdh/laravel-debugbar": "~1.7"
     }
 }

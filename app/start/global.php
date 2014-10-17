@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 ClassLoader::addDirectories(array(
 
 	app_path().'/commands',
@@ -49,6 +51,22 @@ Log::useFiles(storage_path().'/logs/laravel.log');
 App::error(function(Exception $exception, $code)
 {
 	Log::error($exception);
+});
+
+App::error(function(Laracasts\Validation\FormValidationException $exception, $code){
+	return Redirect::back()->withInput()->withErrors($exception->getErrors());
+});
+
+App::missing(function($exception)
+{
+	//return Response::make('Not Found', 404);
+	return Redirect::route('error_path');
+});
+
+App::error(function(ModelNotFoundException $e)
+{
+	//return Response::make('Not Found', 404);
+	return Redirect::route('error_path');
 });
 
 /*

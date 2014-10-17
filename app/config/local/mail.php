@@ -28,8 +28,7 @@ return array(
 	|
 	*/
 
-	//'host' => 'secure4164.hostgator.com',
-	'host' => 'mail.presentatenlaweb.com',
+	'host' => 'smtp.gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -42,7 +41,7 @@ return array(
 	|
 	*/
 
-	'port' => 25,
+	'port' => 465,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -55,7 +54,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => 'informacion@grupo-dos.com', 'name' => 'Grupo Dos - Información al Cliente'),
+	'from' => array('address' => 'nightzpy@gmail.com', 'name' => 'Lenyn Alcántara'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -68,7 +67,7 @@ return array(
 	|
 	*/
 
-	'encryption' => 'tls',
+	'encryption' => 'ssl',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -81,7 +80,7 @@ return array(
 	|
 	*/
 
-	'username' => 'informacion@presentatenlaweb.com',
+	'username' => 'nightzpy@gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -94,7 +93,7 @@ return array(
 	|
 	*/
 
-	'password' => 'informacion',
+	'password' => 'PL1ae2UN3lyn4',
 
 	/*
 	|--------------------------------------------------------------------------
