@@ -149,12 +149,17 @@ class UserController extends \BaseController {
 	public function login(){
 		$formData = Input::only('email', 'password');
 		$this->loginForm->validate($formData);
+		$message = 'Tus credenciales son incorrectas. Intenta de nuevo!';
 		if (Auth::attempt($formData))
 		{
-			Flash::message('Bienvenido!');
-			return Redirect::intended('/');
+			if(Auth::user()->activo) {
+				Flash::message('Bienvenido!');
+				return Redirect::intended('/');
+			}
+			Auth::logout();
+			$message = 'El usuario se encuentra inactivo!';
 		}
-		\Laracasts\Flash\Flash::error('Tus credenciales son incorrectas. Intenta de nuevo!');
+		\Laracasts\Flash\Flash::error($message);
 		return Redirect::route('login_path')->withInput();
 	}
 
