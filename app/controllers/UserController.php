@@ -1,12 +1,17 @@
 <?php
 
 use Muebles\Forms\UserRegistrationForm;
+use Muebles\Users\ActivateUserCommand;
 use Muebles\Users\RegisterUserCommand;
 use Muebles\Core\CommandBus;
+use Muebles\Users\User;
+use Muebles\Users\UserRepository;
 
 class UserController extends \BaseController {
 
 	use CommandBus;
+
+	private $userRepository;
 
 	/**
 	 * @var UserRegistrationForm
@@ -15,10 +20,13 @@ class UserController extends \BaseController {
 
 	/**
 	 * @param UserRegistrationForm $userRegistrationForm
+	 * @param UserRepository $userRepository
 	 */
-	function __construct(UserRegistrationForm $userRegistrationForm)
+	function __construct(UserRegistrationForm $userRegistrationForm, UserRepository $userRepository)
 	{
+		$this->userRepository = $userRepository;
 		$this->userRegistrationForm = $userRegistrationForm;
+		$this->beforeFilter('guest');
 	}
 
 
@@ -116,5 +124,14 @@ class UserController extends \BaseController {
 		return View::make('users.registered', compact('email', 'nombres'));
 	}
 
+	public function activateUser($id){
+		// Primero se debe verificar que le usuario autenticado tenga los permisos para esto
+		$user = User::findOrFail($id);
+		if(!$this->userRepository->hasActive($user)) {
+			$user = $this->execute(new ActivateUserCommand($id));
+			return View::make('users.user-activate', compact('user'));
+		}
+		return View::make('users.user-active', compact('user'));
+	}
 
 }

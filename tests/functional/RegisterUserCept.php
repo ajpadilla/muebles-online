@@ -27,9 +27,7 @@ $I->fillField('Télefono Fijo:', '45465465464');
 $I->fillField('Fax:', '234234234');
 $I->selectOption('Ciudades:', 'Madrid');
 $I->click('Registrar');
-
 $I->seeCurrentUrlEquals('/user-registered/' . $email .'/' . rawurlencode ($nombres));
-//$I->see('Usuario Registrado', 'title');
 $I->see('Hemos registrado sus datos', 'h1');
 $I->see('Estimado ' . $nombres . ', debes esperar por aprobación para poder ingresar al sistema, un correo será enviado a ' . $email . ' cuando tu usuario sea activado.', 'p');
 

@@ -43,5 +43,4 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		$user->raise(new UserRegistered($user));
 		return $user;
 	}
-
 }

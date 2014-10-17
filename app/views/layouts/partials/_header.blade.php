@@ -15,12 +15,16 @@
 							<li><a href="facilities.html">Empresa<span>Conoce la empresa</span></a></li>
 							<li><a href="gallery.html">Donde estamos<span>Como localizarnos</span></a></li>
 							<li><a href="blog.html">Contacto<span>Direccion y email</span></a></li>
+							@if (!$currentUser)
 							<li><a href="{{ route('register_user_path') }}">Registrarse{{--<span>Registrar nuevo usuario</span>--}}</a></li>
+							@endif
 						</ul><!-- topnav -->
 						<div class="clear"></div>
 					</nav><!-- nav -->
 				</section>
-
+				<section>
+					@include('flash::message');
+				</section>
 				<div class="clear"></div>
 			</header>
 		</div>
