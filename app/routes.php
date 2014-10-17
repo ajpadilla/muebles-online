@@ -14,3 +14,11 @@
 Route::get('/', function () {
 	return View::make('pages.home');
 });
+
+/**
+ * Registration!
+ */
+Route::get('register', [
+	'as' => 'register_user_path',
+	'uses' => 'UserController@create'
+]);

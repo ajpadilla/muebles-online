@@ -11,7 +11,7 @@ $I->seeCurrentUrlEquals('/login');
 $username = 'jose';
 $nombres = 'Jose Luis';
 $email = 'jose@jose.com';
-$ubicacion = 'Detalles de ubicación:', 'España, Madrid, Por ahi, Call #10';
+$ubicacion = 'España, Madrid, Por ahi, Call #10';
 
 $I->fillField('Nombre de Usuario:', $username);
 $I->fillField('Email:', $email);
@@ -20,7 +20,7 @@ $I->fillField('Password Confirmation:', '1234');
 $I->fillField('Nombres:', $nombres);
 $I->fillField('Apellidos:', 'Lopéz Urbano');
 $I->fillField('Código Postal:', '05555');
-$I->fillField($ubicacion);
+$I->fillField('Detalles de ubicación:', $ubicacion);
 $I->fillField('Teléfono Móvil:', '21321312313');
 $I->fillField('Teléfono:', '45465465464');
 $I->fillField('Fax:', '234234234');

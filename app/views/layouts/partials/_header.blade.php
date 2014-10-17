@@ -1,4 +1,4 @@
-<!-- HEADER -->
+ç<!-- HEADER -->
 <div id="outerheader">
 	<div id="headercontainer">
 		<div class="container">
@@ -16,6 +16,7 @@
 							<li><a href="facilities.html">Empresa<span>Conoce la empresa</span></a></li>
 							<li><a href="gallery.html">Donde estamos<span>Como localizarnos</span></a></li>
 							<li><a href="blog.html">Contacto<span>Direccion y email</span></a></li>
+							<li>{{ link_to_route('register_user_path', '<span>Registrarse</span>') }}</li>
 						</ul><!-- topnav -->
 						<div class="clear"></div>
 					</nav><!-- nav -->
