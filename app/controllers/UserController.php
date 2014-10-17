@@ -1,5 +1,6 @@
 <?php
 
+use Muebles\Forms\LoginForm;
 use Muebles\Forms\UserRegistrationForm;
 use Muebles\Users\ActivateUserCommand;
 use Muebles\Users\RegisterUserCommand;
@@ -18,15 +19,19 @@ class UserController extends \BaseController {
 	 */
 	private $userRegistrationForm;
 
+	private $loginForm;
+
 	/**
 	 * @param UserRegistrationForm $userRegistrationForm
 	 * @param UserRepository $userRepository
+	 * @param LoginForm $loginForm
 	 */
-	function __construct(UserRegistrationForm $userRegistrationForm, UserRepository $userRepository)
+	function __construct(UserRegistrationForm $userRegistrationForm, UserRepository $userRepository, LoginForm $loginForm)
 	{
 		$this->userRepository = $userRepository;
 		$this->userRegistrationForm = $userRegistrationForm;
-		$this->beforeFilter('guest');
+		$this->loginForm = $loginForm;
+		$this->beforeFilter('guest', ['except' => 'destroySession']);
 	}
 
 
@@ -115,9 +120,11 @@ class UserController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
+	public function destroySession()
 	{
-		//
+		Auth::logout();
+		Flash::message('Has salido del sistema exitosamente!');
+		return Redirect::home();
 	}
 
 	public function registered($email, $nombres){
@@ -132,6 +139,23 @@ class UserController extends \BaseController {
 			return View::make('users.user-activate', compact('user'));
 		}
 		return View::make('users.user-active', compact('user'));
+	}
+
+	public function loginCreate()
+	{
+		return View::make('users.forms.login');
+	}
+
+	public function login(){
+		$formData = Input::only('email', 'password');
+		$this->loginForm->validate($formData);
+		if (Auth::attempt($formData))
+		{
+			Flash::message('Bienvenido!');
+			return Redirect::intended('/');
+		}
+		\Laracasts\Flash\Flash::error('Tus credenciales son incorrectas. Intenta de nuevo!');
+		return Redirect::route('login_path')->withInput();
 	}
 
 }

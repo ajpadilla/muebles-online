@@ -59,11 +59,13 @@ App::error(function(Laracasts\Validation\FormValidationException $exception, $co
 
 App::missing(function($exception)
 {
+	//return Response::make('Not Found', 404);
 	return Redirect::route('error_path');
 });
 
 App::error(function(ModelNotFoundException $e)
 {
+	//return Response::make('Not Found', 404);
 	return Redirect::route('error_path');
 });
 

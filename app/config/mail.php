@@ -28,7 +28,8 @@ return array(
 	|
 	*/
 
-	'host' => 'smtp.mailgun.org',
+	//'host' => 'secure4164.hostgator.com',
+	'host' => 'mail.presentatenlaweb.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -41,7 +42,7 @@ return array(
 	|
 	*/
 
-	'port' => 587,
+	'port' => 25,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -54,7 +55,7 @@ return array(
 	|
 	*/
 
-	'from' => array('address' => null, 'name' => null),
+	'from' => array('address' => 'informacion@grupo-dos.com', 'name' => 'Grupo Dos - Información al Cliente'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +81,7 @@ return array(
 	|
 	*/
 
-	'username' => null,
+	'username' => 'informacion@presentatenlaweb.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +94,7 @@ return array(
 	|
 	*/
 
-	'password' => null,
+	'password' => 'informacion',
 
 	/*
 	|--------------------------------------------------------------------------

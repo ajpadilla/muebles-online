@@ -64,3 +64,37 @@ Route::get('activate-user/{id}', [
 	'as' => 'activate_user_path',
 	'uses' => 'UserController@activateUser'
 ]);
+
+Route::get('login', [
+	'as' => 'login_path',
+	'uses' => 'UserController@loginCreate'
+]);
+
+Route::post('login', [
+	'as' => 'login_path',
+	'uses' => 'UserController@login'
+]);
+
+/**
+ * Destroy session
+ */
+Route::get('logout', [
+	'as' => 'logout_path',
+	'uses' => 'UserController@destroySession'
+]);
+
+/**
+ * Catalogo routes
+ */
+Route::get('contacto', [
+	'as' => 'contact_path',
+	'uses' => 'ContactController@index'
+]);
+
+/**
+ * Catalogo routes
+ */
+Route::get('catalogo', [
+	'as' => 'catalogo_path',
+	'uses' => 'CatalogoController@index'
+]);
