@@ -1,9 +1,8 @@
-ç<!-- HEADER -->
+<!-- HEADER -->
 <div id="outerheader">
 	<div id="headercontainer">
 		<div class="container">
 			<header id="top">
-
 				<div id="logo">
 					<a href="index.html"><img src="{{asset('images/logo_18654.png')}}" alt=""/></a>
 				</div>
@@ -16,7 +15,7 @@
 							<li><a href="facilities.html">Empresa<span>Conoce la empresa</span></a></li>
 							<li><a href="gallery.html">Donde estamos<span>Como localizarnos</span></a></li>
 							<li><a href="blog.html">Contacto<span>Direccion y email</span></a></li>
-							<li>{{ link_to_route('register_user_path', '<span>Registrarse</span>') }}</li>
+							<li><a href="{{ route('register_user_path') }}">Registrarse{{--<span>Registrar nuevo usuario</span>--}}</a></li>
 						</ul><!-- topnav -->
 						<div class="clear"></div>
 					</nav><!-- nav -->

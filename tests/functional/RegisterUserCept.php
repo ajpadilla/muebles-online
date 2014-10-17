@@ -6,7 +6,8 @@ $I->wantTo('Registrarme');
 $I->amOnPage('/');
 $I->see('Registrarse', 'li');
 $I->click('Registrarse');
-$I->seeCurrentUrlEquals('/login');
+//$I->click('Registrarse', '#nav-wrap');
+$I->seeCurrentUrlEquals('/register');
 
 $username = 'jose';
 $nombres = 'Jose Luis';
@@ -16,15 +17,15 @@ $ubicacion = 'España, Madrid, Por ahi, Call #10';
 $I->fillField('Nombre de Usuario:', $username);
 $I->fillField('Email:', $email);
 $I->fillField('Contraseña:', '1234');
-$I->fillField('Password Confirmation:', '1234');
+$I->fillField('Confirme su contraseña:', '1234');
 $I->fillField('Nombres:', $nombres);
 $I->fillField('Apellidos:', 'Lopéz Urbano');
 $I->fillField('Código Postal:', '05555');
 $I->fillField('Detalles de ubicación:', $ubicacion);
 $I->fillField('Teléfono Móvil:', '21321312313');
-$I->fillField('Teléfono:', '45465465464');
+$I->fillField('Télefono Fijo:', '45465465464');
 $I->fillField('Fax:', '234234234');
-$I->selectOption('Ciudad:', 'Madrid');
+$I->selectOption('Ciudades:', 'Madrid');
 $I->click('Registrar');
 
 $I->seeCurrentUrlEquals('/registered');

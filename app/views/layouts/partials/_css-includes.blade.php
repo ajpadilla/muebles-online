@@ -5,7 +5,6 @@
 <link rel="stylesheet" href="{{asset('css/inner.css')}}" />
 <link rel="stylesheet" href="{{asset('css/layout.css')}}" />
 <link rel="stylesheet" href="{{asset('css/color.css')}}" />
-<link rel="shortcut icon" href="{{asset('images/favicon.ico')}}" />
 <!--fancybox-->
 <link rel="stylesheet" href="{{asset('js/fancybox/source/jquery.fancybox.css')}}">
 <!-- jQuery-->
