@@ -29,7 +29,13 @@
 
     <!-- PAGE SCRIPT -->
     <script>
-        @yield('script')
+	    $(document).ready(function() {
+			$('#selectNav').change(function(e) {
+				var option = $(this).selected();
+				var url = option.val();
+				document.location.href = url;
+			});
+	    });
     </script>
 </head>
 <body class="home">

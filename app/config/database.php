@@ -48,10 +48,10 @@ return array(
 
 		'mysql' => array(
 			'driver'    => 'mysql',
-			'host'      => 'localhost',//getenv('DB_HOST'),
-			'database'  => 'nightzpy_muebles',//getenv('DB_NAME'),
-			'username'  => 'nightzpy_muebles',//getenv('DB_USERNAME'),
-			'password'  => 'muebles',//getenv('DB_PASSWORD'),
+			'host'      => 'localhost',
+			'database'  => 'nightzpy_muebles',
+			'username'  => 'nightzpy_muebles',
+			'password'  => 'muebles',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
