@@ -10,7 +10,6 @@
 	        </div>
 	    </div>
 	</div>
-<p>Estimado {{ $nombres }}, debes esperar por aprobación para poder ingresar al sistema, un correo será enviado a {{ $email }} cuando tu usuario sea activado.</p>
 	<!-- MAIN CONTENT -->
 	<div id="outermain">
 	            <div id="maincontainer">
