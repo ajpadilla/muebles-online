@@ -30,6 +30,13 @@ Event::listen('Muebles.Users.Events.UserActivate', function($event) {
 	});
 });
 
+
+
+Route::get('/error-404', [
+	'as' => 'error_path',
+	'uses' => 'PagesController@error404'
+]);
+
 Route::get('/', [
 	'as' => 'home',
 	'uses' => 'PagesController@home'

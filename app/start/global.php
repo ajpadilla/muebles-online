@@ -11,6 +11,8 @@
 |
 */
 
+use Illuminate\Database\Eloquent\ModelNotFoundException;
+
 ClassLoader::addDirectories(array(
 
 	app_path().'/commands',
@@ -53,6 +55,16 @@ App::error(function(Exception $exception, $code)
 
 App::error(function(Laracasts\Validation\FormValidationException $exception, $code){
 	return Redirect::back()->withInput()->withErrors($exception->getErrors());
+});
+
+App::missing(function($exception)
+{
+	return Redirect::route('error_path');
+});
+
+App::error(function(ModelNotFoundException $e)
+{
+	return Redirect::route('error_path');
 });
 
 /*

@@ -11,4 +11,9 @@ class PagesController extends \BaseController {
 	{
 		return View::make('pages.home');
 	}
+
+	public function error404()
+	{
+		return View::make('errors.missing-404');
+	}
 }
