@@ -13,6 +13,8 @@ class RegisterUserCommand  {
 	public $telefono_fijo;
 	public $fax;
 	public $ciudad_id;
+	public $activo;
+	public $rol;
 
 	/**
 	 * @param $username
@@ -25,9 +27,11 @@ class RegisterUserCommand  {
 	 * @param $movil
 	 * @param $telefono_fijo
 	 * @param $ubicacion
+	 * @param $activo
+	 * @param $rol
 	 * @param $ciudad_id
 	 */
-	function __construct($username, $email, $password, $nombres, $apellidos, $codigo_postal, $fax, $movil, $telefono_fijo, $ubicacion, $ciudad_id)
+	function __construct($username, $email, $password, $nombres, $apellidos, $codigo_postal, $fax, $movil, $telefono_fijo, $ubicacion, $activo, $rol, $ciudad_id)
 	{
 		$this->apellidos = $apellidos;
 		$this->ciudad_id = $ciudad_id;
@@ -40,6 +44,8 @@ class RegisterUserCommand  {
 		$this->telefono_fijo = $telefono_fijo;
 		$this->ubicacion = $ubicacion;
 		$this->username = $username;
+		$this->activo = $activo;
+		$this->rol = $rol;
 	}
 
 

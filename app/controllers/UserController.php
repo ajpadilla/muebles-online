@@ -6,6 +6,8 @@ use Muebles\Core\CommandBus;
 
 class UserController extends \BaseController {
 
+	use CommandBus;
+
 	/**
 	 * @var UserRegistrationForm
 	 */
@@ -50,11 +52,16 @@ class UserController extends \BaseController {
 	 */
 	public function store()
 	{
-		$this->userRegistrationForm->validate(Input::all());
-		extract(Input::only('username', 'email', 'password', 'nombres', 'apellidos', 'codigo_postal', 'fax', 'movil', 'telefono_fijo', 'ubicacion', 'ciudad_id'));
-		$user = $this->execute(new RegisterUserCommand($username, $email, $password, $nombres, $apellidos, $codigo_postal, $fax, $movil, $telefono_fijo, $ubicacion, $ciudad_id));
-		Flash::success('New Larabook member!');
-		return Redirect::home();
+		$formData = Input::all();
+		$formData['rol'] = 'cliente';
+		$formData['activo'] = '0';
+		$this->userRegistrationForm->validate($formData);
+		extract($formData);
+		$user = $this->execute(new RegisterUserCommand($username, $email, $password, $nombres, $apellidos, $codigo_postal, $fax, $movil, $telefono_fijo, $ubicacion, $activo, $rol, $ciudad));
+		Flash::success('Sus datos han sido procesados con exito!');
+		$nombres = $user->nombres;
+		$email = $user->email;
+		return Redirect::route('registered_user_path', compact('nombres', 'email'));
 	}
 
 
@@ -103,6 +110,10 @@ class UserController extends \BaseController {
 	public function destroy($id)
 	{
 		//
+	}
+
+	public function registered($email, $nombres){
+		return View::make('users.registered', compact('email', 'nombres'));
 	}
 
 

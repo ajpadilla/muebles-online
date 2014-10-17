@@ -11,9 +11,14 @@
 |
  */
 
-Route::get('/', function () {
-	return View::make('pages.home');
+Event::listen('Muebles.Users.Events.UserRegistered', function($event) {
+	//dd($event);
 });
+
+Route::get('/', [
+	'as' => 'home',
+	'uses' => 'PagesController@home'
+]);
 
 /**
  * Registration!
@@ -26,4 +31,9 @@ Route::get('register', [
 Route::post('register', [
 	'as' => 'register_user_path',
 	'uses' => 'UserController@store'
+]);
+
+Route::get('user-registered/{email}/{nombres}', [
+	'as' => 'registered_user_path',
+	'uses' => 'UserController@registered'
 ]);

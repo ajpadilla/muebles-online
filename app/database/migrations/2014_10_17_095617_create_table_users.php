@@ -12,7 +12,7 @@ class CreateTableUsers extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('table_users', function(Blueprint $table)
+		Schema::create('users', function(Blueprint $table)
 		{
 			$table->increments('id');
 			$table->string('username', 128)->unique();
@@ -26,6 +26,8 @@ class CreateTableUsers extends Migration {
 			$table->string('telefono_fijo', 15);
 			$table->string('fax', 15);
 			$table->string('ubicacion', 256);
+			$table->boolean('activo');
+			$table->string('rol', 64);
 			$table->integer('ciudad_id')->index();
 			$table->timestamps();
 		});
@@ -39,7 +41,7 @@ class CreateTableUsers extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('table_users');
+		Schema::drop('users');
 	}
 
 }
