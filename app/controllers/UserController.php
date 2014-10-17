@@ -1,6 +1,24 @@
 <?php
 
+use Muebles\Forms\UserRegistrationForm;
+use Muebles\Users\RegisterUserCommand;
+use Muebles\Core\CommandBus;
+
 class UserController extends \BaseController {
+
+	/**
+	 * @var UserRegistrationForm
+	 */
+	private $userRegistrationForm;
+
+	/**
+	 * @param UserRegistrationForm $userRegistrationForm
+	 */
+	function __construct(UserRegistrationForm $userRegistrationForm)
+	{
+		$this->userRegistrationForm = $userRegistrationForm;
+	}
+
 
 	/**
 	 * Display a listing of the resource.
@@ -32,7 +50,11 @@ class UserController extends \BaseController {
 	 */
 	public function store()
 	{
-
+		$this->userRegistrationForm->validate(Input::all());
+		extract(Input::only('username', 'email', 'password', 'nombres', 'apellidos', 'codigo_postal', 'fax', 'movil', 'telefono_fijo', 'ubicacion', 'ciudad_id'));
+		$user = $this->execute(new RegisterUserCommand($username, $email, $password, $nombres, $apellidos, $codigo_postal, $fax, $movil, $telefono_fijo, $ubicacion, $ciudad_id));
+		Flash::success('New Larabook member!');
+		return Redirect::home();
 	}
 
 

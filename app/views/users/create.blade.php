@@ -24,10 +24,7 @@
                                         <div id="contactform">
                                         {{ Form::open(['route' => 'register_user_path']) }}
                                           <fieldset>
-                                              {{--<span class="error" id="name_error" style="display: none;">Please enter name !</span>
-                                              <span class="error" id="email_error" style="display: none;">Please enter email address !</span>
-                                              <span class="error" id="email_error2" style="display: none;">Please enter valid email address !</span>
-                                              <span class="error" id="msg_error" style="display: none;">Please enter message !</span>--}}
+                                            @include('layouts.partials.error')
                                             <div class="row">
 											  <div class="two_fifth columns">
 											    {{ Form::label('nombres', 'Nombres:') }}
@@ -55,7 +52,7 @@
 											  </div>
 											  <div class="two_fifth columns">
 											    {{ Form::label('codigo_postal', 'Código Postal:') }}
-											    {{ Form::text('codigo_postal', null, ['size' => '20', 'class' => 'text-input']) }}
+											    {{ Form::text('codigo_postal', null, ['size' => '10', 'class' => 'text-input']) }}
 											  </div>
 											  <div class="two_fifth columns">
 											    {{ Form::label('username', 'Nombre de Usuario:') }}
