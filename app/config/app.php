@@ -13,7 +13,7 @@ return array(
 	|
 	 */
 
-	'debug' => true,
+	'debug' => false,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -26,7 +26,7 @@ return array(
 	|
 	 */
 
-	'url' => 'http://localhost',
+	'url' => 'http://tienda-muebles.presentatenlaweb.com/',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -52,7 +52,7 @@ return array(
 	|
 	 */
 
-	'locale' => 'en',
+	'locale' => 'es',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -193,7 +193,7 @@ return array(
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
 		'Flash'             => 'Laracasts\Flash\Flash',
-		'Debugbar' => 'Barryvdh\Debugbar\Facade',
+		'Debugbar'          => 'Barryvdh\Debugbar\Facade',
 	),
 
 );

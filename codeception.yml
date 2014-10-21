@@ -11,7 +11,7 @@ settings:
 modules:
     config:
         Db:
-            dsn: 'mysql:host=localhost;port=33060;dbname=muebles_test'
+            dsn: 'mysql:host=localhost;port=3306;dbname=muebles_test'
             user: 'root'
             password: 'root'
             dump: tests/_data/dump.sql
