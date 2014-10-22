@@ -7,18 +7,22 @@ class FunctionalHelper extends \Codeception\Module
 {
 	public function signIn(){
 
-		$username = 'nightzpy';
 		$email = 'nightzpy@gmail.com';
 		$password = '1234';
-		$user = $this->haveAnAccount(compact('username', 'email', 'password'));
-
 		$I = $this->getModule('Laravel4');
+		$user = $this->haveAnAccount(compact('email', 'password'));
 
+		$I->amOnPage('/');
+		$I->see('Ingresar', 'li');
 		$I->amOnPage('/login');
 		$I->fillField('email', $email);
 		$I->fillField('password', $password);
 		$I->click('Ingresar');
 		return $user;
+	}
+
+	public function registerProduct(){
+
 	}
 
 	public function have($model, $overrides = [])

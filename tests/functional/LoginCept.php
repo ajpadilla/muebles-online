@@ -3,12 +3,10 @@ $I = new FunctionalTester($scenario);
 $I->am('un usuario de Grupo Dos');
 $I->wantTo('ingresar a Grupo Dos');
 //$I->click('Ingresar');
-$username = 'nightzpy';
 $email = 'nightzpy@gmail.com';
 $password = '1234';
-$user = $I->haveAnAccount(compact('username', 'email', 'password'));
+$user = $I->haveAnAccount(compact('email', 'password'));
 $I->seeRecord('users', [
-	'username' => $username,
 	'email' => $email
 ]);
 
@@ -19,5 +17,5 @@ $I->click('Ingresar');
 
 $I->seeInCurrentUrl('/');
 $I->dontSee('Registrarse', 'li');
-$I->see($user->nombres);
+$I->see($user->nombre);
 $I->assertTrue(Auth::check());

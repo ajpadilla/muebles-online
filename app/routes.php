@@ -92,6 +92,15 @@ Route::get('contacto', [
 ]);
 
 /**
+ * Productos routes
+ */
+Route::get('productos', [
+	'as' => 'producto_path',
+	'uses' => 'ProductosController@index'
+]);
+
+
+/**
  * Catalogo routes
  */
 Route::get('catalogo', [
