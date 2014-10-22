@@ -1,14 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<!--[if lt IE 7 ]><html class="ie ie6" lang="es"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="es"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="es"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="es"> <!--<![endif]-->
+<html lang="es">
 <head>
-	<meta charset="UTF-8">
-	<title>Muebles Laravel</title>
+	<meta charset="utf-8" />
+	<title>Grupo Dos: Diseños Auxiliares</title>
+    <meta name="robots" content="index, follow" />
+    <meta name="keywords" content="" />
+    <meta name="description" content="" />
+	<meta name="author" content="" />
+
+	<!-- Mobile Specific Metas
+    ================================================== -->
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-	<!--CSS-->
+
+	<!-- CSS ================================================== -->
     @include('layouts.partials._css-includes')
+
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Favicons
+	================================================== -->
+	<link rel="shortcut icon" href="images/favicon.ico" />
+
     <!-- PAGE SCRIPT -->
     <script>
-        @yield('script')
+	    $(document).ready(function() {
+			$('#selectNav').change(function(e) {
+				var option = $(this).selected();
+				var url = option.val();
+				document.location.href = url;
+			});
+	    });
     </script>
 </head>
 <body class="home">

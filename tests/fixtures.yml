@@ -1,0 +1,14 @@
+Muebles\Users\User:
+  username: $string
+  email: $string@example.com
+  password: $string
+  nombres: $string
+  apellidos: $string
+  codigo_postal: $string
+  ubicacion: $string
+  movil: $integer
+  telefono_fijo: $integer
+  fax: $integer
+  ciudad_id: $integer
+  created_at: $date
+  updated_at: $date

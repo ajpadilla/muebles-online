@@ -13,7 +13,7 @@ return array(
 	|
 	 */
 
-	'debug' => false,
+	'debug' => true,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -125,6 +125,7 @@ return array(
 		'Laracasts\Commander\CommanderServiceProvider',
 		'Laracasts\Validation\ValidationServiceProvider',
 		'Laracasts\Flash\FlashServiceProvider',
+		'Barryvdh\Debugbar\ServiceProvider',
 	),
 
 	/*
@@ -192,7 +193,7 @@ return array(
 		'Validator'         => 'Illuminate\Support\Facades\Validator',
 		'View'              => 'Illuminate\Support\Facades\View',
 		'Flash'             => 'Laracasts\Flash\Flash',
-
+		'Debugbar' => 'Barryvdh\Debugbar\Facade',
 	),
 
 );
