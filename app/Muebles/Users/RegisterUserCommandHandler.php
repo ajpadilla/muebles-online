@@ -31,10 +31,10 @@ class RegisterUserCommandHandler implements CommandHandler {
 	public function handle($command)
 	{
 		$user = User::register(
-			$command->username, $command->email, $command->password,
-			$command->nombres, $command->apellidos, $command->codigo_postal,
-			$command->fax, $command->movil, $command->telefono_fijo,
-			$command->ubicacion, $command->activo, $command->rol, $command->ciudad_id);
+			$command->email, $command->password,
+			$command->nombre, $command->codigo_postal,
+			$command->fax, $command->telefono_fijo,
+			$command->direccion, $command->activo, $command->rol, $command->provincia_id);
 		$this->repository->save($user);
 		$this->dispatchEventsFor($user);
 		return $user;

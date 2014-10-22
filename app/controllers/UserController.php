@@ -53,8 +53,9 @@ class UserController extends \BaseController {
 	 */
 	public function create()
 	{
-		$ciudades = ['1' => 'Madrid', '2' => 'Barcelona'];
-		return View::make('users.create', compact('ciudades'));
+		$poblaciones = ['1' => 'Madrid', '2' => 'Barcelona'];
+		$provincias = ['1' => 'Madrid', '2' => 'Cataluya'];
+		return View::make('users.create', compact('poblaciones', 'provincias'));
 	}
 
 
@@ -70,11 +71,11 @@ class UserController extends \BaseController {
 		$formData['activo'] = '0';
 		$this->userRegistrationForm->validate($formData);
 		extract($formData);
-		$user = $this->execute(new RegisterUserCommand($username, $email, $password, $nombres, $apellidos, $codigo_postal, $fax, $movil, $telefono_fijo, $ubicacion, $activo, $rol, $ciudad));
+		$user = $this->execute(new RegisterUserCommand($email, $password, $nombre, $codigo_postal, $fax, $telefono_fijo, $direccion, $activo, $rol, $provincia));
 		Flash::success('Sus datos han sido procesados con exito!');
-		$nombres = $user->nombres;
+		$nombre = $user->nombre;
 		$email = $user->email;
-		return Redirect::route('registered_user_path', compact('nombres', 'email'));
+		return Redirect::route('registered_user_path', compact('nombre', 'email'));
 	}
 
 
@@ -127,8 +128,8 @@ class UserController extends \BaseController {
 		return Redirect::home();
 	}
 
-	public function registered($email, $nombres){
-		return View::make('users.registered', compact('email', 'nombres'));
+	public function registered($email, $nombre){
+		return View::make('users.registered', compact('email', 'nombre'));
 	}
 
 	public function activateUser($id){

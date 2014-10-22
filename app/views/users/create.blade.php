@@ -35,20 +35,20 @@
 											    {{ Form::text('nombre_comercial', null, ['size' => '50', 'class' => 'text-input']) }}
 											  </div>
 											  <div class="twelve columns">
-										        {{ Form::label('ubicacion', 'Dirección:') }}
-									            {{ Form::text('ubicacion', null, ['size' => 128, 'class' => 'text-input']) }}
+										        {{ Form::label('direccion', 'Dirección:') }}
+									            {{ Form::text('direccion', null, ['size' => 128, 'class' => 'text-input']) }}
 											  </div>
 											  <div class="two_fifth columns">
 											    {{ Form::label('codigo_postal', 'Código Postal:') }}
 											    {{ Form::text('codigo_postal', null, ['size' => '10', 'class' => 'text-input']) }}
 											  </div>
 											  <div class="two_fifth columns">
-                                                {{ Form::label('poblacion_id', 'Población:') }}
-                                                {{ Form::select('poblacion_id', $ciudades , null , ['class' => 'text-input']) }}
+                                                {{ Form::label('poblacion', 'Población:') }}
+                                                {{ Form::select('poblacion', $poblaciones , null , ['class' => 'text-input']) }}
                                               </div>
 											  <div class="twelve columns">
-                                                {{ Form::label('provincia_id', 'Provincia:') }}
-                                                {{ Form::select('provincia_id', [] , null , ['disabled' => 'disabled', 'class' => 'text-input']) }}
+                                                {{ Form::label('provincia', 'Provincia:') }}
+                                                {{ Form::select('provincia', $provincias , null , ['class' => 'text-input']) }}
                                               </div>
 											  <div class="two_fifth columns">
 											    {{ Form::label('telefono_fijo', 'Télefono Fijo:') }}
