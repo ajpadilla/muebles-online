@@ -10,9 +10,6 @@ $I->wantTo('Registrar un nuevo producto');
 $I->signIn();
 
 // Registro un producto
-$I->haveAProduct();
-
-// Registro un producto
 $I->amOnPage('/');
 $I->see('Productos', 'li');
 $I->click('Productos');

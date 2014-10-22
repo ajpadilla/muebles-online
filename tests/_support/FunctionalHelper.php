@@ -10,7 +10,7 @@ class FunctionalHelper extends \Codeception\Module
 		$email = 'nightzpy@gmail.com';
 		$password = '1234';
 		$I = $this->getModule('Laravel4');
-		$user = $I->haveAnAccount(compact('email', 'password'));
+		$user = $this->haveAnAccount(compact('email', 'password'));
 
 		$I->amOnPage('/');
 		$I->see('Ingresar', 'li');
