@@ -21,7 +21,7 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	protected $table = 'users';
 
 
-	protected $fillable = ['username', 'email', 'password', 'nombres', 'apellidos', 'codigo_postal', 'fax', 'movil', 'telefono_fijo', 'ubicacion', 'activo', 'rol', 'ciudad_id'];
+	protected $fillable = ['email', 'password', 'nombre', 'codigo_postal', 'fax', 'telefono_fijo', 'direccion', 'activo', 'rol', 'provincia_id'];
 
 	/**
 	 * The attributes excluded from the model's JSON form.
@@ -38,8 +38,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		$this->attributes['password'] = Hash::make($password);
 	}
 
-	public static function register($username, $email, $password, $nombres, $apellidos, $codigo_postal, $fax, $movil, $telefono_fijo, $ubicacion, $activo, $rol, $ciudad_id){
-		$user = new static(compact('username', 'email', 'password', 'nombres', 'apellidos', 'codigo_postal', 'fax', 'movil', 'telefono_fijo', 'ubicacion', 'activo', 'rol', 'ciudad_id'));
+	public static function register($email, $password, $nombre, $codigo_postal, $fax, $telefono_fijo, $direccion, $activo, $rol, $provincia_id){
+		$user = new static(compact('email', 'password', 'nombre', 'codigo_postal', 'fax', 'telefono_fijo', 'direccion', 'activo', 'rol', 'provincia_id'));
 		$user->raise(new UserRegistered($user));
 		return $user;
 	}

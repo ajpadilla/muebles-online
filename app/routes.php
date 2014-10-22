@@ -24,7 +24,7 @@ Event::listen('Muebles.Users.Events.UserActivate', function($event) {
 	$user = $event->user;
 	Mail::send('users.emails.user-activate', array('user' => $user), function($message) use ($user)
 	{
-		$message->to($user->email, $user->nombres)
+		$message->to($user->email, $user->nombre)
 			->from('informacion@grupodos.com', 'Grupo Dos S.L.')
 			->subject('Felicitaciones: Hemos admitido tu ingreso!');
 	});

@@ -20,7 +20,7 @@
 	                        <section id="content" class="six columns positionleft">
 	                            <div class="page articlecontainer">
 	                                <article class="entry-content">
-	                                    <p>Estimado {{ $nombres }}, debes esperar por aprobación para poder ingresar al sistema, un correo será enviado a {{ $email }} cuando tu usuario sea activado.</p>
+	                                    <p>Estimado {{ $nombre }}, debes esperar por aprobación para poder ingresar al sistema, un correo será enviado a {{ $email }} cuando tu usuario sea activado.</p>
 	                                </article>
 	                            </div>
 	                        </section><!-- content -->
