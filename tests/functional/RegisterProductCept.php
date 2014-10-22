@@ -11,12 +11,12 @@ $I->signIn();
 
 // Registro un producto
 $I->amOnPage('/');
-$I->see('Productos', 'li');
-$I->click('Productos');
-$I->seeCurrentUrlEquals('/productos');
+$I->see('Catálogo', 'li');
+$I->click('Catálogo');
+$I->seeCurrentUrlEquals('/catalogo');
 $I->see('Nuevo');
 $I->click('Nuevo');
-$I->seeCurrentUrlEquals('productos/register');
+$I->seeCurrentUrlEquals('catalogo/register');
 
 
 $I->fillField('Código', 'abc123');

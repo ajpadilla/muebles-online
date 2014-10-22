@@ -11,7 +11,7 @@
                     <nav id="nav-wrap">
                         <ul id="topnav" class="sf-menu">
 							<li @if( route ('home') == $currentRoute) class="current" @endif><a href="{{ route('home') }}">Inicio<span>Pagina Principal</span></a></li>
-							<li @if( route ('catalogo_path') == $currentRoute) class="current" @endif><a href="{{ route('catalogo_path') }}">Catálogo<span>Nuestros productos</span></a></li>
+							<li @if( route ('catalogo_path') == $currentRoute) class="current" @endif><a href="{{ route('catalogo_path') }}">Catálogo{{--<span>Nuestros productos</span>--}}</a></li>
 							<li @if( URL::to ('/').'acerca' == $currentRoute) class="current" @endif><a href="/acerca">Empresa<span>Conoce la empresa</span></a></li>
 							<li @if( URL::to ('/').'ubicacion' == $currentRoute) class="current" @endif><a href="/ubicacion">Donde estamos<span>Como localizarnos</span></a></li>
 							<li @if( route ('contact_path') == $currentRoute) class="current" @endif><a href="{{ route('contact_path') }}">Contacto<span>Direccion y email</span></a></li>
