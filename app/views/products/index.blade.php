@@ -56,6 +56,7 @@
 	                                                <a href="#">Eliminar</a>
 	                                            </td>
                                             </tr>
+                                        @endforeach
 			                            </tbody>
 			                            <tfoot>
 

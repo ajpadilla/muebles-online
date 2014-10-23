@@ -13,10 +13,10 @@ $I->signIn();
 $I->amOnPage('/');
 $I->see('Catálogo', 'li');
 $I->click('Catálogo');
-$I->seeCurrentUrlEquals('/catalogo');
+$I->seeCurrentUrlEquals('/products');
 $I->see('Nuevo Producto');
 $I->click('Nuevo Producto');
-$I->seeCurrentUrlEquals('/catalogo/create');
+$I->seeCurrentUrlEquals('/products/create');
 
 
 $I->fillField('Código:', 'abc123');
@@ -29,7 +29,8 @@ $I->fillField('Pulimento:', '1');
 $I->fillField('Precio del Pulimento:', '300,00');
 $I->fillField('Cantidad:', '10');
 $I->fillField('Precio:', '500,00');
-$I->click('Siguiente: Agregar fotos');
+$I->selectOption('Qué desea hacer:', '0');
+$I->click('Continuar');
 
 // Reviso si el producto aparece en la lista
 $I->seeCurrentUrlEquals('productos');

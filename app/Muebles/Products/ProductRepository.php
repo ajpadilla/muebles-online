@@ -1,7 +1,7 @@
-<?php namespace Muebles\Producs;
+<?php namespace Muebles\Products;
 
 
-use Larabook\Products\Product;
+use Muebles\Products\Product;
 use Laracasts\Commander\Events\EventGenerator;
 use Muebles\Users\Events\UserActivate;
 
@@ -23,6 +23,6 @@ class ProductRepository {
 	 * Get all products
 	 */
 	public function getAll(){
-		retur Product::all();
+		return Product::all();
 	}
 } 
