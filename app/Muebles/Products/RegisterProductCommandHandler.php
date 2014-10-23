@@ -1,8 +1,9 @@
-<?php namespace Larabook\Products; 
+<?php namespace Muebles\Products;
 
 use Laracasts\Commander\CommandHandler;
 use Laracasts\Commander\Events\DispatchableTrait;
-use Muebles\Producs\ProductRepository;
+use Muebles\Products\ProductRepository;
+use Muebles\Products\Product;
 
 class RegisterProductCommandHandler implements CommandHandler {
 

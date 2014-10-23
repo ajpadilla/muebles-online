@@ -1,9 +1,13 @@
 <?php
 
+use Muebles\Core\CommandBus;
 use Muebles\Forms\ProductRegistrationForm;
 use Muebles\Products\ProductRepository;
+use Muebles\Products\RegisterProductCommand;
 
 class ProductsController extends \BaseController {
+
+	use CommandBus;
 
 	/**
 	 * @var ProductRegistrationForm

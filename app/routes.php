@@ -113,3 +113,11 @@ Route::put ('catalogo/create', [
 	'uses' => 'CatalogoController@create'
 ]);*/
 Route::resource('products', 'ProductsController');
+
+/**
+ * Photos routes
+ */
+Route::get('/products/fotos/create/{id}', [
+	'as' => 'product_photo_path',
+	'uses' => 'PhotosController@create'
+]);

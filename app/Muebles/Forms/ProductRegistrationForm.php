@@ -9,7 +9,7 @@ class ProductRegistrationForm extends FormValidator {
 	 * @var array
 	 */
 	protected $rules = [
-		'codigo' => 'required|alphanumeric|unique:muebles|max:128',
+		'codigo' => 'required|alpha_num|unique:products|max:128',
 		'nombre' => 'required|max:128',
 		'descripcion' => 'min:5|max:256',
 		'modelo' => 'required|max:128',

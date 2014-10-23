@@ -30,4 +30,23 @@ CREATE TABLE `users` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `users_email_unique` (`email`),
   KEY `users_provincia_id_index` (`provincia_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+CREATE TABLE `products` (
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `codigo` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+  `nombre` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+  `descripcion` text COLLATE utf8_unicode_ci,
+  `modelo` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+  `medidas` varchar(128) COLLATE utf8_unicode_ci NOT NULL,
+  `lacado` tinyint(1) NOT NULL,
+  `precio_lacado` decimal(10,4) NOT NULL,
+  `pulimento` tinyint(1) NOT NULL,
+  `precio_pulimento` decimal(10,4) NOT NULL,
+  `cantidad` int(11) NOT NULL,
+  `precio` decimal(10,4) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `updated_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `products_codigo_unique` (`codigo`)
+) ENGINE=InnoDB AUTO_INCREMENT=0 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;

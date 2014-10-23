@@ -17,7 +17,7 @@ class CreateTableProducs extends Migration {
 			$table->increments('id');
 			$table->string('codigo', 128)->unique();
 			$table->string('nombre', 128);
-			$table->text('description')->nullable();
+			$table->text('descripcion')->nullable();
 			$table->string('modelo', 128);
 			$table->string('medidas', 128);
 			$table->boolean('lacado');

@@ -1,18 +1,18 @@
-<?php namespace Larabook\Products; 
+<?php namespace Muebles\Products;
 
 class RegisterProductCommand  {
 
-	private $codigo;
-	private $nombre;
-	private $descripcion;
-	private $modelo;
-	private $medidas;
-	private $lacado;
-	private $precio_lacado;
-	private $pulimento;
-	private $precio_pulimento;
-	private $cantidad;
-	private $precio;
+	public $codigo;
+	public $nombre;
+	public $descripcion;
+	public $modelo;
+	public $medidas;
+	public $lacado;
+	public $precio_lacado;
+	public $pulimento;
+	public $precio_pulimento;
+	public $cantidad;
+	public $precio;
 
 	function __construct($codigo, $nombre, $descripcion, $modelo, $medidas, $lacado, $precio_lacado, $pulimento, $precio_pulimento, $cantidad, $precio)
 	{
