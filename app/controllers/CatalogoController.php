@@ -9,7 +9,7 @@ class CatalogoController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		return View::make('catalogo.index');
 	}
 
 
@@ -20,7 +20,7 @@ class CatalogoController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		return View::make('catalogo.create');
 	}
 
 
@@ -31,7 +31,7 @@ class CatalogoController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		
 	}
 
 

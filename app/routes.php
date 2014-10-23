@@ -103,7 +103,13 @@ Route::get('productos', [
 /**
  * Catalogo routes
  */
-Route::get('catalogo', [
+/*Route::get('catalogo', [
 	'as' => 'catalogo_path',
 	'uses' => 'CatalogoController@index'
 ]);
+
+Route::put ('catalogo/create', [
+	'as' => 'catalogo_path',
+	'uses' => 'CatalogoController@create'
+]);*/
+Route::resource('catalogo', 'CatalogoController');

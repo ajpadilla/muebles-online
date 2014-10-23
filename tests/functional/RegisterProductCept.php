@@ -14,22 +14,22 @@ $I->amOnPage('/');
 $I->see('Catálogo', 'li');
 $I->click('Catálogo');
 $I->seeCurrentUrlEquals('/catalogo');
-$I->see('Nuevo');
-$I->click('Nuevo');
-$I->seeCurrentUrlEquals('catalogo/register');
+$I->see('Nuevo Producto');
+$I->click('Nuevo Producto');
+$I->seeCurrentUrlEquals('/catalogo/create');
 
 
-$I->fillField('Código', 'abc123');
+$I->fillField('Código:', 'abc123');
 $I->fillField('Nombre:', 'Mueble');
 $I->fillField('Modelo:', 'Terso');
 $I->fillField('Medidas:', '100x40x50');
-$I->selectOption('Lacado:', 'Si');
-$I->fillField('Precio Lacado:', '200');
-$I->fillField('Pulimento:', 'Si');
-$I->fillField('Precio Pulimento:', '300');
+$I->selectOption('Lacado:', '1');
+$I->fillField('Precio del Lacado:', '200,00');
+$I->fillField('Pulimento:', '1');
+$I->fillField('Precio del Pulimento:', '300,00');
 $I->fillField('Cantidad:', '10');
-$I->fillField('Precio:', '500.00');
-$I->click('Registrar');
+$I->fillField('Precio:', '500,00');
+$I->click('Siguiente: Agregar fotos');
 
 // Reviso si el producto aparece en la lista
 $I->seeCurrentUrlEquals('productos');
