@@ -1,5 +1,6 @@
 <?php namespace Muebles\Users; 
 
+use Larabook\Products\Product;
 use Laracasts\Commander\CommandHandler;
 use Laracasts\Commander\Events\DispatchableTrait;
 use Muebles\Users\User;

@@ -112,4 +112,4 @@ Route::put ('catalogo/create', [
 	'as' => 'catalogo_path',
 	'uses' => 'CatalogoController@create'
 ]);*/
-Route::resource('catalogo', 'CatalogoController');
+Route::resource('products', 'ProductsController');
