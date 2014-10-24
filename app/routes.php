@@ -117,7 +117,12 @@ Route::resource('products', 'ProductsController');
 /**
  * Photos routes
  */
-Route::get('/products/fotos/create/{id}', [
+Route::get('/products/fotos/create/{productId}', [
 	'as' => 'product_photo_path',
 	'uses' => 'PhotosController@create'
+]);
+
+Route::post('/photos/upload', [
+	'as' => 'photo_upload_path',
+	'uses' => 'PhotosController@store'
 ]);

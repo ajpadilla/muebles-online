@@ -1,5 +1,7 @@
 <?php
 
+use Muebles\Products\Product;
+
 class PhotosController extends \BaseController {
 
 	/**
@@ -18,9 +20,10 @@ class PhotosController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function create()
+	public function create($productId)
 	{
-		//
+		$nombre = Product::find($productId)->nombre;
+		return View::make('photos.create', compact('productId', 'nombre'));
 	}
 
 

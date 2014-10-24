@@ -1,9 +1,5 @@
 <!--Jquery fileupload-->
 <script text="text/javascript" src="{{asset('js/jquery-2.1.1.min.js')}}"></script>
-<script text="text/javascript" src="{{asset('js/jQuery-File-Uploadjs/vendor/jquery.ui.widget.js')}}"></script>
-<script text="text/javascript" src="{{asset('js/jQuery-File-Uploadjs/jquery.iframe-transport.js')}}"></script>
-<script text="text/javascript" src="{{asset('js/jQuery-File-Uploadjs/jquery.fileupload.js')}}"></script>
-
 <!--Jquery fancybox plugin-->
 <script text="text/javascript" src="{{asset('js/fancybox/source/jquery.fancybox.js')}}"></script>
 <script text="text/javascript" src="{{asset('js/fancybox/source/jquery.fancybox.pack.js')}}"></script>
@@ -42,6 +38,9 @@
 
 <!-- jQuery Dropdown Mobile -->
 <script type="text/javascript" src="{{asset('js/tinynav.min.js')}}"></script>
+
+<!-- Extre in-situ include librarys -->
+@yield('in-situ-js')
 
 <!-- Custom Script -->
 <script type="text/javascript" src="{{asset('js/custom.js')}}"></script>
