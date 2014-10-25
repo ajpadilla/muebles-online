@@ -21,17 +21,20 @@
 							<div id="actions" class="row">
 								<div class="seven columns">
 									<!-- The fileinput-button span is used to style the file input field as button -->
-									<button class="btn btn-success fileinput-button dz-clickable">
-									<i class="glyphicon glyphicon-plus"></i>
-									<span>Agregar fotos...</span>
+									<button id="addPhoto" class="btn btn-success fileinput-button dz-clickable">
+										<i class="glyphicon glyphicon-plus"></i>
+										<span>Agregar fotos...</span>
 									</button>
 									<button type="submit" class="btn btn-primary start">
-									<i class="glyphicon glyphicon-upload"></i>
-									<span>Iniciar</span>
+										<i class="glyphicon glyphicon-upload"></i>
+										<span>Iniciar</span>
 									</button>
 									<button type="reset" class="btn btn-warning cancel">
-									<i class="glyphicon glyphicon-ban-circle"></i>
-									<span>Cancelar</span>
+										<i class="glyphicon glyphicon-ban-circle"></i>
+										<span>Cancelar</span>
+									</button>
+									<button type="button" href="{{ route('products.index') }}" class="btn-alert">
+										<span>Lista de Productos</span>
 									</button>
 								</div>
 								<div class="five columns">

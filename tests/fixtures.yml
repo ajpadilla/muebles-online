@@ -10,3 +10,17 @@ Muebles\Users\User:
   provincia_id: $integer
   created_at: $date
   updated_at: $date
+
+Muebles\Products\Product:
+  codigo: $string
+  nombre: $string
+  modelo: $string
+  medidas: 100x40x50
+  lacado: $boolean
+  precio_lacado: $float
+  pulimento: $boolean
+  precio_pulimento: $float
+  cantidad: $integer
+  precio: $float
+  created_at: $date
+  updated_at: $date

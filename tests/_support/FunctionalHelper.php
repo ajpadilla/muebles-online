@@ -22,7 +22,7 @@ class FunctionalHelper extends \Codeception\Module
 	}
 
 	public function registerProduct(){
-
+		return $this->have('Muebles\Products\Product');
 	}
 
 	public function have($model, $overrides = [])
