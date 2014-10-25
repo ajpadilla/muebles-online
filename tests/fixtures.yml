@@ -12,7 +12,7 @@ Muebles\Users\User:
   updated_at: $date
 
 Muebles\Products\Product:
-  codigo: $string
+  codigo: $integer
   nombre: $string
   modelo: $string
   medidas: 100x40x50
