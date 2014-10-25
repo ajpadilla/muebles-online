@@ -22,7 +22,7 @@ class PhotosController extends \BaseController {
 	 */
 	public function create($productId)
 	{
-		$nombre = Product::find($productId)->nombre;
+		$nombre = Product::findOrFail($productId)->nombre;
 		return View::make('photos.create', compact('productId', 'nombre'));
 	}
 
@@ -34,7 +34,7 @@ class PhotosController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		dd(Response::json(Input::all()));
 	}
 
 

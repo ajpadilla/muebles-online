@@ -83,9 +83,10 @@ $I->seeRecord('products', [
 ]);
 
 // Agrego las fotos
-$I->seeCurrentUrlEquals('/products/fotos/create/2');
+$I->seeCurrentUrlEquals('/photos/create/2');
 $I->see('Adjuntar fotos al producto (Mueble)');
-$I->fillField('Descripción:', 'Foto frontal');
+$I->see('Descripcion:');
+$I->fillField('Descripcion:', 'Foto frontal');
 $I->attachFile('#fireupload', 'frontal.jpg');
 $I->click('Adjuntar');
 

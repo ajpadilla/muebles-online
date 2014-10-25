@@ -117,7 +117,12 @@ Route::resource('products', 'ProductsController');
 /**
  * Photos routes
  */
-Route::get('/products/fotos/create/{productId}', [
+Route::get('photos/create/{productId}', [
+	'as' => 'photos.create',
+	'uses' => 'PhotosController@create'
+]);
+Route::resource('photos', 'PhotosController', ['except' => ['create']]);
+/*Route::get('/products/photos/create/{productId}', [
 	'as' => 'product_photo_path',
 	'uses' => 'PhotosController@create'
 ]);
@@ -125,4 +130,4 @@ Route::get('/products/fotos/create/{productId}', [
 Route::post('/photos/upload', [
 	'as' => 'photo_upload_path',
 	'uses' => 'PhotosController@store'
-]);
+]);*/

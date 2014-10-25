@@ -65,7 +65,7 @@ class ProductsController extends \BaseController {
 		Flash::success('El mueble ha sido registrado con éxito!');
 		if($formData['do'] == 1) {
 			$id = $product->id;
-			return Redirect::route('product_photo_path', compact('id'));
+			return Redirect::route('photos.create', compact('id'));
 		}
 		return Redirect::route('products.index');
 	}
