@@ -118,5 +118,19 @@ class ProductsController extends \BaseController {
 		//
 	}
 
+	/**
+	 * Get datatable data for datatables package
+	 *
+	 * @return mixed
+	 */
+	public function getDatatable()
+	{
+		return Datatable::collection($this->repository->getAll())
+			->showColumns('codigo', 'nombre', 'modelo', 'medidas', 'lacado', 'precio_lacado', 'pulimento', 'precio_pulimento', 'cantidad', 'precio')
+			->searchColumns('nombre', 'codigo')
+			->orderColumns('codigo','nombre', 'modelo')
+			->make();
+	}
+
 
 }

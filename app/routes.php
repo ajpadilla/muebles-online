@@ -133,6 +133,11 @@ Route::post('/photos/upload', [
 ]);*/// Adding auth checks for the upload functionality is highly recommended.
 
 // Cabinet routes
-Route::get('upload/data', 'UploadController@data');
+/*Route::get('upload/data', 'UploadController@data');
 Route::resource( 'upload', 'UploadController',
-        array('except' => array('show', 'edit', 'update', 'destroy')));
+        array('except' => array('show', 'edit', 'update', 'destroy')));*/
+
+/**
+ * Chumper/Datatables routes
+ */
+Route::get('api/products', array('as'=>'api.products', 'uses'=>'ProductsController@getDatatable'));

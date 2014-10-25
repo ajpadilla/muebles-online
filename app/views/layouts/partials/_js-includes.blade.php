@@ -1,14 +1,14 @@
 <!--Jquery fileupload-->
 {{--<script text="text/javascript" src="{{asset('js/jquery-2.1.1.min.js')}}"></script>--}}
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 
 <!-- jQuery Superfish -->
-<script type="text/javascript" src="{{asset('vendor/js/hoverIntent.js')}}"></script>
-<script type="text/javascript" src="{{asset('vendor/js/superfish.js')}}"></script>
-<script type="text/javascript" src="{{asset('vendor/js/supersubs.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/vendor/hoverIntent.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/vendor/superfish.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/vendor/supersubs.js')}}"></script>
 
 <!-- jQuery Flex Slider -->
-<script type="text/javascript" src="{{asset('vendor/js/jquery.nivo.slider.pack.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/vendor/jquery.nivo.slider.pack.js')}}"></script>
 
 <script type="text/javascript">
 	jQuery(window).load(function() {
@@ -31,7 +31,7 @@
 </script>
 
 <!-- jQuery Dropdown Mobile -->
-<script type="text/javascript" src="{{asset('vendor/js/tinynav.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/vendor/tinynav.min.js')}}"></script>
 
 <!-- Extre in-situ include librarys -->
 @yield('in-situ-js')
@@ -40,9 +40,9 @@
 <script type="text/javascript" src="{{asset('js/custom.js')}}"></script>
 
 <!-- jQuery PrettyPhoto -->
-<script type="text/javascript" src="{{asset('vendor/js/jquery.prettyPhoto.js')}}"></script>
-<script type="text/javascript" src="{{asset('vendor/js/fade.js')}}"}}></script>
-<script type="text/javascript" src="{{asset('vendor/js/jquery-easing-1.3.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/vendor/jquery.prettyPhoto.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/vendor/fade.js')}}"}}></script>
+<script type="text/javascript" src="{{asset('js/vendor/jquery-easing-1.3.js')}}"></script>
 
 
 @yield('script');

@@ -7,4 +7,5 @@
 <link rel="stylesheet" href="{{asset('css/vendor/inner.css')}}" />
 <link rel="stylesheet" href="{{asset('css/vendor/layout.css')}}" />
 <link rel="stylesheet" href="{{asset('css/vendor/color.css')}}" />
+@yield('in-situ-css')
 <link rel="stylesheet" href="{{asset('css/main.css')}}" />

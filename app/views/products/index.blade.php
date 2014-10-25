@@ -23,7 +23,7 @@
 		                <section id="content" class="twelve columns positionleft">
 		                    <div class="page articlecontainer">
 		                        <article class="entry-content">
-		                            <table>
+		                            {{--<table>
 			                            <thead>
 			                                <th>Código</th>
 			                                <th>Nombre</th>
@@ -61,14 +61,36 @@
 			                            <tfoot>
 
 			                            </tfoot>
-		                            </table>
-		                        </article>
-		                    </div>
-		                </section><!-- content -->
-		            </section>
-		        </div>
-		    </div>
+		                            </table>--}}
+		                            <?php
+	                                    $table = Datatable::table()
+                                            ->addColumn('codigo', 'nombre', 'modelo', 'medidas', 'lacado', 'precio_lacado', 'pulimento', 'precio_pulimento', 'cantidad', 'precio')
+                                            ->setUrl('/api/products')
+                                            ->noScript();
+                                    ?>
+							        {{ $table->render() }}
+                                </article>
+                            </div>
+                        </section><!-- content -->
+                    </section>
+                </div>
+            </div>
         </div>
     </div>
     <!-- END MAIN CONTENT -->
+@stop
+
+@section('in-situ-css')
+    {{--<link rel="stylesheet" href="//cdn.datatables.net/1.10.3/css/jquery.dataTables.min.css"/>--}}
+    <link rel="stylesheet" href="{{ asset('css/vendor/jquery.dataTables.min.css') }}"/>
+@stop
+
+@section('in-situ-js')
+    {{--<script src="//cdn.datatables.net/1.10.3/js/jquery.dataTables.min.js"></script>--}}
+    <script src="{{ asset('js/vendor/jquery.dataTables.min.js') }}"></script>
+
+@stop
+
+@section('script')
+	{{ $table->script() }}
 @stop
