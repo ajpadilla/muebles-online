@@ -127,6 +127,7 @@ return array(
 		'Laracasts\Flash\FlashServiceProvider',
 		'Barryvdh\Debugbar\ServiceProvider',
 		'Andrew13\Cabinet\CabinetServiceProvider',
+		'Chumper\Datatable\DatatableServiceProvider',
 	),
 
 	/*
@@ -196,6 +197,7 @@ return array(
 		'Flash'             => 'Laracasts\Flash\Flash',
 		'Debugbar' => 'Barryvdh\Debugbar\Facade',
 		'Cabinet'    => 'Andrew13\Cabinet\CabinetFacade',
+		'Datatable' => 'Chumper\Datatable\Facades\DatatableFacade',
 	),
 
 );
