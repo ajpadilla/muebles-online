@@ -130,4 +130,9 @@ Route::resource('photos', 'PhotosController', ['except' => ['create']]);
 Route::post('/photos/upload', [
 	'as' => 'photo_upload_path',
 	'uses' => 'PhotosController@store'
-]);*/
+]);*/// Adding auth checks for the upload functionality is highly recommended.
+
+// Cabinet routes
+Route::get('upload/data', 'UploadController@data');
+Route::resource( 'upload', 'UploadController',
+        array('except' => array('show', 'edit', 'update', 'destroy')));

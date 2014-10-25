@@ -211,7 +211,7 @@ width:77px;
 	overflow:hidden;
 }
 .ts-pf-img a.pfzoom .rollover{
-	background:url(../images/hover-zoom.png);
+	background:url(../../images/hover-zoom.png);
 	background-color:#000;
 	background-repeat:no-repeat;
 	background-position:center;
@@ -224,7 +224,7 @@ width:77px;
 	height:100%;
 }
 .ts-pf-img a.pflink .rollover{
-	background:url(../images/hover-link.png);
+	background:url(../../images/hover-link.png);
 	background-color:#000;
 	background-repeat:no-repeat;
 	background-position:center;
@@ -237,7 +237,7 @@ width:77px;
 	height:100%;
 }
 .ts-pf-img a.pfdetail .rollover{
-	background:url(../images/hover-doc.png);
+	background:url(../../images/hover-doc.png);
 	background-color:#000;
 	background-repeat:no-repeat;
 	background-position:center;

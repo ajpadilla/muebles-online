@@ -65,7 +65,7 @@ return array(
 	|
 	 */
 
-	'fallback_locale' => 'en',
+	'fallback_locale' => 'es',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -126,6 +126,7 @@ return array(
 		'Laracasts\Validation\ValidationServiceProvider',
 		'Laracasts\Flash\FlashServiceProvider',
 		'Barryvdh\Debugbar\ServiceProvider',
+		'Andrew13\Cabinet\CabinetServiceProvider',
 	),
 
 	/*
@@ -194,6 +195,7 @@ return array(
 		'View'              => 'Illuminate\Support\Facades\View',
 		'Flash'             => 'Laracasts\Flash\Flash',
 		'Debugbar' => 'Barryvdh\Debugbar\Facade',
+		'Cabinet'    => 'Andrew13\Cabinet\CabinetFacade',
 	),
 
 );

@@ -1,26 +1,14 @@
 <!--Jquery fileupload-->
 {{--<script text="text/javascript" src="{{asset('js/jquery-2.1.1.min.js')}}"></script>--}}
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<!--Jquery fancybox plugin-->
-{{--<script text="text/javascript" src="{{asset('js/fancybox/source/jquery.fancybox.js')}}"></script>
-<script text="text/javascript" src="{{asset('js/fancybox/source/jquery.fancybox.pack.js')}}"></script>--}}
-
-<!--Jquery validate plugin-->
-{{--<script type="text/javascript" src="{{asset('js/jquery.validate.min.js')}}"></script>--}}
-
-<!--Nuevas validaciones para el jquery validate plugin-->
- {{-- <script type="text/javascript" src="{{asset('js/validaciones.js')}}"></script>--}}
-
-<!--Jquery form plugin-->
-{{--<script type="text/javascript" src="{{asset('js/jquery.form.min.js')}}"></script>--}}
 
 <!-- jQuery Superfish -->
-<script type="text/javascript" src="{{asset('js/hoverIntent.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/superfish.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/supersubs.js')}}"></script>
+<script type="text/javascript" src="{{asset('vendor/js/hoverIntent.js')}}"></script>
+<script type="text/javascript" src="{{asset('vendor/js/superfish.js')}}"></script>
+<script type="text/javascript" src="{{asset('vendor/js/supersubs.js')}}"></script>
 
 <!-- jQuery Flex Slider -->
-<script type="text/javascript" src="{{asset('js/jquery.nivo.slider.pack.js')}}"></script>
+<script type="text/javascript" src="{{asset('vendor/js/jquery.nivo.slider.pack.js')}}"></script>
 
 <script type="text/javascript">
 	jQuery(window).load(function() {
@@ -43,7 +31,7 @@
 </script>
 
 <!-- jQuery Dropdown Mobile -->
-<script type="text/javascript" src="{{asset('js/tinynav.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('vendor/js/tinynav.min.js')}}"></script>
 
 <!-- Extre in-situ include librarys -->
 @yield('in-situ-js')
@@ -52,9 +40,9 @@
 <script type="text/javascript" src="{{asset('js/custom.js')}}"></script>
 
 <!-- jQuery PrettyPhoto -->
-<script type="text/javascript" src="{{asset('js/jquery.prettyPhoto.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/fade.js')}}"}}></script>
-<script type="text/javascript" src="{{asset('js/jquery-easing-1.3.js')}}"></script>
+<script type="text/javascript" src="{{asset('vendor/js/jquery.prettyPhoto.js')}}"></script>
+<script type="text/javascript" src="{{asset('vendor/js/fade.js')}}"}}></script>
+<script type="text/javascript" src="{{asset('vendor/js/jquery-easing-1.3.js')}}"></script>
 
 
 @yield('script');

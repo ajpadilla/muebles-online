@@ -1,5 +1,6 @@
 <?php
 
+use Muebles\Photos\Photo;
 use Muebles\Products\Product;
 
 class PhotosController extends \BaseController {
@@ -34,7 +35,25 @@ class PhotosController extends \BaseController {
 	 */
 	public function store()
 	{
-		dd(Response::json(Input::all()));
+		$file = Input::file('file');
+		$productId = Input::get('product_id');
+		$photo = new Photo();
+
+		try {
+			$photo->process($file, $productId);
+		} catch(Exception $exception){
+			// Something went wrong. Log it.
+			Log::error($exception);
+			// Return error
+			return Response::json($exception->getMessage(), 400);
+		}
+
+		// If it now has an id, it should have been successful.
+		if ( $photo->id ) {
+			return Response::json(array('status' => 'success', 'file' => $photo->toArray()), 200);
+		} else {
+			return Response::json('Error', 400);
+		}
 	}
 
 

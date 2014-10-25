@@ -119,7 +119,8 @@
 		  document.querySelector("#total-progress .progress-bar").style.width = progress + "%";
 		});
 
-		myDropzone.on("sending", function(file) {
+		myDropzone.on("sending", function(file, xhr, formData) {
+			formData.append('product_id', '{{ $productId }}');
 		  // Show the total progress bar when upload starts
 		  document.querySelector("#total-progress").style.opacity = "1";
 		  // And disable the start button
