@@ -64,7 +64,18 @@
 		                            </table>--}}
 		                            <?php
 	                                    $table = Datatable::table()
-                                            ->addColumn('codigo', 'nombre', 'modelo', 'medidas', 'lacado', 'precio_lacado', 'pulimento', 'precio_pulimento', 'cantidad', 'precio')
+                                            ->addColumn([
+                                                    'codigo',
+                                                    'nombre',
+                                                    'modelo',
+                                                    'medidas',
+                                                    'lacado',
+                                                    'precio_lacado',
+                                                    'pulimento',
+                                                    'precio_pulimento',
+                                                    'cantidad',
+                                                    'precio'
+                                                ])
                                             ->setUrl('/api/products')
                                             ->noScript();
                                     ?>

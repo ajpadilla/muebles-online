@@ -1,6 +1,6 @@
 <!--Jquery fileupload-->
-{{--<script text="text/javascript" src="{{asset('js/jquery-2.1.1.min.js')}}"></script>--}}
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script text="text/javascript" src="{{asset('js/vendor/jquery-1.7.1.min.js')}}"></script>
+{{--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>--}}
 
 <!-- jQuery Superfish -->
 <script type="text/javascript" src="{{asset('js/vendor/hoverIntent.js')}}"></script>

@@ -125,12 +125,36 @@ class ProductsController extends \BaseController {
 	 */
 	public function getDatatable()
 	{
-		return Datatable::collection($this->repository->getAll())
+		$collection = Datatable::collection($this->repository->getAll())
 			->showColumns('codigo', 'nombre', 'modelo', 'medidas', 'lacado', 'precio_lacado', 'pulimento', 'precio_pulimento', 'cantidad', 'precio')
 			->searchColumns('nombre', 'codigo')
-			->orderColumns('codigo','nombre', 'modelo')
-			->make();
+			->orderColumns('codigo','nombre', 'modelo');
+
+		$collection->addColumn('lacado', function($model)
+				{
+					return ($model->lacado == 1) ? 'Si' : 'No';
+				});
+
+		$collection->addColumn('precio_lacado', function($model)
+		{
+			return number_format($model->precio_lacado, 2, ',', '.');
+		});
+
+		$collection->addColumn('pulimento', function($model)
+		{
+			return ($model->pulimento == 1) ? 'Si' : 'No';
+		});
+
+		$collection->addColumn('precio_pulimento', function($model)
+		{
+			return number_format($model->precio_pulimento, 2, ',', '.');
+		});
+
+		$collection->addColumn('precio', function($model)
+		{
+			return number_format($model->precio, 2, ',', '.');
+		});
+
+		return $collection->make();
 	}
-
-
 }
