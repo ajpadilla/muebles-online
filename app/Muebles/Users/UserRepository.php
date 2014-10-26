@@ -28,6 +28,11 @@ class UserRepository {
 		return $user->activo;
 	}
 
+	public function rol(){
+		$count = User::all()->count();
+		return ($count > 0) ? 'cliente' : 'admin';
+	}
+
 	/**
 	 * Persist a user.
 	 *

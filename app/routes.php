@@ -12,12 +12,21 @@
  */
 
 Event::listen('Muebles.Users.Events.UserRegistered', function($event) {
-	Mail::send('users.emails.activate-user', array('user' => $event->user), function($message)
-	{
-		$message->to('nightzpy@gmail.com', 'Lenyn')
-			->from('informacion@presentatenlaweb.com', 'Presentatenlaweb Atención al cliente')
-			->subject('Un nuevo usuario se ha registrado!');
-	});
+	$user = $event->user;
+	if(!$user->activo) {
+		Mail::send('users.emails.activate-user', array('user' => $user), function ($message) {
+			$message->to('nightzpy@gmail.com', 'Lenyn')
+				->from('informacion@presentatenlaweb.com', 'Presentatenlaweb Atención al cliente')
+				->subject('Un nuevo usuario se ha registrado!');
+		});
+	} else {
+		Mail::send('users.emails.user-activate', array('user' => $user), function($message) use ($user)
+		{
+			$message->to($user->email, $user->nombre)
+				->from('informacion@grupodos.com', 'Grupo Dos S.L.')
+				->subject('Felicitaciones: Hemos admitido tu ingreso!');
+		});
+	}
 });
 
 Event::listen('Muebles.Users.Events.UserActivate', function($event) {

@@ -53,7 +53,14 @@
                                         <li>
                                         <div class="price">€{{ number_format($product->precio, 2, ',', '.') }}{{--<span>/night</span>--}}</div>
                                         </li>
-                                        <li><a href="#" class="button">Realizar pedido</a></li>
+                                        @if(Auth::check() AND Auth::user()->rol == 'cliente')
+                                            <li><a href="#" class="button">Realizar pedido</a></li>
+                                        @endif
+                                        @if(Auth::check() AND Auth::user()->rol == 'admin')
+                                            <li><a href="{{ route('photos.create', $product->id) }}" class="button">Agregar fotos</a></li>
+                                            <li><a href="{{ route('photos.edit', $product->id) }}" class="button">Editar</a></li>
+                                            <li><a href="{{ route('photos.destroy', $product->id) }}" class="button">Eliminar</a></li>
+                                        @endif
                                     </ul>
                                 </div>
 
