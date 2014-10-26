@@ -6,4 +6,8 @@ class Photo extends CabinetUpload {
 
 	protected $softDelete = true;
 
+	public function product(){
+		return $this->belongsTo('Muebles\Products\Product');
+	}
+
 }

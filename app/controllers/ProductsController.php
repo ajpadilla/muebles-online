@@ -2,6 +2,7 @@
 
 use Muebles\Core\CommandBus;
 use Muebles\Forms\ProductRegistrationForm;
+use Muebles\Products\Product;
 use Muebles\Products\ProductRepository;
 use Muebles\Products\RegisterProductCommand;
 
@@ -79,7 +80,8 @@ class ProductsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		//
+		$product = Product::findOrFail($id);
+		return View::make('products.view', compact('product'));
 	}
 
 
@@ -125,15 +127,33 @@ class ProductsController extends \BaseController {
 	 */
 	public function getDatatable()
 	{
-		$collection = Datatable::collection($this->repository->getAll())
-			->showColumns('codigo', 'nombre', 'modelo', 'medidas', 'lacado', 'precio_lacado', 'pulimento', 'precio_pulimento', 'cantidad', 'precio')
-			->searchColumns('nombre', 'codigo')
-			->orderColumns('codigo','nombre', 'modelo');
+		$collection = Datatable::collection($this->repository->getAll());
+			//->showColumns('codigo', 'nombre', 'modelo', 'medidas', 'lacado', 'precio_lacado', 'pulimento', 'precio_pulimento', 'cantidad', 'precio')
+
+		$collection->addColumn('codigo', function($model)
+		{
+			return strtoupper($model->codigo);
+		});
+
+		$collection->addColumn('nombre', function($model)
+		{
+			return ucfirst(strtolower($model->nombre));
+		});
+
+		$collection->addColumn('modelo', function($model)
+		{
+			return strtoupper($model->modelo);
+		});
+
+		$collection->addColumn('medidas', function($model)
+		{
+			return $model->medidas;
+		});
 
 		$collection->addColumn('lacado', function($model)
-				{
-					return ($model->lacado == 1) ? 'Si' : 'No';
-				});
+		{
+			return ($model->lacado == 1) ? 'Si' : 'No';
+		});
 
 		$collection->addColumn('precio_lacado', function($model)
 		{
@@ -150,10 +170,27 @@ class ProductsController extends \BaseController {
 			return number_format($model->precio_pulimento, 2, ',', '.');
 		});
 
+		$collection->addColumn('cantidad', function($model)
+		{
+			return $model->cantidad;
+		});
+
 		$collection->addColumn('precio', function($model)
 		{
 			return number_format($model->precio, 2, ',', '.');
 		});
+
+		$collection->addColumn('ver', function($model)
+		{
+			return "<a href='" . route('products.show', $model->id) . "'>Ver</a>
+					<br />
+					<a href='" . route('products.edit', $model->id) . "'>Editar</a>
+					<br />
+					<a href='" . route('products.destroy', $model->id) . "'>Eliminar</a>";
+		});
+
+		$collection->searchColumns('nombre', 'codigo');
+		$collection->orderColumns('codigo','nombre', 'modelo');
 
 		return $collection->make();
 	}

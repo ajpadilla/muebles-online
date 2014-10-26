@@ -70,15 +70,17 @@
                                                     'modelo',
                                                     'medidas',
                                                     'lacado',
-                                                    'precio_lacado',
+                                                    'Precio del Lacado',
                                                     'pulimento',
                                                     'precio_pulimento',
                                                     'cantidad',
-                                                    'precio'
+                                                    'precio',
+                                                    'Acciones',
                                                 ])
                                             ->setUrl('/api/products')
                                             ->noScript();
                                     ?>
+                                    <div class="row"><br/></div>
 							        {{ $table->render() }}
                                 </article>
                             </div>

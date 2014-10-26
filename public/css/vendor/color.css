@@ -67,8 +67,8 @@ h1, h2, h3, h4, h5, h6{color:#353738;}
 .nivo-controlNav a:hover{background: #454545; }
 .nivo-controlNav a.active {	background: #454545;}
 
-#roomslider .flex-direction-nav a{background:url(../../images/flex-prev.png) no-repeat 0px 0px;}
-#roomslider .flex-direction-nav a.flex-next{background-image:url(../../images/flex-next.png) }
+#roomslider .flex-direction-nav a{background:url("/images/flex-prev.png") no-repeat 0px 0px;}
+#roomslider .flex-direction-nav a.flex-next{background-image:url(/images/flex-next.png) }
 
 
 /*============================================== CONTENT SECTION ==============================================*/

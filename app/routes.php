@@ -94,10 +94,10 @@ Route::get('contacto', [
 /**
  * Productos routes
  */
-Route::get('productos', [
+/*Route::get('productos', [
 	'as' => 'producto_path',
 	'uses' => 'ProductosController@index'
-]);
+]);*/
 
 
 /**
