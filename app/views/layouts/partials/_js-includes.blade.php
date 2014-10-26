@@ -7,29 +7,6 @@
 <script type="text/javascript" src="{{asset('js/vendor/superfish.js')}}"></script>
 <script type="text/javascript" src="{{asset('js/vendor/supersubs.js')}}"></script>
 
-<!-- jQuery Flex Slider -->
-<script type="text/javascript" src="{{asset('js/vendor/jquery.nivo.slider.pack.js')}}"></script>
-
-<script type="text/javascript">
-	jQuery(window).load(function() {
-		jQuery('#slidernivo').nivoSlider({
-			directionNav : false,
-			controlNav :  true,
-			effect: 'random',
-			slices: 15,
-			boxCols: 8,
-			boxRows: 4,
-			animSpeed: 500,
-			pauseTime: 6000,
-		});
-		jQuery('#selectNav').change(function(e) {
-			var option = $(this).selected();
-			var url = option.val();
-			document.location.href = url;
-		});
-	});
-</script>
-
 <!-- jQuery Dropdown Mobile -->
 <script type="text/javascript" src="{{asset('js/vendor/tinynav.min.js')}}"></script>
 

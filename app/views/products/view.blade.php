@@ -19,7 +19,7 @@
                      <section class="eight columns positionleft" id="content">
                         <article>
                             <div class="articlecontainer">
-                                <div class="flexslider" id="roomslider">
+                                <div class="black-background img-slider flexslider" id="roomslider">
                                      <ul class="slides">
                                         <?php $i=0; ?>
                                         @foreach($product->photos as $photo)
@@ -29,7 +29,7 @@
 	                                        @else
 	                                            <li style="width: 100%; float: left; margin-right: -100%; position: relative; display: none;" class="">
 	                                        @endif
-												<img alt="{{ $photo->filename }}" src="{{ asset($photo->path . $photo->filename) }}">
+												<img class="" alt="{{ $photo->filename }}" src="{{ asset($photo->path . $photo->filename) }}">
 	                                        </li>
                                         @endforeach
                                      </ul>
@@ -37,6 +37,7 @@
                                 <ul class="flex-direction-nav"><li><a href="#" class="flex-prev">Anterior</a></li><li><a href="#" class="flex-next">Siguiente</a></li></ul></div>
 
                                 <div class="entry-content">
+                                    <br/>
                                     <p>{{ $product->descripcion }}</p>
                                     <h2>Detalles</h2>
                                     <ul class="listborder">
@@ -116,4 +117,38 @@
         </div>
     </div>
 </div>
+@stop
+
+@section('in-situ-css')
+<style>
+	.img-slider .slides img {
+	    width: 550px;
+	    height: auto;
+	    margin: 0 auto;
+	    /*margin-left: 15px;
+	    margin-right: 15px;*/
+	}
+
+	.black-background {
+		background-color: #0c0c0c;
+	}
+</style>
+@stop
+
+@section('in-situ-js')
+	<script src="/js/vendor/jquery.flexslider-min.js"></script>
+@stop
+
+@section('script')
+<script>
+	jQuery(window).load(function() {
+		jQuery('#roomslider').flexslider({
+			animation: "fade",
+			touch:true,
+			animationDuration: 6000,
+			directionNav: true,
+			controlNav: false
+		});
+	});
+</script>
 @stop
