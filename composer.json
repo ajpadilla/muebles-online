@@ -8,7 +8,9 @@
         "laravel/framework": "4.2.*",
         "laracasts/commander": "~1.0",
         "laracasts/validation": "1.1.2",
-        "laracasts/flash": "~1.0"
+        "laracasts/flash": "~1.0",
+        "andrewelkins/cabinet": "1.1.x",
+        "chumper/datatable": "2.*"
     },
     "autoload": {
         "classmap": [

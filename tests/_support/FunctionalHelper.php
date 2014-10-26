@@ -7,7 +7,7 @@ class FunctionalHelper extends \Codeception\Module
 {
 	public function signIn(){
 
-		$email = 'nightzpy@gmail.com';
+		$email = 'night@gmail.com';
 		$password = '1234';
 		$I = $this->getModule('Laravel4');
 		$user = $this->haveAnAccount(compact('email', 'password'));
@@ -22,7 +22,7 @@ class FunctionalHelper extends \Codeception\Module
 	}
 
 	public function registerProduct(){
-
+		return $this->have('Muebles\Products\Product');
 	}
 
 	public function have($model, $overrides = [])

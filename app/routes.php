@@ -103,7 +103,41 @@ Route::get('productos', [
 /**
  * Catalogo routes
  */
-Route::get('catalogo', [
+/*Route::get('catalogo', [
 	'as' => 'catalogo_path',
 	'uses' => 'CatalogoController@index'
 ]);
+
+Route::put ('catalogo/create', [
+	'as' => 'catalogo_path',
+	'uses' => 'CatalogoController@create'
+]);*/
+Route::resource('products', 'ProductsController');
+
+/**
+ * Photos routes
+ */
+Route::get('photos/create/{productId}', [
+	'as' => 'photos.create',
+	'uses' => 'PhotosController@create'
+]);
+Route::resource('photos', 'PhotosController', ['except' => ['create']]);
+/*Route::get('/products/photos/create/{productId}', [
+	'as' => 'product_photo_path',
+	'uses' => 'PhotosController@create'
+]);
+
+Route::post('/photos/upload', [
+	'as' => 'photo_upload_path',
+	'uses' => 'PhotosController@store'
+]);*/// Adding auth checks for the upload functionality is highly recommended.
+
+// Cabinet routes
+/*Route::get('upload/data', 'UploadController@data');
+Route::resource( 'upload', 'UploadController',
+        array('except' => array('show', 'edit', 'update', 'destroy')));*/
+
+/**
+ * Chumper/Datatables routes
+ */
+Route::get('api/products', array('as'=>'api.products', 'uses'=>'ProductsController@getDatatable'));

@@ -16,6 +16,5 @@ jQuery(document).ready(function(){
 	//=================================== MOBILE MENU DROPDOWN ===================================//
 	jQuery('#topnav').tinyNav({
 		active: 'current'
-	});	
-	
+	});
 });

@@ -1,29 +1,14 @@
 <!--Jquery fileupload-->
-<script text="text/javascript" src="{{asset('js/jquery-2.1.1.min.js')}}"></script>
-<script text="text/javascript" src="{{asset('js/jQuery-File-Uploadjs/vendor/jquery.ui.widget.js')}}"></script>
-<script text="text/javascript" src="{{asset('js/jQuery-File-Uploadjs/jquery.iframe-transport.js')}}"></script>
-<script text="text/javascript" src="{{asset('js/jQuery-File-Uploadjs/jquery.fileupload.js')}}"></script>
-
-<!--Jquery fancybox plugin-->
-<script text="text/javascript" src="{{asset('js/fancybox/source/jquery.fancybox.js')}}"></script>
-<script text="text/javascript" src="{{asset('js/fancybox/source/jquery.fancybox.pack.js')}}"></script>
-
-<!--Jquery validate plugin-->
-<script type="text/javascript" src="{{asset('js/jquery.validate.min.js')}}"></script>
-
-<!--Nuevas validaciones para el jquery validate plugin-->
-  <script type="text/javascript" src="{{asset('js/validaciones.js')}}"></script>
-
-<!--Jquery form plugin-->
-<script type="text/javascript" src="{{asset('js/jquery.form.min.js')}}"></script>
+<script text="text/javascript" src="{{asset('js/vendor/jquery-1.7.1.min.js')}}"></script>
+{{--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>--}}
 
 <!-- jQuery Superfish -->
-<script type="text/javascript" src="{{asset('js/hoverIntent.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/superfish.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/supersubs.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/vendor/hoverIntent.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/vendor/superfish.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/vendor/supersubs.js')}}"></script>
 
 <!-- jQuery Flex Slider -->
-<script type="text/javascript" src="{{asset('js/jquery.nivo.slider.pack.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/vendor/jquery.nivo.slider.pack.js')}}"></script>
 
 <script type="text/javascript">
 	jQuery(window).load(function() {
@@ -37,16 +22,27 @@
 			animSpeed: 500,
 			pauseTime: 6000,
 		});
+		jQuery('#selectNav').change(function(e) {
+			var option = $(this).selected();
+			var url = option.val();
+			document.location.href = url;
+		});
 	});
 </script>
 
 <!-- jQuery Dropdown Mobile -->
-<script type="text/javascript" src="{{asset('js/tinynav.min.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/vendor/tinynav.min.js')}}"></script>
+
+<!-- Extre in-situ include librarys -->
+@yield('in-situ-js')
 
 <!-- Custom Script -->
 <script type="text/javascript" src="{{asset('js/custom.js')}}"></script>
 
 <!-- jQuery PrettyPhoto -->
-<script type="text/javascript" src="{{asset('js/jquery.prettyPhoto.js')}}"></script>
-<script type="text/javascript" src="{{asset('js/fade.js')}}"}}></script>
-<script type="text/javascript" src="{{asset('js/jquery-easing-1.3.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/vendor/jquery.prettyPhoto.js')}}"></script>
+<script type="text/javascript" src="{{asset('js/vendor/fade.js')}}"}}></script>
+<script type="text/javascript" src="{{asset('js/vendor/jquery-easing-1.3.js')}}"></script>
+
+
+@yield('script');
