@@ -4,7 +4,7 @@
     <div class="container">
         <div class="row">
             <div id="afterheader" class="twelve columns">
-                <h3 class="pagetitle nodesc">RPoblaciones</h3>
+                <h3 class="pagetitle nodesc">Poblaciones</h3>
             </div>
         </div>
     </div>
@@ -19,7 +19,7 @@
                     <section id="content" class="ten columns positionleft">
                         <div class="page articlecontainer">
                             <article class="entry-content">
-                                <h2>Lista de poblaciones</h2>
+                            <h3>Lista de poblaciones</h3>
                                 <div id="contactform">
                                  @if (!$poblaciones->isEmpty())
                                  <table class="table table-striped">
