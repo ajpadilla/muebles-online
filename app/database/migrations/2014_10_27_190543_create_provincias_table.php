@@ -33,3 +33,6 @@ class CreateProvinciasTable extends Migration {
 	}
 
 }
+
+
+
