@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div id="afterheader" class="twelve columns">
-                <h3 class="pagetitle nodesc">Registrar nueva población</h3>
+                <h3 class="pagetitle nodesc">Lista de poblaciones</h3>
             </div>
         </div>
     </div>
