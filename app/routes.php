@@ -104,3 +104,18 @@ Route::get('catalogo', [
 	'as' => 'catalogo_path',
 	'uses' => 'CatalogoController@index'
 ]);
+
+Route::get('poblaciones/register', [
+	'as' => 'poblaciones_register_path',
+	'uses' => 'PoblacionController@create'
+]);
+
+Route::post('poblaciones/register', [
+	'as' => 'poblaciones_register_path',
+	'uses' => 'PoblacionController@store'
+]);
+
+Route::get('poblaciones', [
+	'as' => 'poblaciones_path',
+	'uses' => 'PoblacionController@index'
+]);
