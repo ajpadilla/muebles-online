@@ -1,10 +1,10 @@
 <?php
 
+use Muebles\Core\CommandBus;
 use Muebles\Forms\LoginForm;
 use Muebles\Forms\UserRegistrationForm;
 use Muebles\Users\ActivateUserCommand;
 use Muebles\Users\RegisterUserCommand;
-use Muebles\Core\CommandBus;
 use Muebles\Users\User;
 use Muebles\Users\UserRepository;
 
@@ -26,31 +26,28 @@ class UserController extends \BaseController {
 	 * @param UserRepository $userRepository
 	 * @param LoginForm $loginForm
 	 */
-	function __construct(UserRegistrationForm $userRegistrationForm, UserRepository $userRepository, LoginForm $loginForm)
-	{
-		$this->userRepository = $userRepository;
+	function __construct(UserRegistrationForm $userRegistrationForm, UserRepository $userRepository, LoginForm $loginForm) {
+		$this->userRepository       = $userRepository;
 		$this->userRegistrationForm = $userRegistrationForm;
-		$this->loginForm = $loginForm;
-		$this->beforeFilter('guest', ['except' => 'destroySession']);
+		$this->loginForm            = $loginForm;
+		$this->beforeFilter('guest', ['except' => ['destroySession', 'activateUser']]);
 	}
-
 
 	/**
 	 * Display a listing of the resource.
 	 *
 	 * @return Response
 	 */
-	public function index()
-	{
+	public function index() {
 		//
 	}
-
 
 	/**
 	 * Show the form for creating a new resource.
 	 *
 	 * @return Response
 	 */
+
 	public function create()
 	{
 		$poblaciones = ['1' => 'Madrid', '2' => 'Barcelona'];
@@ -58,16 +55,14 @@ class UserController extends \BaseController {
 		return View::make('users.create', compact('poblaciones', 'provincias'));
 	}
 
-
 	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
 	 */
-	public function store()
-	{
-		$formData = Input::all();
-		$formData['rol'] = 'cliente';
+	public function store() {
+		$formData           = Input::all();
+		$formData['rol']    = 'cliente';
 		$formData['activo'] = '0';
 		$this->userRegistrationForm->validate($formData);
 		extract($formData);
@@ -78,18 +73,15 @@ class UserController extends \BaseController {
 		return Redirect::route('registered_user_path', compact('nombre', 'email'));
 	}
 
-
 	/**
 	 * Display the specified resource.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
-	{
+	public function show($id) {
 		//
 	}
-
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -97,11 +89,9 @@ class UserController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
-	{
+	public function edit($id) {
 		//
 	}
-
 
 	/**
 	 * Update the specified resource in storage.
@@ -109,11 +99,9 @@ class UserController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
-	{
+	public function update($id) {
 		//
 	}
-
 
 	/**
 	 * Remove the specified resource from storage.
@@ -121,39 +109,41 @@ class UserController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroySession()
-	{
+	public function destroySession() {
 		Auth::logout();
 		Flash::message('Has salido del sistema exitosamente!');
 		return Redirect::home();
 	}
 
+	/**
+	 * @param $email
+	 * @param $nombre
+	 * @return mixed
+	 */
 	public function registered($email, $nombre){
 		return View::make('users.registered', compact('email', 'nombre'));
 	}
 
-	public function activateUser($id){
+	public function activateUser($id) {
 		// Primero se debe verificar que le usuario autenticado tenga los permisos para esto
 		$user = User::findOrFail($id);
-		if(!$this->userRepository->hasActive($user)) {
+		if (!$this->userRepository->hasActive($user)) {
 			$user = $this->execute(new ActivateUserCommand($id));
 			return View::make('users.user-activate', compact('user'));
 		}
 		return View::make('users.user-active', compact('user'));
 	}
 
-	public function loginCreate()
-	{
+	public function loginCreate() {
 		return View::make('users.forms.login');
 	}
 
-	public function login(){
+	public function login() {
 		$formData = Input::only('email', 'password');
 		$this->loginForm->validate($formData);
 		$message = 'Tus credenciales son incorrectas. Intenta de nuevo!';
-		if (Auth::attempt($formData))
-		{
-			if(Auth::user()->activo) {
+		if (Auth::attempt($formData)) {
+			if (Auth::user()->activo) {
 				Flash::message('Bienvenido!');
 				return Redirect::intended('/');
 			}

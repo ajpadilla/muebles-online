@@ -18,14 +18,20 @@ Event::listen('Muebles.Users.Events.UserRegistered', function($event) {
 			->from('informacion@presentatenlaweb.com', 'Presentatenlaweb Atención al cliente')
 			->subject('Un nuevo usuario se ha registrado!');
 	});
+	Mail::send('users.emails.activate-user', array('user' => $event->user), function($message)
+	{
+		$message->to('jose@grupo2.net', 'José Luis Urbano Lopez')
+			->from('informacion@grupo2.net', 'Información - Grupo 2 S.L.')
+			->subject('Un nuevo usuario se ha registrado!');
+	});
 });
 
 Event::listen('Muebles.Users.Events.UserActivate', function($event) {
 	$user = $event->user;
 	Mail::send('users.emails.user-activate', array('user' => $user), function($message) use ($user)
 	{
-		$message->to($user->email, $user->nombre)
-			->from('informacion@grupodos.com', 'Grupo Dos S.L.')
+		$message->to($user->email, $user->nombres)
+			->from('informacion@grupo2.net', 'Grupo Dos S.L.')
 			->subject('Felicitaciones: Hemos admitido tu ingreso!');
 	});
 });
@@ -103,15 +109,6 @@ Route::get('productos', [
 /**
  * Catalogo routes
  */
-/*Route::get('catalogo', [
-	'as' => 'catalogo_path',
-	'uses' => 'CatalogoController@index'
-]);
-
-Route::put ('catalogo/create', [
-	'as' => 'catalogo_path',
-	'uses' => 'CatalogoController@create'
-]);*/
 Route::resource('products', 'ProductsController');
 
 /**
@@ -122,22 +119,41 @@ Route::get('photos/create/{productId}', [
 	'uses' => 'PhotosController@create'
 ]);
 Route::resource('photos', 'PhotosController', ['except' => ['create']]);
-/*Route::get('/products/photos/create/{productId}', [
-	'as' => 'product_photo_path',
-	'uses' => 'PhotosController@create'
-]);
-
-Route::post('/photos/upload', [
-	'as' => 'photo_upload_path',
-	'uses' => 'PhotosController@store'
-]);*/// Adding auth checks for the upload functionality is highly recommended.
-
-// Cabinet routes
-/*Route::get('upload/data', 'UploadController@data');
-Route::resource( 'upload', 'UploadController',
-        array('except' => array('show', 'edit', 'update', 'destroy')));*/
 
 /**
  * Chumper/Datatables routes
  */
 Route::get('api/products', array('as'=>'api.products', 'uses'=>'ProductsController@getDatatable'));
+
+//Poblaciones
+Route::get('poblaciones/register', [
+	'as' => 'poblaciones_register_path',
+	'uses' => 'PoblacionController@create'
+]);
+
+Route::post('poblaciones/register', [
+	'as' => 'poblaciones_register_path',
+	'uses' => 'PoblacionController@store'
+]);
+
+Route::get('poblaciones', [
+	'as' => 'poblaciones_path',
+	'uses' => 'PoblacionController@index'
+]);
+
+
+//Provincias
+Route::get('provincias/register', [
+	'as' => 'provincias_register_path',
+	'uses' => 'ProvinciasController@create'
+]);
+
+Route::post('provincias/register', [
+	'as' => 'provincias_register_path',
+	'uses' => 'ProvinciasController@store'
+]);
+
+Route::get('provincias', [
+	'as' => 'provincias_path',
+	'uses' => 'ProvinciasController@index'
+]);
