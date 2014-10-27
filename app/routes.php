@@ -105,6 +105,8 @@ Route::get('catalogo', [
 	'uses' => 'CatalogoController@index'
 ]);
 
+
+//Poblaciones
 Route::get('poblaciones/register', [
 	'as' => 'poblaciones_register_path',
 	'uses' => 'PoblacionController@create'
@@ -118,4 +120,21 @@ Route::post('poblaciones/register', [
 Route::get('poblaciones', [
 	'as' => 'poblaciones_path',
 	'uses' => 'PoblacionController@index'
+]);
+
+
+//Provincias
+Route::get('provincias/register', [
+	'as' => 'provincias_register_path',
+	'uses' => 'ProvinciasController@create'
+]);
+
+Route::post('provincias/register', [
+	'as' => 'provincias_register_path',
+	'uses' => 'ProvinciasController@store'
+]);
+
+Route::get('provincias', [
+	'as' => 'provincias_path',
+	'uses' => 'ProvinciasController@index'
 ]);
