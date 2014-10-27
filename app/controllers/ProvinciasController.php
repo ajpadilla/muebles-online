@@ -1,6 +1,16 @@
 <?php
 
+use Muebles\Provincias\Provincia;
+use Muebles\Poblaciones\Poblacion;
+use Muebles\Forms\ProvinciasRegistration;
+
 class ProvinciasController extends \BaseController {
+
+	private $provinciasRegistration;
+
+	function __construct(ProvinciasRegistration $provinciasRegistration) {
+		$this->provinciasRegistration = $provinciasRegistration;
+	}
 
 	/**
 	 * Display a listing of the resource.
@@ -9,7 +19,8 @@ class ProvinciasController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+		$provincias = Provincia::all();
+		return View::make('provincias.index',compact('provincias'));
 	}
 
 
@@ -20,7 +31,8 @@ class ProvinciasController extends \BaseController {
 	 */
 	public function create()
 	{
-		//
+		$poblaciones = Poblacion::all()->lists('nombre', 'id');
+		return View::make('provincias.create',compact('poblaciones'));
 	}
 
 
@@ -31,7 +43,9 @@ class ProvinciasController extends \BaseController {
 	 */
 	public function store()
 	{
-		//
+		$this->provinciasRegistration->validate(Input::all());
+		Provincia::create(Input::only('nombre','poblacion_id'));
+		return Redirect::route('provincias_path');
 	}
 
 
