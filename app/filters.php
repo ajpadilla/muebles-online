@@ -54,6 +54,20 @@ Route::filter('auth.basic', function()
 	return Auth::basic();
 });
 
+Route::filter('admin', function () {
+	if (Auth::check() && Auth::user()->rol != 'admin') {
+
+	}
+});
+
+Route::filter('cliente', function () {
+	if (Auth::check() && (Auth::user()->rol != 'cliente' || Auth::user()->rol != 'admin')) {
+
+	}
+});
+
+
+
 /*
 |--------------------------------------------------------------------------
 | Guest Filter
