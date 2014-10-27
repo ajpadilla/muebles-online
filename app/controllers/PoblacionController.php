@@ -7,8 +7,8 @@ class PoblacionController extends \BaseController {
 
 	private $poblacionRegistrationForm;
 
-	function __construct(PoblacionRegistrationForm $poblacionRegistrationForm){
-		$this->$poblacionRegistrationForm = $poblacionRegistrationForm;
+	function __construct(PoblacionRegistrationForm $poblacionRegistrationForm) {
+		$this->poblacionRegistrationForm = $poblacionRegistrationForm;
 	}
 
 	/**
@@ -30,7 +30,6 @@ class PoblacionController extends \BaseController {
 	 */
 	public function create()
 	{
-		$this->$poblacionRegistrationForm->validate(Input::all());
 		return View::make('poblaciones.create');
 	}
 
@@ -42,6 +41,8 @@ class PoblacionController extends \BaseController {
 	 */
 	public function store()
 	{
+		$this->poblacionRegistrationForm->validate(Input::all());
+
 		Poblacion::create(Input::only('nombre'));
 		return Redirect::route('poblaciones_path');
 	}
