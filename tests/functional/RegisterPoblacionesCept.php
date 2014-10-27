@@ -6,7 +6,7 @@ $I->amOnPage('poblaciones/register');
 $I->see('Registrar nueva población', 'h3');
 $I->fillField('Nombre:', 'Madrid');
 $I->click('Guardar');
-$I->seeCurrentUrlEquals('poblaciones');
+$I->seeCurrentUrlEquals('/poblaciones');
 $I->see('Madrid', 'td');
 $I->seeRecord('poblaciones', [
 	'nombre' => 'Madrid',
@@ -18,7 +18,7 @@ $I->see('Registrar nueva provincia');
 $I->fillField('Nombre:', 'Madrid');
 $I->selectOption('Poblaciones:', 'Madrid');
 $I->click('Guardar');
-$I->seeCurrentUrlEquals('provincias');
+$I->seeCurrentUrlEquals('/provincias');
 $I->see('Lista de poblaciones', 'h3');
 $I->see('Madrid', 'td');
 $I->seeRecord('provincias', [
