@@ -38,7 +38,7 @@
                                                     'cantidad',
                                                     'precio'
                                                 ])
-                                            ->setUrl('/api/products')
+                                            ->setUrl(route('api.products'))
                                             ->noScript();
                                     ?>
 							        {{ $table->render() }}
