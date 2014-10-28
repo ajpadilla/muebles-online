@@ -5,7 +5,7 @@
 	    <div class="container">
 	        <div class="row">
 	            <div id="afterheader" class="twelve columns">
-	                <h1 class="pagetitle nodesc">Catálogo</h1>
+	                <h1 class="pagetitle nodesc">Lista de usuarios</h1>
 	            </div>
 	        </div>
 	    </div>
@@ -23,45 +23,7 @@
 		                <section id="content" class="twelve columns positionleft">
 		                    <div class="page articlecontainer">
 		                        <article class="entry-content">
-		                            {{--<table>
-			                            <thead>
-			                                <th>Código</th>
-			                                <th>Nombre</th>
-			                                <th>Modelo</th>
-			                                <th>Medidas</th>
-			                                <th>Lacado</th>
-			                                <th>Precio del Lacado</th>
-			                                <th>Pulimento</th>
-			                                <th>Precio del Pulimento</th>
-			                                <th>Cantidad</th>
-			                                <th>Precio</th>
-			                                <th>Acciones</th>
-			                            </thead>
-			                            <tbody>
-			                            @foreach($products as $product)
-			                                <tr>
-				                                <td>{{ $product->codigo }}</td>
-	                                            <td>{{ $product->nombre }}</td>
-	                                            <td>{{ $product->modelo }}</td>
-	                                            <td>{{ $product->medidas }}</td>
-	                                            <td>{{ ($product->lacado) ? 'Si' : 'No' }}</td>
-	                                            <td>{{ $product->precio_lacado }}</td>
-	                                            <td>{{ ($product->pulimento) ? 'Si' : 'No' }}</td>
-	                                            <td>{{ $product->precio_pulimento }}</td>
-	                                            <td>{{ $product->cantidad }}</td>
-	                                            <td>{{ $product->precio }}</td>
-	                                            <td>
-	                                                <a href="#">Editar</a>
-	                                                <a href="#">Ver</a>
-	                                                <a href="#">Eliminar</a>
-	                                            </td>
-                                            </tr>
-                                        @endforeach
-			                            </tbody>
-			                            <tfoot>
-
-			                            </tfoot>
-		                            </table>--}}
+		                        
 		                            <?php
 	                                    $table = Datatable::table()
                                             ->addColumn([
