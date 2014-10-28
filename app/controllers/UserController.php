@@ -39,7 +39,7 @@ class UserController extends \BaseController {
 	 * @return Response
 	 */
 	public function index() {
-		//
+		return View::make('users.index');
 	}
 
 	/**
@@ -154,4 +154,14 @@ class UserController extends \BaseController {
 		return Redirect::route('login_path')->withInput();
 	}
 
+	public function getDatatable()
+	{
+		$collection = Datatable::collection($this->userRepository->getAll())
+			->showColumns('nombre', 'direccion', 'codigo_postal', 'provincia_id', 'telefono_fijo', 'fax', 'email', 'rol')
+			->searchColumns('nombre', 'email')
+			->orderColumns('codigo', 'email');
+
+		
+		return $collection->make();
+	}
 }
