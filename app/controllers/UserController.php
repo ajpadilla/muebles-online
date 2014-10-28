@@ -161,10 +161,10 @@ class UserController extends \BaseController {
 			->searchColumns('nombre', 'email')
 			->orderColumns('codigo', 'email');
 
-		$collection->addColumn('provincia_id', function($model)
+		/*$collection->addColumn('provincia_id', function($model)
 		{
 			return $model->provincia->nombre;
-		});
+		});*/
 		
 		return $collection->make();
 	}
