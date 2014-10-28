@@ -29,11 +29,12 @@
                                                     'nombre',
                                                     'direccion',
                                                     'codigo_postal',
-                                                    'provincia',
                                                     'telefono_fijo',
                                                     'fax',
                                                     'email',
-                                                    'rol'
+                                                    'rol',
+                                                    'provincia_id',
+                                                    'provincia'     
                                                 ])
                                             ->setUrl(route('api.users'))
                                             ->noScript();
