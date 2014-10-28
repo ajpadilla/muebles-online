@@ -3,6 +3,7 @@
 
 use Laracasts\Commander\Events\EventGenerator;
 use Muebles\Users\Events\UserActivate;
+use Muebles\Users\User;
 
 class UserRepository {
 
@@ -36,5 +37,9 @@ class UserRepository {
 	 */
 	public function save(User $user){
 		return $user->save();
+	}
+
+	public function getAll(){
+		return User::all();
 	}
 } 

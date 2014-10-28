@@ -5,7 +5,7 @@
 	    <div class="container">
 	        <div class="row">
 	            <div id="afterheader" class="twelve columns">
-	                <h1 class="pagetitle nodesc">Lista de usuarios</h1>
+	                <h1 class="pagetitle nodesc">Catálogo</h1>
 	            </div>
 	        </div>
 	    </div>
@@ -18,27 +18,24 @@
 		            <section id="maincontent">
 		                <section id="empty" class="twelve columns positionleft">
 		                    <div class="ten columns positionleft"></div>
-		                    <div class="two columns positionright">{{ link_to_route('products.create', 'Nuevo Producto', null, ['class' => 'button']) }}</div>
+		                    <div class="two columns positionright">{{ link_to_route('products.create', 'Nuevo Usuario', null, ['class' => 'button']) }}</div>
 		                </section>
 		                <section id="content" class="twelve columns positionleft">
 		                    <div class="page articlecontainer">
 		                        <article class="entry-content">
-		                        
 		                            <?php
 	                                    $table = Datatable::table()
                                             ->addColumn([
-                                                    'codigo',
                                                     'nombre',
-                                                    'modelo',
-                                                    'medidas',
-                                                    'lacado',
-                                                    'precio_lacado',
-                                                    'pulimento',
-                                                    'precio_pulimento',
-                                                    'cantidad',
-                                                    'precio'
+                                                    'direccion',
+                                                    'codigo_postal',
+                                                    'provincia',
+                                                    'telefono_fijo',
+                                                    'fax',
+                                                    'email',
+                                                    'rol'
                                                 ])
-                                            ->setUrl(route('api.products'))
+                                            ->setUrl(route('api.users'))
                                             ->noScript();
                                     ?>
 							        {{ $table->render() }}
