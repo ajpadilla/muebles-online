@@ -43,4 +43,9 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		$user->raise(new UserRegistered($user));
 		return $user;
 	}
+
+	public function provincia()
+	{
+		return $this->belongsTo('Muebles\Provincias\Provincia');
+	}
 }
