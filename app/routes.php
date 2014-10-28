@@ -81,10 +81,13 @@ Route::post('login', [
 	'uses' => 'UserController@login'
 ]);
 
-Route::get('list/users', [
-	'as' => 'list_users_path',
-	'uses' => 'UserController@index'
-]);
+
+Route::get('algo',function()
+{
+	echo app_path();
+});
+
+Route::resource('users','UserController');
 
 // Datatable Users
 Route::get('api/users', array('as'=>'api.users', 'uses'=>'UserController@getDatatable'));
