@@ -39,7 +39,8 @@ class UserController extends \BaseController {
 	 * @return Response
 	 */
 	public function index() {
-		return View::make('users.index');
+		$users = $this->userRepository->getAll();
+		return View::make('users.index',compact('users'));
 	}
 
 	/**
@@ -157,14 +158,14 @@ class UserController extends \BaseController {
 	public function getDatatable()
 	{
 		$collection = Datatable::collection($this->userRepository->getAll())
-			->showColumns('nombre', 'direccion', 'codigo_postal', 'provincia_id', 'telefono_fijo', 'fax', 'email', 'rol')
+			->showColumns('nombre', 'direccion', 'codigo_postal', 'telefono_fijo', 'fax', 'email', 'rol', 'provincia_id')
 			->searchColumns('nombre', 'email')
 			->orderColumns('codigo', 'email');
 
-		/*$collection->addColumn('provincia_id', function($model)
+		$collection->addColumn('provincia', function($model)
 		{
-			return $model->provincia->nombre;
-		});*/
+			 return $model->provincia->nombre;
+		});
 		
 		return $collection->make();
 	}
