@@ -27,7 +27,6 @@
 	                                    $table = Datatable::table()
                                             ->addColumn([
                                                     'nombre',
-                                                    'nombre_comercial',
                                                     'direccion',
                                                     'codigo_postal',
                                                     'provincia',
@@ -36,7 +35,7 @@
                                                     'email',
                                                     'rol'
                                                 ])
-                                            ->setUrl('/api/users')
+                                            ->setUrl(route('api.users'))
                                             ->noScript();
                                     ?>
 							        {{ $table->render() }}
