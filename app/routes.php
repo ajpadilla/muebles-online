@@ -81,6 +81,14 @@ Route::post('login', [
 	'uses' => 'UserController@login'
 ]);
 
+Route::get('list/users', [
+	'as' => 'list_users_path',
+	'uses' => 'UserController@index'
+]);
+
+// Datatable Users
+Route::get('api/users', array('as'=>'api.users', 'uses'=>'UserController@getDatatable'));
+
 /**
  * Destroy session
  */
@@ -124,6 +132,7 @@ Route::resource('photos', 'PhotosController', ['except' => ['create']]);
  * Chumper/Datatables routes
  */
 Route::get('api/products', array('as'=>'api.products', 'uses'=>'ProductsController@getDatatable'));
+
 
 //Poblaciones
 Route::get('poblaciones/register', [
