@@ -18,7 +18,7 @@
 		            <section id="maincontent">
 		                <section id="empty" class="twelve columns positionleft">
 		                    <div class="ten columns positionleft"></div>
-		                    <div class="two columns positionright">{{ link_to_route('products.create', 'Nuevo Usuario', null, ['class' => 'button']) }}</div>
+		                    <div class="two columns positionright">{{ link_to_route('register_user_path', 'Nuevo Usuario', null, ['class' => 'button']) }}</div>
 		                </section>
 		                <section id="content" class="twelve columns positionleft">
 		                    <div class="page articlecontainer">
