@@ -136,6 +136,22 @@ class UserController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
+	public function destroy($id)
+	{
+
+		$user = $this->userRepository->getUserId($id);
+		$user->delete();
+		Flash::message('usuario borrado  con éxito!');
+		return Redirect::to('users');
+	}
+
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
 	public function destroySession() {
 		Auth::logout();
 		Flash::message('Has salido del sistema exitosamente!');
@@ -198,7 +214,7 @@ class UserController extends \BaseController {
 					<br />";
 			$links .= "<a href='" . route('users.edit', $model->id) . "'>Editar</a>
 					<br />
-					<a href='" . route('users.destroy', $model->id) . "'>Eliminar</a>";
+					<a href='" . URL::to('borrar/'.$model->id) . "'>Eliminar</a>";
 
 			return $links;
 		});
