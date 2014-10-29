@@ -11,9 +11,8 @@ class RegisterProductCommand  {
 	public $precio_pulimento;
 	public $precio_pulimento_puntos;
 	public $cantidad;
-	public $precio;
 
-	function __construct($codigo, $nombre, $descripcion, $medidas, $precio_lacado, $precio_lacado_puntos, $precio_pulimento, $precio_pulimento_puntos, $cantidad, $precio)
+	function __construct($codigo, $nombre, $descripcion, $medidas, $precio_lacado, $precio_lacado_puntos, $precio_pulimento, $precio_pulimento_puntos, $cantidad)
 	{
 		$this->codigo = $codigo;
 		$this->nombre = $nombre;
@@ -24,7 +23,6 @@ class RegisterProductCommand  {
 		$this->precio_pulimento = $precio_pulimento;
 		$this->precio_pulimento_puntos = $precio_pulimento_puntos;
 		$this->cantidad = $cantidad;
-		$this->precio = $precio;
 	}
 	
 } 

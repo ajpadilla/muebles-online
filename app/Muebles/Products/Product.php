@@ -3,17 +3,17 @@
 use Eloquent;
 
 class Product extends Eloquent {
-	protected $fillable = ['codigo', 'nombre', 'descripcion', 'medidas', 'precio_lacado', 'precio_lacado_puntos', 'precio_pulimento', 'precio_pulimento_puntos', 'cantidad', 'precio'];
+	protected $fillable = ['codigo', 'nombre', 'descripcion', 'medidas', 'precio_lacado', 'precio_lacado_puntos', 'precio_pulimento', 'precio_pulimento_puntos', 'cantidad'];
 
 	public function photos()
 	{
 		return $this->hasMany('Muebles\Photos\Photo');
 	}
 
-	public static function register($codigo, $nombre, $descripcion, $medidas, $precio_lacado, $precio_lacado_puntos, $precio_pulimento, $precio_pulimento_puntos, $cantidad, $precio)
+	public static function register($codigo, $nombre, $descripcion, $medidas, $precio_lacado, $precio_lacado_puntos, $precio_pulimento, $precio_pulimento_puntos, $cantidad)
 	{
 
-		$product = new static(compact('codigo', 'nombre', 'descripcion', 'medidas', 'precio_lacado', 'precio_lacado_puntos', 'precio_pulimento', 'precio_pulimento_puntos', 'cantidad', 'precio'));
+		$product = new static(compact('codigo', 'nombre', 'descripcion', 'medidas', 'precio_lacado', 'precio_lacado_puntos', 'precio_pulimento', 'precio_pulimento_puntos', 'cantidad'));
 		//$product->raise(new UserRegistered($product));
 		return $product;
 	}
@@ -30,9 +30,9 @@ class Product extends Eloquent {
 	}
 
 	// Accessors
-	public function getPrecioAttribute($value){
+	/*public function getPrecioAttribute($value){
 		return number_format($value, 2, ',', '.');
-	}
+	}*/
 
 	public function getPrecioLacadoAttribute($value){
 		return number_format($value, 2, ',', '.');

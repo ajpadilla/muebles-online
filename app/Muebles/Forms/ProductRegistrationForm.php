@@ -17,6 +17,5 @@ class ProductRegistrationForm extends FormValidator {
 		'precio_lacado_puntos' => 'required|max:11',
 		'precio_pulimento' => 'required|max:15',
 		'precio_pulimento_puntos' => 'required|max:11',
-		'precio' => 'required|max:15'
 	];
 }

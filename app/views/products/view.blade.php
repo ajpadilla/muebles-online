@@ -54,7 +54,7 @@
                                     <div class="clear"></div>
                                     <ul class="line">
                                         <li>
-                                        <div class="price">€{{ $product->precio }}{{--<span>/night</span>--}}</div>
+                                        <!--<div class="price">€{{ $product->precio }}{{--<span>/-->night</span>--}}</div>
                                         </li>
                                         @if($currentUser)
                                             @if(Auth::user()->rol == 'cliente')
