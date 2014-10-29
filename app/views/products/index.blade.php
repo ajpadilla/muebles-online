@@ -5,7 +5,7 @@
 	    <div class="container">
 	        <div class="row">
 	            <div id="afterheader" class="twelve columns">
-	                <h1 class="pagetitle nodesc">Lista de usuarios</h1>
+	                <h1 class="pagetitle nodesc">Lista de Productos</h1>
 	            </div>
 	        </div>
 	    </div>
@@ -27,7 +27,7 @@
 		                <section id="content" class="twelve columns positionleft">
 		                    <div class="page articlecontainer">
 		                        <article class="entry-content">
-		                        
+		                        @include('flash::message');
 		                            <?php
 	                                    $table = Datatable::table()
                                             ->addColumn([

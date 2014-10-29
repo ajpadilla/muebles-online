@@ -67,6 +67,16 @@
 										    {{ Form::select('activo', array('1'=>'SI','0'=>'NO'), $user->provincia->id , ['class' => 'text-input']) }}
 										  </div>
 										  <div class="clear"></div>
+										  <div class="two_fifth columns">
+										    {{ Form::label('password', 'Contraseña:') }}
+										    {{ Form::password('password', null, ['size' => '50', 'class' => 'text-input']) }}
+										  </div>
+										  <div class="clear"></div>
+										  <div class="two_fifth columns">
+										    {{ Form::label('password_confirmation', 'Confirme su contraseña:') }}
+										    {{ Form::password('password_confirmation', null, ['size' => '50', 'class' => 'text-input']) }}
+										  </div>
+										  <div class="clear"></div>
 										  <div class="eight columns"></div>
 										  <div class="two columns">
 										    {{ Form::submit('Actualizar', ['class' => 'button']) }}
