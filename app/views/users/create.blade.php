@@ -75,7 +75,7 @@
 										  <div class="clear"></div>
 										  <div class="eight columns"></div>
 										  <div class="two columns">
-										    {{ Form::submit('Registrar', ['class' => 'button']) }}
+										    {{ Form::submit('Actualizar', ['class' => 'button']) }}
 										  </div>
                                         </div>
                                       </fieldset>
