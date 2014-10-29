@@ -9,6 +9,7 @@ class PoblacionController extends \BaseController {
 
 	function __construct(PoblacionRegistrationForm $poblacionRegistrationForm) {
 		$this->poblacionRegistrationForm = $poblacionRegistrationForm;
+		$this->beforeFilter('admin');
 	}
 
 	/**

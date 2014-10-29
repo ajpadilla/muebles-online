@@ -10,6 +10,7 @@ class ProvinciasController extends \BaseController {
 
 	function __construct(ProvinciasRegistration $provinciasRegistration) {
 		$this->provinciasRegistration = $provinciasRegistration;
+		$this->beforeFilter('admin');
 	}
 
 	/**

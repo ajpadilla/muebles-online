@@ -90,12 +90,6 @@ Route::post('login', [
 	'uses' => 'UserController@login'
 ]);
 
-
-Route::get('algo',function()
-{
-	echo app_path();
-});
-
 Route::resource('users','UserController');
 Route::get('borrar/{id}','UserController@destroy');
 // Datatable Users
@@ -116,15 +110,6 @@ Route::get('contacto', [
 	'as' => 'contact_path',
 	'uses' => 'ContactController@index'
 ]);
-
-/**
- * Productos routes
- */
-/*Route::get('productos', [
-	'as' => 'producto_path',
-	'uses' => 'ProductosController@index'
-]);*/
-
 
 /**
  * Catalogo routes

@@ -38,7 +38,7 @@ class UserController extends \BaseController {
 		$this->loginForm            = $loginForm;
 		$this->poblacionesReposotory = $poblacionesReposotory;
 		$this->provinciaReposotory = $provinciaReposotory;
-		$this->beforeFilter('guest', ['except' => ['destroySession', 'activateUser']]);
+		$this->beforeFilter('guest', ['except' => ['index', 'show', 'edit', 'update', 'getDatatable', 'destroySession', 'activateUser']]);
 	}
 
 	/**
@@ -59,8 +59,8 @@ class UserController extends \BaseController {
 
 	public function create()
 	{
-		$poblaciones = ['1' => 'Madrid', '2' => 'Barcelona'];
-		$provincias = ['1' => 'Madrid', '2' => 'Cataluya'];
+		$poblaciones = Muebles\Poblaciones\Poblacion::all()->lists('nombre', 'id');
+		$provincias = Muebles\Provincias\Provincia::all()->lists('nombre', 'id');
 		return View::make('users.create', compact('poblaciones', 'provincias'));
 	}
 
@@ -140,10 +140,9 @@ class UserController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-
 		$user = $this->userRepository->getUserId($id);
 		$user->delete();
-		Flash::message('usuario borrado  con éxito!');
+		Flash::message('Usuario borrado con éxito!');
 		return Redirect::to('users');
 	}
 

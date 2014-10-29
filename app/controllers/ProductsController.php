@@ -28,6 +28,7 @@ class ProductsController extends \BaseController {
 	{
 		$this->productRegistrationForm = $productRegistrationForm;
 		$this->repository = $repository;
+		$this->beforeFilter('admin', ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
 	}
 
 	/**
