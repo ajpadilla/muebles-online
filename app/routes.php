@@ -22,7 +22,7 @@ Event::listen('Muebles.Users.Events.UserRegistered', function($event) {
 		/*Mail::send('users.emails.activate-user', array('user' => $event->user), function($message)
 		{
 			$message->to('jose@grupo2.net', 'José Luis Urbano Lopez')
-				->from('informacion@grupo2.net', 'Información - Grupo 2 S.L.')
+				->from('web@grupo2.net', 'Grupo Dos S.L.')
 				->subject('Un nuevo usuario se ha registrado!');
 		});*/
 	} else {
@@ -40,7 +40,7 @@ Event::listen('Muebles.Users.Events.UserActivate', function($event) {
 	Mail::send('users.emails.user-activate', array('user' => $user), function($message) use ($user)
 	{
 		$message->to($user->email, $user->nombres)
-			->from('informacion@grupo2.net', 'Grupo Dos S.L.')
+			->from('web@grupo2.net', 'Grupo Dos S.L.')
 			->subject('Felicitaciones: Hemos admitido tu ingreso!');
 	});
 });
