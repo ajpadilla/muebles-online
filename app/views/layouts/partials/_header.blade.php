@@ -4,7 +4,7 @@
 		<div class="container">
 			<header id="top">
 				<div id="logo">
-					<a href="{{ route('home') }}"><img src="{{asset('images/logo_18654.png')}}" alt=""/></a>
+					<a href="{{ route('home') }}"><img src="{{asset('images/logo.png')}}" alt=""/></a>
 				</div>
 
                 <section id="navigation">

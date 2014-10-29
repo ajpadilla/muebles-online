@@ -69,10 +69,12 @@ class UserController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function store() {
-		$formData           = Input::all();
-		$formData['rol']    = 'cliente';
-		$formData['activo'] = '0';
+
+	public function store()
+	{
+		$formData = Input::all();
+		$formData['rol'] = $this->userRepository->rol();
+		$formData['activo'] = ($formData['rol'] == 'admin' ? '1' : '0');
 		$this->userRegistrationForm->validate($formData);
 		extract($formData);
 		$user = $this->execute(new RegisterUserCommand($email, $password, $nombre, $codigo_postal, $fax, $telefono_fijo, $direccion, $activo, $rol, $provincia));

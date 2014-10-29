@@ -33,9 +33,11 @@
 										<i class="glyphicon glyphicon-ban-circle"></i>
 										<span>Cancelar</span>
 									</button>
-									<button type="button" href="{{ route('products.index') }}" class="btn-alert">
-										<span>Lista de Productos</span>
-									</button>
+									{{--{{ Form::open(['route' => 'products.index', 'method' => 'get']) }}
+										<button type="submit" href="{{ route('products.index') }}" class="btn-alert">
+											<span>Lista de Productos</span>
+										</button>
+									{{ Form::close() }}--}}
 								</div>
 								<div class="five columns">
 								<!-- The global file processing state -->
