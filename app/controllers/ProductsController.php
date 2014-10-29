@@ -11,13 +11,14 @@ class ProductsController extends \BaseController {
 	use CommandBus;
 
 	/**
-	 * @var ProductRegistrationForm
-	 */
-	private $productRegistrationForm;
-	/**
 	 * @var ProductRepository
 	 */
 	private $repository;
+
+	/**
+	 * @var ProductRegistrationForm
+	 */
+	private $productRegistrationForm;
 
 	/**
 	 * @param ProductRegistrationForm $productRegistrationForm
@@ -62,7 +63,7 @@ class ProductsController extends \BaseController {
 		$formData = Input::all();
 		$this->productRegistrationForm->validate($formData);
 		extract($formData);
-		$product = $this->execute(new RegisterProductCommand($codigo, $nombre, $descripcion, $modelo, $medidas, $lacado, $precio_lacado, $pulimento, $precio_pulimento, $cantidad, $precio));
+		$product = $this->execute(new RegisterProductCommand($codigo, $nombre, $descripcion, $medidas, $precio_lacado, $precio_lacado_puntos, $precio_pulimento, $precio_pulimento_puntos, $cantidad, $precio));
 		Flash::success('El mueble ha sido registrado con éxito!');
 		if($formData['do'] == 1) {
 			$id = $product->id;
@@ -130,6 +131,18 @@ class ProductsController extends \BaseController {
 		$collection = Datatable::collection($this->repository->getAll());
 			//->showColumns('codigo', 'nombre', 'modelo', 'medidas', 'lacado', 'precio_lacado', 'pulimento', 'precio_pulimento', 'cantidad', 'precio')
 
+		$collection->addColumn('foto', function($model)
+		{
+			foreach ($model->photos as $photo) {
+				$links = "<a href='" . route('products.show', $model->id) . "'>
+						<img class='mini-photo' alt='" . $photo->filename . "' src='" . asset($photo->path . $photo->filename) . "'>
+					</a>
+					<br />";
+
+				return $links;
+			}
+		});
+
 		$collection->addColumn('codigo', function($model)
 		{
 			return strtoupper($model->codigo);
@@ -140,17 +153,17 @@ class ProductsController extends \BaseController {
 			return ucfirst(strtolower($model->nombre));
 		});
 
-		$collection->addColumn('modelo', function($model)
+/*		$collection->addColumn('modelo', function($model)
 		{
 			return strtoupper($model->modelo);
-		});
+		});*/
 
 		$collection->addColumn('medidas', function($model)
 		{
 			return $model->medidas;
 		});
 
-		$collection->addColumn('lacado', function($model)
+		/*$collection->addColumn('lacado', function($model)
 		{
 			return ($model->lacado == 1) ? 'Si' : 'No';
 		});
@@ -178,7 +191,7 @@ class ProductsController extends \BaseController {
 		$collection->addColumn('precio', function($model)
 		{
 			return number_format($model->precio, 2, ',', '.');
-		});
+		});*/
 
 		$collection->addColumn('ver', function($model)
 		{
@@ -195,7 +208,7 @@ class ProductsController extends \BaseController {
 		});
 
 		$collection->searchColumns('nombre', 'codigo');
-		$collection->orderColumns('codigo','nombre', 'modelo');
+		$collection->orderColumns('codigo','nombre');
 
 		return $collection->make();
 	}

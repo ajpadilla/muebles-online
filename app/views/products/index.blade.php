@@ -69,16 +69,17 @@
 		                            <?php
 	                                    $table = Datatable::table()
                                             ->addColumn([
+                                                    'foto',
                                                     'codigo',
                                                     'nombre',
-                                                    'modelo',
+                                                    //'modelo',
                                                     'medidas',
-                                                    'lacado',
-                                                    'Precio del Lacado',
-                                                    'pulimento',
-                                                    'precio_pulimento',
-                                                    'cantidad',
-                                                    'precio',
+                                                    //'lacado',
+                                                    //'Precio del Lacado',
+                                                    //'pulimento',
+                                                    //'precio_pulimento',
+                                                    //'cantidad',
+                                                    //'precio',
                                                     'Acciones',
                                                 ])
                                             ->setUrl('/api/products')

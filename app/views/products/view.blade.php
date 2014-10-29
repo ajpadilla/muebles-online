@@ -38,28 +38,34 @@
 
                                 <div class="entry-content">
                                     <br/>
-                                    <p>{{ $product->descripcion }}</p>
                                     <h2>Detalles</h2>
                                     <ul class="listborder">
-                                        <li><strong>Modelo: </strong><em>{{ $product->modelo }}</em></li>
+                                        <li><strong>Código: </strong><em>{{ $product->codigo }}</em></li>
                                         <li><strong>Medidas: </strong><em>{{ $product->medidas }}</em></li>
-                                        <li><strong>Lacado: </strong><em>{{ $product->lacado }}</em></li>
-                                        <li><strong>Precio del Lacado: </strong><em>{{ $product->precio_lacado }}</em></li>
-                                        <li><strong>Pulimento: </strong><em>{{ $product->pulimento }}</em></li>
-                                        <li><strong>Precio del Pulimento: </strong><em>{{ $product->precio_pulimento }}</em></li>
+                                        @if($currentUser)
+	                                        {{--<li><strong>Lacado: </strong><em>{{ $product->lacado }}</em></li>--}}
+	                                        <li><strong>Precio del Lacado: </strong><em>{{ $product->precio_lacado }}</em></li>
+	                                        <li><strong>Precio en Puntos del Lacado: </strong><em>{{ $product->precio_lacado_puntos }}</em></li>
+	                                        {{--<li><strong>Pulimento: </strong><em>{{ $product->pulimento }}</em></li>--}}
+	                                        <li><strong>Precio del Pulimento: </strong><em>{{ $product->precio_pulimento }}</em></li>
+	                                        <li><strong>Precio en Puntos del Pulimento: </strong><em>{{ $product->precio_pulimento_puntos }}</em></li>
+	                                    @endif
                                     </ul>
-
+                                    <div class="clear"></div>
                                     <ul class="line">
                                         <li>
-                                        <div class="price">€{{ number_format($product->precio, 2, ',', '.') }}{{--<span>/night</span>--}}</div>
+                                        <div class="price">€{{ $product->precio }}{{--<span>/night</span>--}}</div>
                                         </li>
-                                        @if(Auth::check() AND Auth::user()->rol == 'cliente')
-                                            <li><a href="#" class="button">Realizar pedido</a></li>
-                                        @endif
-                                        @if(Auth::check() AND Auth::user()->rol == 'admin')
-                                            <li><a href="{{ route('photos.create', $product->id) }}" class="button">Agregar fotos</a></li>
-                                            <li><a href="{{ route('photos.edit', $product->id) }}" class="button">Editar</a></li>
-                                            <li><a href="{{ route('photos.destroy', $product->id) }}" class="button">Eliminar</a></li>
+                                        @if($currentUser)
+                                            @if(Auth::user()->rol == 'cliente')
+                                                <li><a href="#" class="button">Realizar pedido</a></li>
+                                            @endif
+
+                                            @if(Auth::user()->rol == 'admin'))
+                                                <li><a href="{{ route('photos.create', $product->id) }}" class="button">Agregar fotos</a></li>
+                                                <li><a href="{{ route('photos.edit', $product->id) }}" class="button">Editar</a></li>
+                                                <li><a href="{{ route('photos.destroy', $product->id) }}" class="button">Eliminar</a></li>
+                                            @endif
                                         @endif
                                     </ul>
                                 </div>
@@ -74,47 +80,11 @@
 						<div class="widget-area">
                         <ul>
                             <li class="widget-container widget_hover">
-                                <h2 class="widget-title">Information</h2>
-                                <div class="textwidget">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent aliquam ligula arcu, sed congue diam placerat at. Maecenas nec vestibulum nulla, et elementum.</div>
+                                <h2 class="widget-title">Información del Producto</h2>
+                                <div class="textwidget">{{ $product->descripcion }}</div>
                             </li>
-                            <li class="widget-container">
-                                <h2 class="widget-title">Latest Post</h2>
-                                <ul class="rp-widget">
-                                    <li>
-                                        <img alt="" class="frame" src="{{ asset('images/content/small-img1.jpg') }}">
-                                        <h3><a href="single.html">Lorem ipsum dolor sit amet</a></h3>
-                                        <span class="smalldate">July 12, 2013</span>
-                                        <span class="clear"></span>
-                                    </li>
-                                    <li>
-                                        <img alt="" class="frame" src="{{ asset('images/content/small-img2.jpg') }}">
-                                        <h3><a href="single.html">Praesent et eros scelerisque</a></h3>
-                                        <span class="smalldate">July 12, 2013</span>
-                                        <span class="clear"></span>
-                                    </li>
-                                    <li>
-                                        <img alt="" class="frame" src="{{ asset('images/content/small-img3.jpg') }}">
-                                        <h3><a href="single.html">Nunc vel lectus quis velit tempus</a></h3>
-                                        <span class="smalldate">July 12, 2013</span>
-                                        <span class="clear"></span>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="widget-container widget_tag_cloud">
-                                <h3 class="widget-title">Tags</h3>
-                                <div class="tagcloud">
-                                    <a href="#">aside</a>
-                                    <a href="#">audio</a>
-                                    <a href="#">blog</a>
-                                    <a href="#">design</a>
-                                    <a href="#">gallery</a>
-                                    <a href="#">image</a>
-                                    <a href="#">link</a>
-                                    <a href="#">quote</a>
-                                    <a href="#">video</a>
-                                </div>
-                                <div class="clear"></div>
-                            </li>
+                            @include('layouts.partials._random-products')
+                            {{--@include('layouts.partials._tags')--}}
                         </ul>
                         </div>
                     </aside><!-- sidebar -->

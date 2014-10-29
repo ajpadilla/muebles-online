@@ -10,3 +10,14 @@
 <link rel="stylesheet" href="{{asset('css/vendor/prettyPhoto.css')}}" />
 <link rel="stylesheet" href="{{asset('css/vendor/nivo-slider.css')}}"/>
 @yield('in-situ-css')
+
+<style>
+	.mini-photo {
+		width: 123px;
+		height: 70px;
+		/*margin: 0 auto;*/
+		margin-right: 14px;
+	}
+</style>
+
+@yield('styles')
