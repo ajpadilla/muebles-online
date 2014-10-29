@@ -3,6 +3,7 @@
 use Muebles\Core\CommandBus;
 use Muebles\Forms\LoginForm;
 use Muebles\Forms\UserRegistrationForm;
+use Muebles\Forms\EditUserForm;
 use Muebles\Users\ActivateUserCommand;
 use Muebles\Users\RegisterUserCommand;
 use Muebles\Users\User;
@@ -27,17 +28,20 @@ class UserController extends \BaseController {
 
 	private $provinciaReposotory;
 
+	private $editUserForm;
+
 	/**
 	 * @param UserRegistrationForm $userRegistrationForm
 	 * @param UserRepository $userRepository
 	 * @param LoginForm $loginForm
 	 */
-	function __construct(UserRegistrationForm $userRegistrationForm, UserRepository $userRepository, LoginForm $loginForm, PoblacionesReposotory $poblacionesReposotory,ProvinciaRepository $provinciaReposotory) {
+	function __construct(UserRegistrationForm $userRegistrationForm, UserRepository $userRepository, LoginForm $loginForm, PoblacionesReposotory $poblacionesReposotory,ProvinciaRepository $provinciaReposotory,EditUserForm  $editUserForm) {
 		$this->userRepository       = $userRepository;
 		$this->userRegistrationForm = $userRegistrationForm;
 		$this->loginForm            = $loginForm;
 		$this->poblacionesReposotory = $poblacionesReposotory;
 		$this->provinciaReposotory = $provinciaReposotory;
+		$this->editUserForm = $editUserForm;
 		$this->beforeFilter('guest', ['except' => ['destroySession', 'activateUser']]);
 	}
 
@@ -117,9 +121,10 @@ class UserController extends \BaseController {
 	 * @return Response
 	 */
 	public function update($id) {
-		//$this->userRegistrationForm->validate(Input::all());
+		//$this->editUserForm->validate(Input::all());
 
 		$user = $this->userRepository->getUserId($id);
+		extract(Input::all());
 		$user->activo = Input::get('activo');
 		$user->nombre = Input::get('nombre');
 		$user->nombre_comercial = Input::get('nombre_comercial');
@@ -129,7 +134,13 @@ class UserController extends \BaseController {
 		$user->telefono_fijo = Input::get('telefono_fijo');
 		$user->fax = Input::get('fax');
 		$user->email = Input::get('email');
+		if (!empty($password)) {
+			$user->password = Hash::make($password);
+			//echo 'password:'.$password.'<br>';
+			//echo 'Hash:'.Hash::make($password);
+		}
 		$user->save();
+
 		Flash::message('Otro nombre ha sido actualizado con éxito!');
 		return Redirect::to('users');
 	}
@@ -216,9 +227,12 @@ class UserController extends \BaseController {
 		$collection->addColumn('Acciones',function($model){
 			$links = "<a href='" . route('users.show', $model->id) . "'>Ver</a>
 					<br />";
+
+			if(Auth::check() AND Auth::user()->rol == 'admin') {
 			$links .= "<a href='" . route('users.edit', $model->id) . "'>Editar</a>
 					<br />
 					<a href='" . URL::to('borrar/'.$model->id) . "'>Eliminar</a>";
+			}
 
 			return $links;
 		});
