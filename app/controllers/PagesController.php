@@ -16,4 +16,16 @@ class PagesController extends \BaseController {
 	{
 		return View::make('errors.missing-404');
 	}
+
+	public function address(){
+		return View::make('pages.address');
+	}
+
+	public function about(){
+		return View::make('pages.about');
+	}
+
+	public function contactForm(){
+		return View::make('pages.contact');
+	}
 }

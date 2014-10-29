@@ -52,9 +52,35 @@ Route::get('/error-404', [
 	'uses' => 'PagesController@error404'
 ]);
 
+/**
+ * Main Pages
+ */
 Route::get('/', [
 	'as' => 'home',
 	'uses' => 'PagesController@home'
+]);
+
+Route::get('/ubicacion', [
+	'as' => 'address_path',
+	'uses' => 'PagesController@address'
+]);
+
+Route::get('/acerca', [
+	'as' => 'about_path',
+	'uses' => 'PagesController@about'
+]);
+
+/**
+ * Contacto routes
+ */
+Route::get('contacto', [
+	'as' => 'contact_path',
+	'uses' => 'PagesController@contactForm'
+]);
+
+Route::post('contacto', [
+	'as' => 'contact_path',
+	'uses' => 'PagesController@processContact'
 ]);
 
 /**
@@ -101,14 +127,6 @@ Route::get('api/users', array('as'=>'api.users', 'uses'=>'UserController@getData
 Route::get('logout', [
 	'as' => 'logout_path',
 	'uses' => 'UserController@destroySession'
-]);
-
-/**
- * Catalogo routes
- */
-Route::get('contacto', [
-	'as' => 'contact_path',
-	'uses' => 'ContactController@index'
 ]);
 
 /**
