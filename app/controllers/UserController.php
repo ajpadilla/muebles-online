@@ -115,6 +115,8 @@ class UserController extends \BaseController {
 	 * @return Response
 	 */
 	public function update($id) {
+		//$this->userRegistrationForm->validate(Input::all());
+
 		$user = $this->userRepository->getUserId($id);
 		$user->activo = Input::get('activo');
 		$user->nombre = Input::get('nombre');
