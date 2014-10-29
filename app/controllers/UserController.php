@@ -136,12 +136,9 @@ class UserController extends \BaseController {
 		$user->fax = Input::get('fax');
 		$user->email = Input::get('email');
 		if (!empty($password)) {
-			$user->password = Hash::make($password);
-			//echo 'password:'.$password.'<br>';
-			//echo 'Hash:'.Hash::make($password);
+			$user->password = $password;
 		}
 		$user->save();
-
 		Flash::message('Otro nombre ha sido actualizado con éxito!');
 		return Redirect::to('users');
 	}
