@@ -130,7 +130,7 @@ Route::get('contacto', [
  * Catalogo routes
  */
 Route::resource('products', 'ProductsController');
-
+Route::get('borrarProduct/{id}','ProductsController@destroy');
 /**
  * Photos routes
  */
