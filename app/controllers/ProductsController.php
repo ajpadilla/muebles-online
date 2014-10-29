@@ -176,51 +176,13 @@ class ProductsController extends \BaseController {
 			return ucfirst(strtolower($model->nombre));
 		});
 
-/*		$collection->addColumn('modelo', function($model)
-		{
-			return strtoupper($model->modelo);
-		});*/
-
 		$collection->addColumn('medidas', function($model)
 		{
 			return $model->medidas;
 		});
 
-		/*$collection->addColumn('lacado', function($model)
-		{
-			return ($model->lacado == 1) ? 'Si' : 'No';
-		});
-
-		$collection->addColumn('precio_lacado', function($model)
-		{
-			return number_format($model->precio_lacado, 2, ',', '.');
-		});
-
-		$collection->addColumn('pulimento', function($model)
-		{
-			return ($model->pulimento == 1) ? 'Si' : 'No';
-		});
-
-		$collection->addColumn('precio_pulimento', function($model)
-		{
-			return number_format($model->precio_pulimento, 2, ',', '.');
-		});
-
-		$collection->addColumn('cantidad', function($model)
-		{
-			return $model->cantidad;
-		});
-
-		$collection->addColumn('precio', function($model)
-		{
-			return number_format($model->precio, 2, ',', '.');
-		});*/
-
 		$collection->addColumn('ver', function($model)
 		{
-			$links = "<a href='" . route('products.show', $model->id) . "'>Ver</a>
-					<br />";
-
 			if(Auth::check() AND Auth::user()->rol == 'admin') {
 				$links .= "<a href='" . route('products.edit', $model->id) . "'>Editar</a>
 					<br />

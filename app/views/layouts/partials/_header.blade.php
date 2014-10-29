@@ -19,7 +19,7 @@
                                 <li @if(route('register_user_path') == $currentRoute) class="current" @endif><a href="{{ route('register_user_path') }}">Registrarse<span></span></a></li>
                                 <li @if(route('login_path') == $currentRoute) class="current" @endif><a href="{{ route('login_path') }}">Ingresar<span></span></a></li>
                             @else
-                                <li><a href="#">{{ Auth::user()->nombre; }}</a></li>
+                                <li><a href="{{ route('users.show', Auth::user()->id) }}">{{ Auth::user()->nombre; }}</a></li>
                                 <li><a href="{{ route('logout_path') }}">Salir<span></span></a></li>
                             @endif
 						</ul><!-- topnav -->
@@ -33,7 +33,7 @@
 								<option @if(route('register_user_path') == $currentRoute) selected="selected" @endif value="{{ route('register_user_path') }}">Registrarse</option>
 								<option @if(route('login_path') == $currentRoute) selected="selected" @endif value="{{ route('login_path') }}">Ingresar</option>
 							@else
-								<option value="#">{{ Auth::user()->nombres; }}</option>
+								<option value="{{ route('users.show', Auth::user()->id) }}">{{ Auth::user()->nombre; }}</option>
 								<option value="{{ route('logout_path') }}">Salir</option>
 							@endif
 						</select>

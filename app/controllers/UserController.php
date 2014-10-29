@@ -41,12 +41,9 @@ class UserController extends \BaseController {
 		$this->loginForm            = $loginForm;
 		$this->poblacionesReposotory = $poblacionesReposotory;
 		$this->provinciaReposotory = $provinciaReposotory;
-<<<<<<< HEAD
 		$this->editUserForm = $editUserForm;
-		$this->beforeFilter('guest', ['except' => ['destroySession', 'activateUser']]);
-=======
-		$this->beforeFilter('guest', ['except' => ['index', 'show', 'edit', 'update', 'getDatatable', 'destroySession', 'activateUser']]);
->>>>>>> 7c91f2a8a6267aefe45f96525f4539158f3bc524
+		$this->beforeFilter('guest', ['except' => ['index', 'show', 'edit', 'update', 'getDatatable', 'destroySession', 'activateUser', 'destroy']]);
+		$this->beforeFilter('admin', ['only' => ['show', 'index', 'getDatatable', 'edit', 'update', 'destroy']]);
 	}
 
 	/**
@@ -218,9 +215,14 @@ class UserController extends \BaseController {
 	public function getDatatable()
 	{
 		$collection = Datatable::collection($this->userRepository->getAll())
-			->showColumns('nombre', 'direccion', 'codigo_postal', 'telefono_fijo', 'fax', 'email', 'rol', 'activo')
+			->showColumns('nombre', 'direccion', 'codigo_postal', 'telefono_fijo', 'fax', 'email', 'rol')
 			->searchColumns('nombre', 'email')
 			->orderColumns('nombre', 'email');
+
+		$collection->addColumn('activo', function($model)
+		{
+			return $model->getActivoShow();
+		});
 
 		$collection->addColumn('provincia', function($model)
 		{

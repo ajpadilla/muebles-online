@@ -29,8 +29,8 @@
                                             ->addColumn([
                                                     'nombre',
                                                     'direccion',
-                                                    'codigo_postal',
-                                                    'telefono_fijo',
+                                                    'Código Postal',
+                                                    'Télefono Fijo',
                                                     'fax',
                                                     'email',
                                                     'rol',

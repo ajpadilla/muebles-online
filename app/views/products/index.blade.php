@@ -29,21 +29,16 @@
 		                        <article class="entry-content">
 		                        @include('flash::message');
 		                            <?php
+		                                $columns = [
+			                                            'foto',
+	                                                    'codigo',
+	                                                    'nombre',
+	                                                    'medidas'
+                                                    ];
+                                        if($currentUser AND $currentUser->rol == 'admin')
+                                            $columns[] = 'Acciones';
 	                                    $table = Datatable::table()
-                                            ->addColumn([
-                                                    'foto',
-                                                    'codigo',
-                                                    'nombre',
-                                                    //'modelo',
-                                                    'medidas',
-                                                    //'lacado',
-                                                    //'Precio del Lacado',
-                                                    //'pulimento',
-                                                    //'precio_pulimento',
-                                                    //'cantidad',
-                                                    //'precio',
-                                                    'Acciones',
-                                                ])
+                                            ->addColumn($columns)
                                             ->setUrl(route('api.products'))
                                             ->noScript();
                                     ?>
