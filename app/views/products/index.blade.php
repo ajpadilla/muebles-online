@@ -18,7 +18,11 @@
 		            <section id="maincontent">
 		                <section id="empty" class="twelve columns positionleft">
 		                    <div class="ten columns positionleft"></div>
-		                    <div class="two columns positionright">{{ link_to_route('products.create', 'Nuevo Producto', null, ['class' => 'button']) }}</div>
+		                    <div class="two columns positionright">
+			                    @if(Auth::check() AND Auth::user()->rol == 'admin')
+			                        {{ link_to_route('products.create', 'Nuevo Producto', null, ['class' => 'button']) }}
+			                    @endif
+		                    </div>
 		                </section>
 		                <section id="content" class="twelve columns positionleft">
 		                    <div class="page articlecontainer">
@@ -27,20 +31,23 @@
 		                            <?php
 	                                    $table = Datatable::table()
                                             ->addColumn([
+                                                    'foto',
                                                     'codigo',
                                                     'nombre',
-                                                    'modelo',
+                                                    //'modelo',
                                                     'medidas',
-                                                    'lacado',
-                                                    'precio_lacado',
-                                                    'pulimento',
-                                                    'precio_pulimento',
-                                                    'cantidad',
-                                                    'precio'
+                                                    //'lacado',
+                                                    //'Precio del Lacado',
+                                                    //'pulimento',
+                                                    //'precio_pulimento',
+                                                    //'cantidad',
+                                                    //'precio',
+                                                    'Acciones',
                                                 ])
                                             ->setUrl(route('api.products'))
                                             ->noScript();
                                     ?>
+                                    <div class="row"><br/></div>
 							        {{ $table->render() }}
                                 </article>
                             </div>

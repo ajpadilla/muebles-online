@@ -1,6 +1,13 @@
 <?php
 
+use Muebles\Products\ProductRepository;
+
 class BaseController extends Controller {
+
+	/**
+	 * @var ProductRepository
+	 */
+	private $repository;
 
 	/**
 	 * Setup the layout used by the controller.
@@ -16,7 +23,10 @@ class BaseController extends Controller {
 		$currentMenu = 'current';
 		$currentUser = Auth::user();
 		$currentRoute = Request::url();
-		View::share(compact('currentUser', 'currentMenu', 'currentRoute'));
+		$products = new ProductRepository();
+		$products = $products->getRandom();
+
+		View::share(compact('currentUser', 'currentMenu', 'currentRoute', 'products'));
 	}
 
 }

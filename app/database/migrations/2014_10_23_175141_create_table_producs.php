@@ -18,12 +18,14 @@ class CreateTableProducs extends Migration {
 			$table->string('codigo', 128)->unique();
 			$table->string('nombre', 128);
 			$table->text('descripcion')->nullable();
-			$table->string('modelo', 128);
+			//$table->string('modelo', 128);
 			$table->string('medidas', 128);
-			$table->boolean('lacado');
+			//$table->boolean('lacado');
 			$table->decimal('precio_lacado', 10,4);
-			$table->boolean('pulimento');
+			$table->integer('precio_lacado_puntos');
+			//$table->boolean('pulimento');
 			$table->decimal('precio_pulimento', 10,4);
+			$table->integer('precio_pulimento_puntos');
 			$table->integer('cantidad');
 			$table->decimal('precio', 10,4);
 			$table->timestamps();
@@ -38,7 +40,7 @@ class CreateTableProducs extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('table_producs');
+		Schema::drop('products');
 	}
 
 }

@@ -10,6 +10,9 @@
 |
 */
 
+use Bllim\Datatables\Datatables;
+use Muebles\Photos\Upload;
+
 class UploadController extends BaseController {
 
     /**
@@ -55,10 +58,10 @@ class UploadController extends BaseController {
 
     public function data()
     {
-        $uploads =  Upload::leftjoin('users', 'uploads.id', '=', 'users.id')
+	    $uploads =  Upload::leftjoin('users', 'photos.id', '=', 'users.id')
             ->select(
-                array('uploads.id', 'uploads.filename', 'uploads.path', 'uploads.extension',
-                    'uploads.size', 'uploads.mimetype', 'users.id as user_id', 'users.username as username')
+                array('photos.id', 'photos.filename', 'photos.path', 'photos.extension',
+                    'photos.size', 'photos.mimetype', 'users.id as user_id', 'users.email as username')
             );
 
         return Datatables::of($uploads)

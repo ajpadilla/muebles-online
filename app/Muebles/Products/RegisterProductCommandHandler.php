@@ -33,8 +33,8 @@ class RegisterProductCommandHandler implements CommandHandler {
 	{
 		$product = Product::register(
 										$command->codigo, $command->nombre, $command->descripcion,
-										$command->modelo, $command->medidas, $command->lacado,
-										$command->precio_lacado, $command->pulimento, $command->precio_pulimento,
+										$command->medidas, $command->precio_lacado, $command->precio_lacado_puntos,
+										$command->precio_pulimento, $command->precio_pulimento_puntos,
 										$command->cantidad, $command->precio
 									);
 		$this->repository->save($product);
