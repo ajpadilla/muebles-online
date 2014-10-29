@@ -5,6 +5,7 @@ use Muebles\Forms\ProductRegistrationForm;
 use Muebles\Products\Product;
 use Muebles\Products\ProductRepository;
 use Muebles\Products\RegisterProductCommand;
+use Muebles\Forms\EditProductForm;
 
 class ProductsController extends \BaseController {
 
@@ -20,14 +21,16 @@ class ProductsController extends \BaseController {
 	 */
 	private $productRegistrationForm;
 
+	private $editProductForm;
 	/**
 	 * @param ProductRegistrationForm $productRegistrationForm
 	 * @param ProductRepository $repository
 	 */
-	function __construct(ProductRegistrationForm $productRegistrationForm, ProductRepository $repository)
+	function __construct(ProductRegistrationForm $productRegistrationForm, ProductRepository $repository,EditProductForm $editProductForm)
 	{
 		$this->productRegistrationForm = $productRegistrationForm;
 		$this->repository = $repository;
+		$this->editProductForm = $editProductForm;
 	}
 
 	/**
@@ -94,7 +97,9 @@ class ProductsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//
+		$product = Product::find($id);
+		//var_dump($product);
+		return View::make('products.edit',compact('product'));
 	}
 
 
@@ -106,7 +111,21 @@ class ProductsController extends \BaseController {
 	 */
 	public function update($id)
 	{
-		//
+		$this->editProductForm->validate(Input::all());
+		$product = Product::find($id);
+		$product->codigo = Input::get('codigo');
+		$product->nombre = Input::get('nombre');
+		$product->descripcion = Input::get('descripcion');
+		$product->medidas = Input::get('medidas');
+		$product->precio_lacado = Input::get('precio_lacado');
+		$product->precio_lacado_puntos = Input::get('precio_lacado_puntos');
+		$product->precio_pulimento = Input::get('precio_pulimento');
+		$product->precio_pulimento_puntos = Input::get('precio_pulimento_puntos');
+		$product->cantidad = Input::get('cantidad');
+		$product->precio = Input::get('precio');
+		$product->save();
+		Flash::message('Otro producto ha sido actualizado con éxito!');
+		return Redirect::to('products');
 	}
 
 
@@ -118,7 +137,10 @@ class ProductsController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$product = Product::find($id);
+		$product->delete();
+		Flash::message('producto borrado  con éxito!');
+		return Redirect::to('products');
 	}
 
 	/**
@@ -201,7 +223,7 @@ class ProductsController extends \BaseController {
 			if(Auth::check() AND Auth::user()->rol == 'admin') {
 				$links .= "<a href='" . route('products.edit', $model->id) . "'>Editar</a>
 					<br />
-					<a href='" . route('products.destroy', $model->id) . "'>Eliminar</a>";
+					<a href='" . URL::to('borrarProduct/'.$model->id) . "'>Eliminar</a>";
 			}
 
 			return $links;
