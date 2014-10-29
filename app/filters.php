@@ -56,9 +56,10 @@ Route::filter('auth.basic', function()
 
 Route::filter('admin', function () {
 	if(Auth::check()) {
-		if(Auth::user()->rol != 'admin')
+		if(!Auth::user()->isAdmin()) {
 			Flash::warning('No tiene permisos suficientes para ver la página a la que intenta ingresar!');
 			return Redirect::to('/');
+		}
 	} else {
 		Flash::warning('No tiene permisos suficientes para ver la página a la que intenta ingresar!');
 		return Redirect::to('/');
@@ -66,8 +67,14 @@ Route::filter('admin', function () {
 });
 
 Route::filter('cliente', function () {
-	if (Auth::check() && (Auth::user()->rol != 'cliente' || Auth::user()->rol != 'admin')) {
-
+	if(Auth::check()) {
+		if(!Auth::user()->isClient()) {
+			Flash::warning('No tiene permisos suficientes para ver la página a la que intenta ingresar!');
+			return Redirect::to('/');
+		}
+	} else {
+		Flash::warning('No tiene permisos suficientes para ver la página a la que intenta ingresar!');
+		return Redirect::to('/');
 	}
 });
 

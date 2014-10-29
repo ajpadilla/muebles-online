@@ -13,8 +13,8 @@
 
 <style>
 	.mini-photo {
-		width: 123px;
-		height: 70px;
+		width: 74px;
+		height: 103px;
 		/*margin: 0 auto;*/
 		margin-right: 14px;
 	}
