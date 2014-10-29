@@ -55,8 +55,11 @@ Route::filter('auth.basic', function()
 });
 
 Route::filter('admin', function () {
-	if (Auth::check() && Auth::user()->rol != 'admin') {
-
+	if(Auth::check()) {
+		if(Auth::user()->rol != 'admin')
+			return Redirect::to('/');
+	} else {
+		return Redirect::to('/');
 	}
 });
 

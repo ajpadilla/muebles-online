@@ -49,4 +49,17 @@ class Product extends Eloquent {
 	public function getPrecioPulimentoPuntosAttribute($value){
 		return number_format($value, 2, ',', '.');
 	}
+
+	// Override methods
+	public function delete()
+	{
+		// delete all related photos
+		$this->photos()->delete();
+		// as suggested by Dirk in comment,
+		// it's an uglier alternative, but faster
+		// Photo::where("user_id", $this->id)->delete()
+
+		// delete the user
+		return parent::delete();
+	}
 }

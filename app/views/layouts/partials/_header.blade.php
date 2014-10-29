@@ -12,8 +12,8 @@
                         <ul id="topnav" class="sf-menu">
 							<li @if( route ('home') == $currentRoute) class="current" @endif><a href="{{ route('home') }}">Inicio<span>Pagina Principal</span></a></li>
 							<li @if( route ('products.index') == $currentRoute) class="current" @endif><a href="{{ route('products.index') }}">Catálogo{{--<span>Nuestros productos</span>--}}</a></li>
-							<li @if( URL::to ('/').'acerca' == $currentRoute) class="current" @endif><a href="/acerca">Empresa<span>Conoce la empresa</span></a></li>
-							<li @if( URL::to ('/').'ubicacion' == $currentRoute) class="current" @endif><a href="/ubicacion">Donde estamos<span>Como localizarnos</span></a></li>
+							<li @if( URL::to ('/').'acerca' == $currentRoute) class="current" @endif><a href="{{ route('about_path') }}">Empresa<span>Conoce la empresa</span></a></li>
+							<li @if( URL::to ('/').'ubicacion' == $currentRoute) class="current" @endif><a href="{{ route('address_path') }}">Donde estamos<span>Como localizarnos</span></a></li>
 							<li @if( route ('contact_path') == $currentRoute) class="current" @endif><a href="{{ route('contact_path') }}">Contacto<span>Direccion y email</span></a></li>
                             @if (!$currentUser)
                                 <li @if(route('register_user_path') == $currentRoute) class="current" @endif><a href="{{ route('register_user_path') }}">Registrarse<span></span></a></li>
@@ -26,8 +26,8 @@
 						<select id="selectNav" class="tinynav tinynav1">
 							<option @if(route('home') == $currentRoute) selected="selected" @endif value="{{ route('home') }}">Inicio</option>
 							<option @if(route('products.index') == $currentRoute) selected="selected" @endif value="{{ route('products.index') }}">Catálogo</option>
-							<option @if( URL::to ('/').'acerca' == $currentRoute) class="current" @endif value="/acerca">Empresa</option>
-							<option @if( URL::to ('/').'ubicacion' == $currentRoute) class="current" @endif value="/ubicacion">Donde estamos</option>
+							<option @if( URL::to ('/').'acerca' == $currentRoute) class="current" @endif value="{{ route('about_path') }}">Empresa</option>
+							<option @if( URL::to ('/').'ubicacion' == $currentRoute) class="current" @endif value="{{ route('address_path') }}">Donde estamos</option>
 							<option @if(route('contact_path') == $currentRoute) selected="selected" @endif value="{{ route('contact_path') }}">Contacto</option>
 							@if (!$currentUser)
 								<option @if(route('register_user_path') == $currentRoute) selected="selected" @endif value="{{ route('register_user_path') }}">Registrarse</option>

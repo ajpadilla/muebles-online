@@ -22,7 +22,7 @@ Event::listen('Muebles.Users.Events.UserRegistered', function($event) {
 		/*Mail::send('users.emails.activate-user', array('user' => $event->user), function($message)
 		{
 			$message->to('jose@grupo2.net', 'José Luis Urbano Lopez')
-				->from('informacion@grupo2.net', 'Información - Grupo 2 S.L.')
+				->from('web@grupo2.net', 'Grupo Dos S.L.')
 				->subject('Un nuevo usuario se ha registrado!');
 		});*/
 	} else {
@@ -40,7 +40,7 @@ Event::listen('Muebles.Users.Events.UserActivate', function($event) {
 	Mail::send('users.emails.user-activate', array('user' => $user), function($message) use ($user)
 	{
 		$message->to($user->email, $user->nombres)
-			->from('informacion@grupo2.net', 'Grupo Dos S.L.')
+			->from('web@grupo2.net', 'Grupo Dos S.L.')
 			->subject('Felicitaciones: Hemos admitido tu ingreso!');
 	});
 });
@@ -52,9 +52,35 @@ Route::get('/error-404', [
 	'uses' => 'PagesController@error404'
 ]);
 
+/**
+ * Main Pages
+ */
 Route::get('/', [
 	'as' => 'home',
 	'uses' => 'PagesController@home'
+]);
+
+Route::get('/ubicacion', [
+	'as' => 'address_path',
+	'uses' => 'PagesController@address'
+]);
+
+Route::get('/acerca', [
+	'as' => 'about_path',
+	'uses' => 'PagesController@about'
+]);
+
+/**
+ * Contacto routes
+ */
+Route::get('contacto', [
+	'as' => 'contact_path',
+	'uses' => 'PagesController@contactForm'
+]);
+
+Route::post('contacto', [
+	'as' => 'contact_path',
+	'uses' => 'PagesController@processContact'
 ]);
 
 /**
@@ -90,12 +116,6 @@ Route::post('login', [
 	'uses' => 'UserController@login'
 ]);
 
-
-Route::get('algo',function()
-{
-	echo app_path();
-});
-
 Route::resource('users','UserController');
 Route::get('borrar/{id}','UserController@destroy');
 // Datatable Users
@@ -108,23 +128,6 @@ Route::get('logout', [
 	'as' => 'logout_path',
 	'uses' => 'UserController@destroySession'
 ]);
-
-/**
- * Catalogo routes
- */
-Route::get('contacto', [
-	'as' => 'contact_path',
-	'uses' => 'ContactController@index'
-]);
-
-/**
- * Productos routes
- */
-/*Route::get('productos', [
-	'as' => 'producto_path',
-	'uses' => 'ProductosController@index'
-]);*/
-
 
 /**
  * Catalogo routes
