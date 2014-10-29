@@ -42,6 +42,14 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 		return ($this->activo) ? 'Si' : 'No';
 	}
 
+	public function isAdmin(){
+		return $this->rol == 'admin';
+	}
+
+	public function isClient(){
+		return $this->rol == 'cliente';
+	}
+
 	public static function register($email, $password, $nombre, $codigo_postal, $fax, $telefono_fijo, $direccion, $activo, $rol, $provincia_id){
 		$user = new static(compact('email', 'password', 'nombre', 'codigo_postal', 'fax', 'telefono_fijo', 'direccion', 'activo', 'rol', 'provincia_id'));
 		$user->raise(new UserRegistered($user));

@@ -183,13 +183,14 @@ class ProductsController extends \BaseController {
 
 		$collection->addColumn('ver', function($model)
 		{
-			if(Auth::check() AND Auth::user()->rol == 'admin') {
-				$links .= "<a href='" . route('products.edit', $model->id) . "'>Editar</a>
+			if(Auth::check() AND Auth::user()->isAdmin()) {
+				$links = "<a href='" . route('products.edit', $model->id) . "'>Editar</a>
 					<br />
-					<a href='" . URL::to('borrarProduct/'.$model->id) . "'>Eliminar</a>";
+					<a href='" . URL::to('borrarProduct/'.$model->id) . "'>Eliminar</a>
+					<br />
+					<a href='" . route('photos.create', $model->id) . "'>Agregar Fotos</a>";
+				return $links;
 			}
-
-			return $links;
 		});
 
 		$collection->searchColumns('nombre', 'codigo');

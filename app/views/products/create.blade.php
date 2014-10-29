@@ -44,14 +44,6 @@
 										  </div>
 										  <div class="clear"></div>
 										  <!--  Form Input -->
-										  <div class="six columns">
-										    {{ Form::label('precio_lacado', 'Precio del Lacado:') }}
-										    {{ Form::text('precio_lacado', null, ['size' => '15', 'class' => 'text-input', 'placeholder' => '0,00']) }}
-										  </div>
-										  <div class="six columns">
-										  	{{ Form::label('precio_lacado_puntos', 'Precio del Lacado en Puntos:') }}
-										  	{{ Form::number('precio_lacado_puntos', 1, ['size' => '10', 'class' => 'text-input', 'placeholder' => '0', 'min' => 0]) }}
-										  </div>
                                           <div class="six columns">
                                             {{ Form::label('precio_pulimento', 'Precio del Pulimento:') }}
                                             {{ Form::text('precio_pulimento', null, ['size' => '15', 'class' => 'text-input', 'placeholder' => '0,00']) }}
@@ -59,6 +51,14 @@
 										  <div class="six columns">
 										  	{{ Form::label('precio_pulimento_puntos', 'Precio del Pulimento en Puntos:') }}
 										  	{{ Form::number('precio_pulimento_puntos', 1, ['size' => '10', 'class' => 'text-input', 'placeholder' => '0', 'min' => 0]) }}
+										  </div>
+										  <div class="six columns">
+										    {{ Form::label('precio_lacado', 'Precio del Lacado:') }}
+										    {{ Form::text('precio_lacado', null, ['size' => '15', 'class' => 'text-input', 'placeholder' => '0,00']) }}
+										  </div>
+										  <div class="six columns">
+										  	{{ Form::label('precio_lacado_puntos', 'Precio del Lacado en Puntos:') }}
+										  	{{ Form::number('precio_lacado_puntos', 1, ['size' => '10', 'class' => 'text-input', 'placeholder' => '0', 'min' => 0]) }}
 										  </div>
 										  <div class="clear"></div>
 										  <div class="six columns">
