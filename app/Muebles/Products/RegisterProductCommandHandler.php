@@ -35,7 +35,7 @@ class RegisterProductCommandHandler implements CommandHandler {
 										$command->codigo, $command->nombre, $command->descripcion,
 										$command->medidas, $command->precio_lacado, $command->precio_lacado_puntos,
 										$command->precio_pulimento, $command->precio_pulimento_puntos,
-										$command->cantidad, $command->precio
+										$command->cantidad
 									);
 		$this->repository->save($product);
 		//$this->dispatchEventsFor($product);

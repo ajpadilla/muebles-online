@@ -67,7 +67,7 @@ class ProductsController extends \BaseController {
 		$formData = Input::all();
 		$this->productRegistrationForm->validate($formData);
 		extract($formData);
-		$product = $this->execute(new RegisterProductCommand($codigo, $nombre, $descripcion, $medidas, $precio_lacado, $precio_lacado_puntos, $precio_pulimento, $precio_pulimento_puntos, $cantidad, $precio));
+		$product = $this->execute(new RegisterProductCommand($codigo, $nombre, $descripcion, $medidas, $precio_lacado, $precio_lacado_puntos, $precio_pulimento, $precio_pulimento_puntos, $cantidad));
 		Flash::success('El mueble ha sido registrado con éxito!');
 		if($formData['do'] == 1) {
 			$id = $product->id;
@@ -123,7 +123,6 @@ class ProductsController extends \BaseController {
 		$product->precio_pulimento = Input::get('precio_pulimento');
 		$product->precio_pulimento_puntos = Input::get('precio_pulimento_puntos');
 		$product->cantidad = Input::get('cantidad');
-		$product->precio = Input::get('precio');
 		$product->save();
 		Flash::message('Otro producto ha sido actualizado con éxito!');
 		return Redirect::to('products');
