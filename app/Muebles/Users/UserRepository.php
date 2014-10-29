@@ -47,4 +47,11 @@ class UserRepository {
 	public function getAll(){
 		return User::all();
 	}
+
+	public function getUserId($id)
+	{
+		return User::find($id);
+	}
+
+
 } 

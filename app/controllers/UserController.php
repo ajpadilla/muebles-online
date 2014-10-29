@@ -7,6 +7,8 @@ use Muebles\Users\ActivateUserCommand;
 use Muebles\Users\RegisterUserCommand;
 use Muebles\Users\User;
 use Muebles\Users\UserRepository;
+use Muebles\Poblaciones\PoblacionesReposotory;
+use Muebles\Provincias\ProvinciaRepository;
 
 class UserController extends \BaseController {
 
@@ -21,15 +23,21 @@ class UserController extends \BaseController {
 
 	private $loginForm;
 
+	private $poblacionesReposotory;
+
+	private $provinciaReposotory;
+
 	/**
 	 * @param UserRegistrationForm $userRegistrationForm
 	 * @param UserRepository $userRepository
 	 * @param LoginForm $loginForm
 	 */
-	function __construct(UserRegistrationForm $userRegistrationForm, UserRepository $userRepository, LoginForm $loginForm) {
+	function __construct(UserRegistrationForm $userRegistrationForm, UserRepository $userRepository, LoginForm $loginForm, PoblacionesReposotory $poblacionesReposotory,ProvinciaRepository $provinciaReposotory) {
 		$this->userRepository       = $userRepository;
 		$this->userRegistrationForm = $userRegistrationForm;
 		$this->loginForm            = $loginForm;
+		$this->poblacionesReposotory = $poblacionesReposotory;
+		$this->provinciaReposotory = $provinciaReposotory;
 		$this->beforeFilter('guest', ['except' => ['destroySession', 'activateUser']]);
 	}
 
@@ -83,7 +91,10 @@ class UserController extends \BaseController {
 	 * @return Response
 	 */
 	public function show($id) {
-		//
+		$user = $this->userRepository->getUserId($id);
+		$poblaciones = $this->poblacionesReposotory->getAll()->lists('nombre', 'id');
+		$provincias = $this->provinciaReposotory->getAll()->lists('nombre', 'id');
+		return View::make('users.show',compact('user','poblaciones', 'provincias'));
 	}
 
 	/**
@@ -93,7 +104,10 @@ class UserController extends \BaseController {
 	 * @return Response
 	 */
 	public function edit($id) {
-		//
+		$user = $this->userRepository->getUserId($id);
+		$poblaciones = $this->poblacionesReposotory->getAll()->lists('nombre', 'id');
+		$provincias = $this->provinciaReposotory->getAll()->lists('nombre', 'id');
+		return View::make('users.edit',compact('user','poblaciones', 'provincias'));
 	}
 
 	/**
@@ -103,8 +117,36 @@ class UserController extends \BaseController {
 	 * @return Response
 	 */
 	public function update($id) {
-		//
+		$user = $this->userRepository->getUserId($id);
+		$user->activo = Input::get('activo');
+		$user->nombre = Input::get('nombre');
+		$user->nombre_comercial = Input::get('nombre_comercial');
+		$user->direccion = Input::get('direccion');
+		$user->codigo_postal = Input::get('codigo_postal');
+		$user->provincia_id = Input::get('provincia');
+		$user->telefono_fijo = Input::get('telefono_fijo');
+		$user->fax = Input::get('fax');
+		$user->email = Input::get('email');
+		$user->save();
+		Flash::message('Otro nombre ha sido actualizado con éxito!');
+		return Redirect::to('users');
 	}
+
+	/**
+	 * Remove the specified resource from storage.
+	 *
+	 * @param  int  $id
+	 * @return Response
+	 */
+	public function destroy($id)
+	{
+
+		$user = $this->userRepository->getUserId($id);
+		$user->delete();
+		Flash::message('usuario borrado  con éxito!');
+		return Redirect::to('users');
+	}
+
 
 	/**
 	 * Remove the specified resource from storage.
@@ -160,15 +202,25 @@ class UserController extends \BaseController {
 	public function getDatatable()
 	{
 		$collection = Datatable::collection($this->userRepository->getAll())
-			->showColumns('nombre', 'direccion', 'codigo_postal', 'telefono_fijo', 'fax', 'email', 'rol', 'provincia_id')
+			->showColumns('nombre', 'direccion', 'codigo_postal', 'telefono_fijo', 'fax', 'email', 'rol', 'activo')
 			->searchColumns('nombre', 'email')
-			->orderColumns('codigo', 'email');
+			->orderColumns('nombre', 'email');
 
 		$collection->addColumn('provincia', function($model)
 		{
 			 return $model->provincia->nombre;
 		});
 		
+		$collection->addColumn('Acciones',function($model){
+			$links = "<a href='" . route('users.show', $model->id) . "'>Ver</a>
+					<br />";
+			$links .= "<a href='" . route('users.edit', $model->id) . "'>Editar</a>
+					<br />
+					<a href='" . URL::to('borrar/'.$model->id) . "'>Eliminar</a>";
+
+			return $links;
+		});
+
 		return $collection->make();
 	}
 }

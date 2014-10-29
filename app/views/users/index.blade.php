@@ -23,6 +23,7 @@
 		                <section id="content" class="twelve columns positionleft">
 		                    <div class="page articlecontainer">
 		                        <article class="entry-content">
+                                    @include('flash::message');
 		                            <?php
 	                                    $table = Datatable::table()
                                             ->addColumn([
@@ -33,8 +34,9 @@
                                                     'fax',
                                                     'email',
                                                     'rol',
-                                                    'provincia_id',
-                                                    'provincia'     
+                                                    'activo',
+                                                    'provincia',
+                                                    'Acciones'    
                                                 ])
                                             ->setUrl(route('api.users'))
                                             ->noScript();
