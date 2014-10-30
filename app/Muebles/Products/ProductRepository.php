@@ -27,6 +27,10 @@ class ProductRepository {
 		return Product::all();
 	}
 
+	public function get($id){
+		return Product::findOrFail($id);
+	}
+
 	public function getRandom($limit = 3){
 		return Product::has('photos')
 			->orderBy(DB::raw('RAND()'))

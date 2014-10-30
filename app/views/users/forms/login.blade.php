@@ -19,9 +19,6 @@
                             <section id="empty" class="four columns positionleft"></section>
                             <section id="content" class="four columns positionleft">
                                 <div class="page articlecontainer">
-                                    <article class="has-error">
-                                        @include('flash::message');
-                                    </article>
                                     <article class="entry-content">
                                         <h2>Ingrese sus credenciales</h2>
                                         <div id="contactform">

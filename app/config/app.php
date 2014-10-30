@@ -128,6 +128,7 @@ return array(
 		'Barryvdh\Debugbar\ServiceProvider',
 		'Andrew13\Cabinet\CabinetServiceProvider',
 		'Chumper\Datatable\DatatableServiceProvider',
+		'Barryvdh\DomPDF\ServiceProvider',
 	),
 
 	/*
@@ -198,6 +199,7 @@ return array(
 		'Debugbar' => 'Barryvdh\Debugbar\Facade',
 		'Cabinet'    => 'Andrew13\Cabinet\CabinetFacade',
 		'Datatable' => 'Chumper\Datatable\Facades\DatatableFacade',
+		'PDF' => 'Barryvdh\DomPDF\Facade',
 	),
 
 );

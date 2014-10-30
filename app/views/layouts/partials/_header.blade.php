@@ -54,6 +54,11 @@
 			</header>
 		</div>
 		<div class="clear"></div>
+		<div class="row">
+			<article>
+                @include('flash::message');
+            </article>
+		</div>
 	</div>
 </div>
 <!-- END HEADER -->

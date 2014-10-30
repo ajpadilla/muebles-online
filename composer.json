@@ -10,7 +10,8 @@
         "laracasts/validation": "1.1.2",
         "laracasts/flash": "~1.0",
         "andrewelkins/cabinet": "1.1.x",
-        "chumper/datatable": "2.*"
+        "chumper/datatable": "2.*",
+        "barryvdh/laravel-dompdf": "0.4.*"
     },
     "autoload": {
         "classmap": [
