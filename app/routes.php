@@ -118,6 +118,7 @@ Route::post('login', [
 
 Route::resource('users','UserController');
 Route::get('borrar/{id}','UserController@destroy');
+
 // Datatable Users
 Route::get('api/users', array('as'=>'api.users', 'uses'=>'UserController@getDatatable'));
 
