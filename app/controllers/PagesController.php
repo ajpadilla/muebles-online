@@ -24,6 +24,7 @@ class PagesController extends \BaseController {
 	 */
 	public function home()
 	{
+		Session::put('my.locale', 'es');
 		return View::make('pages.home');
 	}
 
