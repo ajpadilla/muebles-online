@@ -11,13 +11,15 @@
         </div>
     </div>
     <!-- END AFTERHEADER -->
-
     <!-- MAIN CONTENT -->
 	<div id="outermain">
 	    <div id="maincontainer">
 	        <div class="container">
 	            <div class="row">
 	                <section id="maincontent">
+	                    <section class="twelve columns">
+	                    
+	                    </section>
 	                    <section id="content" class="twelve columns">
 	                        <div id="ts-portfolio">
 	                            <div class="row ">
