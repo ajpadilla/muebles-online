@@ -22,6 +22,8 @@ ClassLoader::addDirectories(array(
 
 ));
 
+App::setLocale(Session::get('my.locale', Config::get('app.locale')));
+
 /*
 |--------------------------------------------------------------------------
 | Application Error Logger
@@ -97,3 +99,4 @@ App::down(function()
 */
 
 require app_path().'/filters.php';
+

@@ -15,4 +15,6 @@ return array(
 
 	'debug' => true,
 	'url'   => 'http://muebles.developer.com',
+	'locale' => 'es',
+	'fallback_locale' => 'es',
 );

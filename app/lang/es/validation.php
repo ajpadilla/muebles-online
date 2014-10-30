@@ -3,7 +3,7 @@
 return array(
 
 	"alpha_num"            => "El :attribute sólo puede contener letras y números.",
-	"digits"               => "El campo :attribute debe contener :digits digitos.",
+	"digits"               => "El campo :attribute debe contener minimo :digits digitos.",
 	"digits_between"       => "El campo :attribute debe contener minimo :min y maximo :max digitos.",
 	"email"                => "El :attribute debe ser una dirección de correo electrónico válida.",
 	"in"                   => "El campo :attribute selecionado no es válido.",
@@ -17,7 +17,6 @@ return array(
 		"numeric" => "El :attribute no puede contener menos de :min digitos.",
 		"file"    => "El :attribute no puede ser menor a :min kilobytes.",
 		"string"  => "El :attribute no puede contener menos de :min caracteres.",
-		"array"   => "The :attribute must have at least :min items.",
 	),
 	"numeric"              => "El :attribute solo acepta numero.",
 	"required"             => "El campo :attribute es obligatorio.",
