@@ -61,9 +61,9 @@
 		<div class="row">
 			<section class="eight columns"></section>
 			<section class="four columns">
-				{{ Form::open(['route' => 'filtered_products_path', 'method' => 'get']) }}
+				{{ Form::open(['route' => 'filtered_products_path', 'method' => 'get', 'id' => 'filterForm']) }}
 					<div class="four columns">
-						{{ Form::text('filter_word', null, ['size' => '25', 'class' => 'text-input', 'placeholder' => 'Busqueda']) }}
+						{{ Form::text('filter_word', null, ['size' => '25', 'class' => 'text-input', 'placeholder' => 'Busqueda', 'id' => 'filter_word']) }}
 					</div>
 					<div class="four columns">
 						{{ Form::submit('>', ['class' => 'button']) }}

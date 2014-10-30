@@ -38,5 +38,17 @@
 	</div><!-- end bodychild -->
     <!-- SCRIPT INCLUDES -->
     @include('layouts.partials._js-includes')
+    <script>
+    jQuery(window).load(function() {
+    	jQuery("#filterForm").submit(function(e) {
+    	     var self = this;
+    	     e.preventDefault();
+    	     var size = jQuery('#filter_word').val();
+    	     if(size)
+    	        self.submit();
+    	     return false;
+    	});
+    });
+    </script>
 </body>
 </html>
