@@ -19,17 +19,17 @@ Event::listen('Muebles.Users.Events.UserRegistered', function($event) {
 				->from('informacion@presentatenlaweb.com', 'Presentatenlaweb Atención al cliente')
 				->subject('Un nuevo usuario se ha registrado!');
 		});
-		/*Mail::send('users.emails.activate-user', array('user' => $event->user), function($message)
+		Mail::send('users.emails.activate-user', array('user' => $event->user), function($message)
 		{
 			$message->to('jose@grupo2.net', 'José Luis Urbano Lopez')
 				->from('web@grupo2.net', 'Grupo Dos S.L.')
 				->subject('Un nuevo usuario se ha registrado!');
-		});*/
+		});
 	} else {
 		Mail::send('users.emails.user-activate', array('user' => $user), function($message) use ($user)
 		{
 			$message->to($user->email, $user->nombre)
-				->from('informacion@grupodos.com', 'Grupo Dos S.L.')
+				->from('web@grupo2.net', 'Grupo Dos S.L.')
 				->subject('Felicitaciones: Hemos admitido tu ingreso!');
 		});
 	}
@@ -39,9 +39,27 @@ Event::listen('Muebles.Users.Events.UserActivate', function($event) {
 	$user = $event->user;
 	Mail::send('users.emails.user-activate', array('user' => $user), function($message) use ($user)
 	{
-		$message->to($user->email, $user->nombres)
+		$message->to($user->email, $user->nombre)
 			->from('web@grupo2.net', 'Grupo Dos S.L.')
 			->subject('Felicitaciones: Hemos admitido tu ingreso!');
+	});
+});
+
+Event::listen('Muebles.Pedidos.Events.PedidoRealizado', function($event) {
+	$pedido = $event->pedido;
+	Mail::send('pedidos.emails.pedido-realizado', compact('pedido'), function($message) use ($pedido)
+	{
+		$message->to($pedido->client->email, $pedido->client->nombre)
+			->from('web@grupo2.net', 'Grupo Dos S.L.')
+			->subject('Su pedido ha sido procesado!');
+	});
+
+	Mail::send('pedidos.emails.pedido-realizado', compact('pedido'), function($message) use ($pedido)
+	{
+		//$message->to('nightzpy@gmail.com', 'Lenyn')
+		$message->to('jose@grupo2.net', 'José Luis Urbano Lopez')
+			->from($pedido->client->email, $pedido->client->nombre)
+			->subject('Un pedido ha sido realizado!');
 	});
 });
 
@@ -134,6 +152,23 @@ Route::get('logout', [
  */
 Route::resource('products', 'ProductsController');
 Route::get('borrarProduct/{id}','ProductsController@destroy');
+
+/**
+ * Pedidos routes
+ */
+Route::get('pedidos/{id}', [
+	'as' => 'request_show_path',
+	'uses' => 'PedidosController@show'
+]);
+
+/**
+ * Pedidos routes
+ */
+Route::get('products/pedido/{productId}', [
+	'as' => 'request_product_path',
+	'uses' => 'PedidosController@store'
+]);
+
 /**
  * Photos routes
  */

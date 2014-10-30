@@ -23,14 +23,16 @@
                                      <ul class="slides">
                                         <?php $i=0; ?>
                                         @foreach($product->photos as $photo)
-                                            @if($i==0)
-	                                            <li style="width: 100%; float: left; margin-right: -100%; position: relative; display: list-item;" class="flex-active-slide">
-	                                            <?php $i=1; ?>
-	                                        @else
-	                                            <li style="width: 100%; float: left; margin-right: -100%; position: relative; display: none;" class="">
-	                                        @endif
-												<img class="" alt="{{ $photo->filename }}" src="{{ asset($photo->path . $photo->filename) }}">
-	                                        </li>
+                                            <a class="pfzoom" data-rel="prettyPhoto[mixed]" rel="prettyPhoto[mixed]" href="{{ asset($photo->path . $photo->filename) }}">
+	                                            @if($i==0)
+		                                            <li style="width: 100%; float: left; margin-right: -100%; position: relative; display: list-item;" class="flex-active-slide">
+		                                            <?php $i=1; ?>
+		                                        @else
+		                                            <li style="width: 100%; float: left; margin-right: -100%; position: relative; display: none;" class="">
+		                                        @endif
+													<img class="" alt="{{ $photo->filename }}" src="{{ asset($photo->path . $photo->filename) }}">
+		                                        </li>
+	                                        </a>
                                         @endforeach
                                      </ul>
                                      <div class="clear"></div>
@@ -54,17 +56,17 @@
                                     <div class="clear"></div>
                                     <ul class="line">
                                         <li>
-                                        <!--<div class="price">€{{ $product->precio }}{{--<span>/-->night</span>--}}</div>
+                                        <div class="price">€{{ $product->precio }}{{--<span>/-->night</span>--}}</div>
                                         </li>
                                         @if($currentUser)
-                                            @if(Auth::user()->rol == 'cliente')
-                                                <li><a href="#" class="button">Realizar pedido</a></li>
+                                            @if($currentUser->isClient())
+                                                <li><a href="{{ route('request_product_path', $product->id) }}" class="button">Realizar pedido</a></li>
                                             @endif
 
-                                            @if(Auth::user()->rol == 'admin')
+                                            @if($currentUser->isAdmin())
                                                 <li><a href="{{ route('photos.create', $product->id) }}" class="button">Agregar fotos</a></li>
-                                                <li><a href="{{ route('photos.edit', $product->id) }}" class="button">Editar</a></li>
-                                                <li><a href="{{ route('photos.destroy', $product->id) }}" class="button">Eliminar</a></li>
+                                                <li><a href="{{ route('products.edit', $product->id) }}" class="button">Editar</a></li>
+                                                <li><a href="{{ route('products.destroy', $product->id) }}" class="button">Eliminar</a></li>
                                             @endif
                                         @endif
                                     </ul>
@@ -102,8 +104,6 @@
 	    width: 550px;
 	    height: auto;
 	    margin: 0 auto;
-	    /*margin-left: 15px;
-	    margin-right: 15px;*/
 	}
 
 	.black-background {

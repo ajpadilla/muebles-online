@@ -70,11 +70,11 @@ Route::filter('cliente', function () {
 	if(Auth::check()) {
 		if(!Auth::user()->isClient()) {
 			Flash::warning('No tiene permisos suficientes para ver la página a la que intenta ingresar!');
-			return Redirect::to('/');
+			return Redirect::to('/login');
 		}
 	} else {
 		Flash::warning('No tiene permisos suficientes para ver la página a la que intenta ingresar!');
-		return Redirect::to('/');
+		return Redirect::to('/login');
 	}
 });
 
