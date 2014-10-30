@@ -20,7 +20,7 @@
 		                    <div class="ten columns positionleft"></div>
 		                    <div class="two columns positionright">
 			                    @if(Auth::check() AND Auth::user()->rol == 'admin')
-			                        {{ link_to_route('products.create', 'Nuevo Producto', null, ['class' => 'button']) }}
+			                        {{ link_to_route('products.create', 'Nuevo', null, ['class' => 'button']) }}
 			                    @endif
 		                    </div>
 		                </section>

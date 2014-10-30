@@ -13,5 +13,5 @@ jQuery(document).ready(function () {
 	
 	//=================================== PRETTYPHOTO ===================================//
 	jQuery('a[data-rel]').each(function() {jQuery(this).attr('rel', jQuery(this).data('rel'));});
-	jQuery("a[rel^='prettyPhoto']").prettyPhoto({animationSpeed:'slow',theme:'facebook', gallery_markup:'',slideshow:2000});
+	jQuery("a[rel^='prettyPhoto']").prettyPhoto({animationSpeed:'slow',theme:'facebook', gallery_markup:'',slideshow:2000, social_tools: false});
 });

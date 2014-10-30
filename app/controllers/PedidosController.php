@@ -20,7 +20,7 @@ class PedidosController extends \BaseController {
 	{
 		$this->productRepository = $productRepository;
 		$this->repository = $repository;
-		$this->beforeFilter('cliente');
+		$this->beforeFilter('auth');
 	}
 
 

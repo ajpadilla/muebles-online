@@ -24,7 +24,7 @@
                                         <div id="contactform">
                                         {{ Form::open(['route' => 'login_path']) }}
                                           <fieldset>
-                                            @include('......layouts.partials.error')
+                                            @include('layouts.partials.error')
                                             <div class="row">
 											  <div class="six columns">
 											    {{ Form::label('email', 'Email:') }}
