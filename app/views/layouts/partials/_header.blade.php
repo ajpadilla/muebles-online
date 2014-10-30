@@ -50,7 +50,6 @@
 						<div class="clear"></div>
 					</nav><!-- nav -->
 				</section>
-				<div class="clear"></div>
 			</header>
 		</div>
 		<div class="clear"></div>
@@ -58,6 +57,19 @@
 			<article>
                 @include('flash::message');
             </article>
+		</div>
+		<div class="row">
+			<section class="eight columns"></section>
+			<section class="four columns">
+				{{ Form::open(['route' => 'filtered_products_path', 'method' => 'get']) }}
+					<div class="four columns">
+						{{ Form::text('filter_word', null, ['size' => '25', 'class' => 'text-input', 'placeholder' => 'Busqueda']) }}
+					</div>
+					<div class="four columns">
+						{{ Form::submit('>', ['class' => 'button']) }}
+					</div>
+				{{ Form::close() }}
+			</section>
 		</div>
 	</div>
 </div>

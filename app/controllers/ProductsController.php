@@ -197,4 +197,14 @@ class ProductsController extends \BaseController {
 
 		return $collection->make();
 	}
+
+	/**
+	 * @param $filterWord
+	 * @return mixed
+	 */
+	public function filteredProducts($filterWord = ''){
+		//aquí van los productos que encuentre de la búsqueda, y el método filterProducts tiene que hacerlo dentro del ProductRepository
+		$products = $this->repository->filterProducts($filterWord);
+		return View::make('products.filtered-products', compact('products'));
+	}
 }

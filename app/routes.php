@@ -153,10 +153,16 @@ Route::get('logout', [
  */
 Route::resource('products', 'ProductsController');
 Route::get('borrarProduct/{id}','ProductsController@destroy');
+Route::get('products/filtered/{filterWord}', [
+	'as' => 'filtered_products_path',
+	'uses' => 'ProductsController@filteredProducts'
+]);
 
 /**
  * Pedidos routes
  */
+Route::resource('pedidos', 'PedidosController');
+
 Route::get('pedidos/{id}', [
 	'as' => 'request_show_path',
 	'uses' => 'PedidosController@show'

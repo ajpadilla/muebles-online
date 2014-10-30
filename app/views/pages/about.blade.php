@@ -5,7 +5,11 @@
         <div class="container">
             <div class="row">
                 <div id="afterheader" class="twelve columns">
-                    <h1 class="pagetitle nodesc">Nosotros</h1>
+                    <h4 class="pagetitle nodesc">Nos es grato presentarles una nueva edición de nuestro catálogo general, el cual comtempla tanto los modelos ya conocidos por Vds. como las últmas novedades.
+
+                                                 Lo hacemos con la ilusión de que siga teniendo la misma aceptación que nos han dispensado hasta ahora.
+
+                                                 Deseando que les sea de gran utilidad y les facilite su trabajo, reciban nuestro más sincero agradecimiento.</h4>
                 </div>
             </div>
         </div>
