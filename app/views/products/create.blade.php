@@ -65,10 +65,6 @@
                                             {{ Form::label('cantidad', 'Cantidad:') }}
                                             {{ Form::number('cantidad', 1, ['size' => '10', 'class' => 'text-input', 'placeholder' => '0', 'min' => 0]) }}
                                           </div>
-										  <div class="six columns">
-											{{ Form::label('precio', 'Precio:') }}
-											{{ Form::text('precio', null, ['size' => '15', 'class' => 'text-input', 'placeholder' => '0,00']) }}
-                                          </div>
 										  <div class="clear"></div>
 										  {{--<div class="three columns"></div>--}}
 										  <div class="six columns">
