@@ -18,6 +18,7 @@ class CreateTablePedidos extends Migration {
 			$table->integer('client_id');
 			$table->integer('product_id');
 			$table->integer('cantidad')->nullable()->default(0);
+			$table->boolean('status')->default(false);
 			$table->timestamps();
 		});
 	}

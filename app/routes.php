@@ -161,11 +161,16 @@ Route::get('products/filtered/{filterWord}', [
 /**
  * Pedidos routes
  */
-Route::resource('pedidos', 'PedidosController');
+Route::resource('pedidos', 'PedidosController', ['except' => ['create']]);
 
-Route::get('pedidos/{id}', [
-	'as' => 'request_show_path',
-	'uses' => 'PedidosController@show'
+Route::get('pedidos/create/{productId}', [
+	'as' => 'pedidos.create',
+	'uses' => 'PedidosController@create'
+]);
+
+Route::get('pedidos/terminar', [
+	'as' => 'finish_request_path',
+	'uses' => 'PedidosController@finishRequest'
 ]);
 
 /**

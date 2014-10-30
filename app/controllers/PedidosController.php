@@ -23,20 +23,43 @@ class PedidosController extends \BaseController {
 		$this->beforeFilter('auth');
 	}
 
+	public function index(){
+
+	}
+
+	public function create($productId){
+		$product = $this->productRepository->get($productId);
+		return View::make('pedidos.create', compact('product'));
+	}
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
 	 */
-	public function store($productId)
+	public function store()
 	{
-		if(Auth::check() && Auth::user()->isClient()) {
-			$product = $this->productRepository->get($productId);
-			$pedido = $this->execute(new RegisterPedidoCommand($product, Auth::user()));
-			Flash::success('Su pedido ha sido procesado con éxito!');
-			return Redirect::intended(route('products.index'));
+		$formData = Input::all();
+		$this->registerRequestForm->validate($formData);
+		extract($formData);
+		$product = $this->productRepository->get($product_id);
+		$pedido = $this->execute(new RegisterPedidoCommand($product, Auth::user(), $cantidad, $color));
+		Flash::success('Su pedido ha sido procesado con éxito!');
+		if($formData['do'] == 1) {
+			return Redirect::to(route('products.index'));
 		}
+		return Redirect::route('finish_request_path');
+
+	}
+
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @return Response
+	 */
+	public function finishRequest()
+	{
+
 	}
 
 	public function show($id){

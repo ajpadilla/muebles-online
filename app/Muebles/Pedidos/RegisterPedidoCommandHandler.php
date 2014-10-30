@@ -34,6 +34,8 @@ class RegisterPedidoCommandHandler implements CommandHandler {
 		$pedido = new Pedido();
 		$pedido->client()->associate($command->client);
 		$pedido->product()->associate($command->product);
+		$pedido->color = $command->color;
+		$pedido->cantidad = $command->cantidad;
 		$this->repository->save($pedido);
 		$this->dispatchEventsFor($pedido);
 		return $pedido;
