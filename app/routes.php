@@ -161,6 +161,11 @@ Route::post('products/filtered', [
 	'uses' => 'ProductsController@filteredProducts'
 ]);
 
+Route::post('filtered', [
+	'as' => 'filtered_path',
+	'uses' => 'ProductsController@filteredProducts'
+]);
+
 /**
  * Pedidos routes
  */
