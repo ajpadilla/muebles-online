@@ -37,4 +37,15 @@ class ProductRepository {
 			->take($limit)
 			->get();
 	}
+
+	public function filterProducts($filterWord)
+	{
+		$query = Product::select();
+
+		if (!empty($filterWord)) {
+			$query->where('codigo', 'LIKE', '%'.$filterWord.'%')->orWhere('descripcion','LIKE', '%'.$filterWord.'%');
+		}
+
+		 return $query->get();
+	}
 }
