@@ -16,6 +16,7 @@ class FacturasController extends \BaseController {
 	function __construct(FacturasRepository $repository)
 	{
 		$this->repository = $repository;
+		$this->beforeFilter('auth');
 	}
 
 
