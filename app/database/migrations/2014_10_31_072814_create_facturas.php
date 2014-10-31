@@ -3,7 +3,7 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 
-class CreateTablePedidos extends Migration {
+class CreateFacturas extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,14 +12,11 @@ class CreateTablePedidos extends Migration {
 	 */
 	public function up()
 	{
-		Schema::create('pedidos', function(Blueprint $table)
+		Schema::create('facturas', function(Blueprint $table)
 		{
 			$table->increments('id');
-			$table->integer('product_id');
-			$table->integer('factura_id');
-			$table->string('color', 64);
-			$table->integer('cantidad')->nullable()->default(0);
-			$table->string('observacion', '256')->nullable();
+			$table->integer('client_id');
+			$table->boolean('finish')->default(false);
 			$table->timestamps();
 		});
 	}
@@ -32,7 +29,7 @@ class CreateTablePedidos extends Migration {
 	 */
 	public function down()
 	{
-		Schema::drop('pedidos');
+		Schema::drop('facturas');
 	}
 
 }

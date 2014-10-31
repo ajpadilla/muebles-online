@@ -45,20 +45,22 @@ Event::listen('Muebles.Users.Events.UserActivate', function($event) {
 	});
 });
 
-Event::listen('Muebles.Pedidos.Events.PedidoRealizado', function($event) {
-	$pedido = $event->pedido;
-	Mail::send('pedidos.emails.pedido-realizado', compact('pedido'), function($message) use ($pedido)
+Event::listen('Muebles.Facturas.Events.FacturaRealizada', function($event) {
+	$factura = $event->factura;
+	$pedidos = $factura->pedidos;
+	$client  = $factura->client;
+	Mail::send('facturas.emails.factura-realizada', compact('pedidos', 'client', 'factura'), function($message) use ($client)
 	{
-		$message->to($pedido->client->email, $pedido->client->nombre)
+		$message->to($client->email, $client->nombre)
 			->from('web@grupo2.net', 'Grupo Dos S.L.')
 			->subject('Su pedido ha sido procesado!');
 	});
 
-	Mail::send('pedidos.emails.pedido-realizado', compact('pedido'), function($message) use ($pedido)
+	Mail::send('facturas.emails.factura-realizada', compact('pedidos', 'client', 'factura'), function($message) use ($client)
 	{
-		//$message->to('nightzpy@gmail.com', 'Lenyn')
-		$message->to('jose@grupo2.net', 'José Luis Urbano Lopez')
-			->from($pedido->client->email, $pedido->client->nombre)
+		$message->to('nightzpy@gmail.com', 'Lenyn')
+		//$message->to('jose@grupo2.net', 'José Luis Urbano Lopez')
+			->from($client->email, $client->nombre)
 			->subject('Un pedido ha sido realizado!');
 	});
 });
@@ -161,19 +163,20 @@ Route::get('products/filtered/{filterWord}', [
 /**
  * Pedidos routes
  */
-Route::resource('pedidos', 'PedidosController');
+Route::resource('pedidos', 'PedidosController', ['except' => ['create', 'show']]);
 
-Route::get('pedidos/{id}', [
-	'as' => 'request_show_path',
-	'uses' => 'PedidosController@show'
+Route::get('pedidos/create/{productId}', [
+	'as' => 'pedidos.create',
+	'uses' => 'PedidosController@create'
 ]);
 
 /**
- * Pedidos routes
+ * Facturas routes
  */
-Route::get('products/pedido/{productId}', [
-	'as' => 'request_product_path',
-	'uses' => 'PedidosController@store'
+Route::resource('facturas', 'FacturasController');
+Route::get('pdf-factura/{facturaId}', [
+	'as' => 'pdf_invoice_path',
+	'uses' => 'FacturasController@getPdf'
 ]);
 
 /**

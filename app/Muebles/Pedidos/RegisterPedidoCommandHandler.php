@@ -1,14 +1,8 @@
 <?php namespace Muebles\Pedidos;
 
-use Larabook\Products\Product;
 use Laracasts\Commander\CommandHandler;
-use Laracasts\Commander\Events\DispatchableTrait;
 
 class RegisterPedidoCommandHandler implements CommandHandler {
-
-	use DispatchableTrait;
-
-
 	/**
 	 * @var Repository
 	 */
@@ -32,10 +26,12 @@ class RegisterPedidoCommandHandler implements CommandHandler {
 	public function handle($command)
 	{
 		$pedido = new Pedido();
-		$pedido->client()->associate($command->client);
+		$pedido->factura()->associate($command->factura);
 		$pedido->product()->associate($command->product);
+		$pedido->color = $command->color;
+		$pedido->cantidad = $command->cantidad;
+		$pedido->observacion = $command->observacion;
 		$this->repository->save($pedido);
-		$this->dispatchEventsFor($pedido);
 		return $pedido;
 	}
 

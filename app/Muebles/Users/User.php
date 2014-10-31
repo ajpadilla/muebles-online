@@ -60,4 +60,8 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	{
 		return $this->belongsTo('Muebles\Provincias\Provincia');
 	}
+
+	public function facturas(){
+		return $this->hasMany('Muebles\Facturas\Factura', 'factura_id');
+	}
 }

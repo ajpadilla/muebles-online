@@ -60,7 +60,7 @@
                                         </li>
                                         @if($currentUser)
                                             @if($currentUser->isClient())
-                                                <li><a href="{{ route('request_product_path', $product->id) }}" class="button">Realizar pedido</a></li>
+                                                <li><a href="{{ route('pedidos.create', $product->id) }}" class="button">Realizar pedido</a></li>
                                             @endif
 
                                             @if($currentUser->isAdmin())

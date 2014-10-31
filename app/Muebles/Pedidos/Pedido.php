@@ -14,8 +14,8 @@ class Pedido extends Eloquent {
 		return $this->belongsTo('Muebles\Products\Product');
 	}
 
-	public function client(){
-		return $this->belongsTo('Muebles\Users\User');
+	public function factura(){
+		return $this->belongsTo('Muebles\Facturas\Factura');
 	}
 
 	public function getCreatedAtAttribute($date) {

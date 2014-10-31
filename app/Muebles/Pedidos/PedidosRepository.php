@@ -1,12 +1,6 @@
 <?php namespace Muebles\Pedidos;
 
-use Laracasts\Commander\Events\EventGenerator;
-use Muebles\Pedidos\Events\PedidoRealizado;
-
 class PedidosRepository {
-
-	use EventGenerator;
-
 	/**
 	 * Persist a pedido.
 	 *
@@ -14,7 +8,6 @@ class PedidosRepository {
 	 * @return mixed
 	 */
 	public function save(Pedido $pedido){
-		$pedido->raise(new PedidoRealizado($pedido));
 		return $pedido->save();
 	}
 
