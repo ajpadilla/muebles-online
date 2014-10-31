@@ -1,7 +1,7 @@
 <?php namespace Muebles\Pedidos; 
 
+use Muebles\Facturas\Factura;
 use Muebles\Products\Product;
-use Muebles\Users\User;
 
 class RegisterPedidoCommand  {
 
@@ -9,26 +9,30 @@ class RegisterPedidoCommand  {
 	 * @var Product
 	 */
 	public $product;
-	/**
-	 * @var User
-	 */
-	public $client;
 
 	public $color;
 	public $cantidad;
+	/**
+	 * @var Factura
+	 */
+	public $factura;
+	/**
+	 * @var null
+	 */
+	public $observacion;
 
 	/**
 	 * @param Product $product
-	 * @param User $client
 	 * @param $color
 	 * @param $cantidad
 	 */
-	function __construct(Product $product, User $client, $color, $cantidad)
+	function __construct(Product $product, Factura $factura, $cantidad,  $color, $observacion = null)
 	{
 		$this->product = $product;
-		$this->client = $client;
 		$this->color = $color;
 		$this->cantidad = $cantidad;
+		$this->factura = $factura;
+		$this->observacion = $observacion;
 	}
 	
 } 

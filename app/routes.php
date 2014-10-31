@@ -46,19 +46,20 @@ Event::listen('Muebles.Users.Events.UserActivate', function($event) {
 });
 
 Event::listen('Muebles.Pedidos.Events.PedidoRealizado', function($event) {
-	$pedido = $event->pedido;
-	Mail::send('pedidos.emails.pedido-realizado', compact('pedido'), function($message) use ($pedido)
+	$pedidos = $event->pedidos;
+	$user = Auth::user();
+	Mail::send('pedidos.emails.pedido-realizado', compact('pedidos'), function($message) use ($user)
 	{
-		$message->to($pedido->client->email, $pedido->client->nombre)
+		$message->to($user->email, $user->nombre)
 			->from('web@grupo2.net', 'Grupo Dos S.L.')
 			->subject('Su pedido ha sido procesado!');
 	});
 
-	Mail::send('pedidos.emails.pedido-realizado', compact('pedido'), function($message) use ($pedido)
+	Mail::send('pedidos.emails.pedido-realizado', compact('pedidos'), function($message) use ($user)
 	{
 		//$message->to('nightzpy@gmail.com', 'Lenyn')
 		$message->to('jose@grupo2.net', 'José Luis Urbano Lopez')
-			->from($pedido->client->email, $pedido->client->nombre)
+			->from($user->email, $user->nombre)
 			->subject('Un pedido ha sido realizado!');
 	});
 });
@@ -161,24 +162,20 @@ Route::get('products/filtered/{filterWord}', [
 /**
  * Pedidos routes
  */
-Route::resource('pedidos', 'PedidosController', ['except' => ['create']]);
+Route::resource('pedidos', 'PedidosController', ['except' => ['create', 'show']]);
 
 Route::get('pedidos/create/{productId}', [
 	'as' => 'pedidos.create',
 	'uses' => 'PedidosController@create'
 ]);
 
-Route::get('pedidos/terminar', [
-	'as' => 'finish_request_path',
-	'uses' => 'PedidosController@finishRequest'
-]);
-
 /**
- * Pedidos routes
+ * Facturas routes
  */
-Route::get('products/pedido/{productId}', [
-	'as' => 'request_product_path',
-	'uses' => 'PedidosController@store'
+Route::resource('facturas', 'FacturasController');
+Route::get('pdf-factura/{facturaId}', [
+	'as' => 'pdf_invoice_path',
+	'uses' => 'FacturasController@getPdf'
 ]);
 
 /**

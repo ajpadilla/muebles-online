@@ -19,7 +19,7 @@
 		                <section id="empty" class="twelve columns positionleft">
 		                    <div class="ten columns positionleft"></div>
 		                    <div class="two columns positionright">
-			                    @if(Auth::check() AND Auth::user()->rol == 'admin')
+			                    @if($currentUser AND $currentUser->isAdmin())
 			                        {{ link_to_route('products.create', 'Nuevo', null, ['class' => 'button']) }}
 			                    @endif
 		                    </div>

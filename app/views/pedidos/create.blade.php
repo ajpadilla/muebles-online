@@ -23,6 +23,7 @@
 								<h2>LLENA LOS SIGUIENTES CAMPOS</h2>
 								<div id="contactform">
 									{{ Form::open(['url' => 'pedidos']) }}
+									{{ Form::hidden('product_id', $product->id) }}
 									<fieldset>
 										@include('layouts.partials.error')
 										<div class="row">
@@ -34,6 +35,11 @@
 												{{ Form::label('cantidad', 'Cantidad:') }}
 												{{ Form::number('cantidad', 1, ['size' => '10', 'class' => 'text-input', 'placeholder' => '1', 'min' => 1]) }}
 											</div>
+											<div class="clear"></div>
+											<div class="twelve columns">
+                                                {{ Form::label('observacion', 'Observaciones:') }}
+                                                {{ Form::text('observacion', null, ['class' => 'text-input']) }}
+                                            </div>
 											<div class="clear"></div>
 											{{--<div class="three columns"></div>--}}
 											<div class="six columns">
