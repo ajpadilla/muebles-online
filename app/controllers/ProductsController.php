@@ -202,9 +202,11 @@ class ProductsController extends \BaseController {
 	 * @param $filterWord
 	 * @return mixed
 	 */
-	public function filteredProducts($filterWord = ''){
+	public function filteredProducts()
+	{
+		$filterWord = (Input::has('filter_word') ? Input::get('filter_word') : '');
 		//aquí van los productos que encuentre de la búsqueda, y el método filterProducts tiene que hacerlo dentro del ProductRepository
-		$products = $this->repository->filterProducts(Input::get('filter_word'));
+		$products = $this->repository->filterProducts($filterWord);
 		return View::make('products.filtered-products', compact('products'));
 		
 		//echo Input::get('filter_word').'<br>';

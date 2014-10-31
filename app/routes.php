@@ -156,7 +156,7 @@ Route::get('logout', [
 Route::resource('products', 'ProductsController');
 Route::get('borrarProduct/{id}','ProductsController@destroy');
 
-Route::get('products/filtered/{filterWord}', [
+Route::post('products/filtered', [
 	'as' => 'filtered_products_path',
 	'uses' => 'ProductsController@filteredProducts'
 ]);
@@ -164,11 +164,16 @@ Route::get('products/filtered/{filterWord}', [
 /**
  * Pedidos routes
  */
-Route::resource('pedidos', 'PedidosController', ['except' => ['create', 'show']]);
+Route::resource('pedidos', 'PedidosController', ['except' => ['create', 'show', 'index']]);
 
 Route::get('pedidos/create/{productId}', [
 	'as' => 'pedidos.create',
 	'uses' => 'PedidosController@create'
+]);
+
+Route::get('pedidos/{facturaId}', [
+	'as' => 'pedidos.index',
+	'uses' => 'PedidosController@index'
 ]);
 
 /**

@@ -16,10 +16,18 @@
 							<li @if( URL::to ('/').'ubicacion' == $currentRoute) class="current" @endif><a href="{{ route('address_path') }}">Donde estamos<span>Como localizarnos</span></a></li>
 							<li @if( route ('contact_path') == $currentRoute) class="current" @endif><a href="{{ route('contact_path') }}">Contacto<span>Direccion y email</span></a></li>
 							<li>
+								@if (!$currentUser)
 								<a href="#">
 									Cuenta
 									<span>Cuenta de Usuario</span>
 								</a>
+								@else
+	                                @if($currentUser->isAdmin())
+	                                    <a href="{{ route('users.show', $currentUser->id) }}">{{ $currentUser->nombre; }}</a>
+	                                @else
+	                                    <a href="#">{{ Auth::user()->nombre; }}</a>
+	                                @endif
+								@endif
 								<span class="sf-sub-indicator"> »</span>
 								<ul class="sub-menu" style="float: none; width: 10em; display: none; visibility: hidden;">
 		                            @if (!$currentUser)
@@ -27,10 +35,10 @@
 		                                <li @if(route('login_path') == $currentRoute) class="current" @endif><a href="{{ route('login_path') }}">Ingresar<span></span></a></li>
 		                            @else
 		                                @if($currentUser->isAdmin())
-		                                    <li style="white-space: normal; float: left; width: 100%;"><a href="{{ route('users.show', $currentUser->id) }}">{{ $currentUser->nombre; }}</a></li>
 		                                    <li style="white-space: normal; float: left; width: 100%;"><a href="{{ route('users.index') }}">Usuarios</a></li>
+		                                    <li style="white-space: normal; float: left; width: 100%;"><a href="{{ route('facturas.index') }}">Pedidos</a></li>
 		                                @else
-		                                    <li style="white-space: normal; float: left; width: 100%;"><a href="#">{{ Auth::user()->nombre; }}</a></li>
+		                                    <li style="white-space: normal; float: left; width: 100%;"><a href="{{ route('facturas.index') }}">Mis Pedidos</a></li>
 		                                @endif
 		                                <li style="white-space: normal; float: left; width: 100%;"><a href="{{ route('logout_path') }}">Salir<span></span></a></li>
 		                            @endif
