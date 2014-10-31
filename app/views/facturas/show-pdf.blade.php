@@ -12,18 +12,21 @@
         <p><em>Dirección: </em> <strong>{{ $client->direccion }}</strong></p>
 	</fieldset>
 
-    <section id="content" class="twelve columns positionleft">
+	<section class="two columns"></section>
+    <section id="content" class="ten columns positionleft">
         <div class="page articlecontainer">
             <h3>Detalles de los pedidos</h3>
             <article class="entry-content">
-                <table>
+                <table border="2">
                     <thead>
-                        <th>CODIGO</th>
-                        <th>NOMBRE</th>
-                        <th>CANTIDAD</th>
-                        <th>COLOR</th>
-                        <th>MEDIDAS</th>
-                        <th>OBSERVACIONES</th>
+                        <tr>
+	                        <th>CODIGO</th>
+	                        <th>NOMBRE</th>
+	                        <th>CANTIDAD</th>
+	                        <th>COLOR</th>
+	                        <th>MEDIDAS</th>
+	                        <th>OBSERVACIONES</th>
+                       </tr>
                     </thead>
                     <tbody>
                         @foreach($pedidos as $pedido)
@@ -42,5 +45,6 @@
         </div>
     </section>
 </section>
+<hr/>
 <em>{{ $factura->created_at }}</em>
 </section>

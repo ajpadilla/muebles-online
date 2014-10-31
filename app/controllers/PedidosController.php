@@ -56,9 +56,8 @@ class PedidosController extends \BaseController {
 			Session::put('factura', $factura);
 		} else {
 			$factura = Session::get('factura');
-			$factura->save();
 		}
-
+		$factura->save();
 		$formData = Input::all();
 		$this->registerRequestForm->validate($formData);
 		extract($formData);

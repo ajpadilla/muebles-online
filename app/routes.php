@@ -45,21 +45,22 @@ Event::listen('Muebles.Users.Events.UserActivate', function($event) {
 	});
 });
 
-Event::listen('Muebles.Pedidos.Events.PedidoRealizado', function($event) {
-	$pedidos = $event->pedidos;
-	$user = Auth::user();
-	Mail::send('pedidos.emails.pedido-realizado', compact('pedidos'), function($message) use ($user)
+Event::listen('Muebles.Facturas.Events.FacturaRealizada', function($event) {
+	$factura = $event->factura;
+	$pedidos = $factura->pedidos;
+	$client  = $factura->client;
+	Mail::send('facturas.emails.factura-realizada', compact('pedidos', 'client', 'factura'), function($message) use ($client)
 	{
-		$message->to($user->email, $user->nombre)
+		$message->to($client->email, $client->nombre)
 			->from('web@grupo2.net', 'Grupo Dos S.L.')
 			->subject('Su pedido ha sido procesado!');
 	});
 
-	Mail::send('pedidos.emails.pedido-realizado', compact('pedidos'), function($message) use ($user)
+	Mail::send('facturas.emails.factura-realizada', compact('pedidos', 'client', 'factura'), function($message) use ($client)
 	{
-		//$message->to('nightzpy@gmail.com', 'Lenyn')
-		$message->to('jose@grupo2.net', 'José Luis Urbano Lopez')
-			->from($user->email, $user->nombre)
+		$message->to('nightzpy@gmail.com', 'Lenyn')
+		//$message->to('jose@grupo2.net', 'José Luis Urbano Lopez')
+			->from($client->email, $client->nombre)
 			->subject('Un pedido ha sido realizado!');
 	});
 });

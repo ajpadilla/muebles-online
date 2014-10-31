@@ -15,18 +15,27 @@
 							<li @if( URL::to ('/').'acerca' == $currentRoute) class="current" @endif><a href="{{ route('about_path') }}">Empresa<span>Conoce la empresa</span></a></li>
 							<li @if( URL::to ('/').'ubicacion' == $currentRoute) class="current" @endif><a href="{{ route('address_path') }}">Donde estamos<span>Como localizarnos</span></a></li>
 							<li @if( route ('contact_path') == $currentRoute) class="current" @endif><a href="{{ route('contact_path') }}">Contacto<span>Direccion y email</span></a></li>
-                            @if (!$currentUser)
-                                <li @if(route('register_user_path') == $currentRoute) class="current" @endif><a href="{{ route('register_user_path') }}">Registrarse<span></span></a></li>
-                                <li @if(route('login_path') == $currentRoute) class="current" @endif><a href="{{ route('login_path') }}">Ingresar<span></span></a></li>
-                            @else
-                                @if($currentUser->isAdmin())
-                                    <li><a href="{{ route('users.show', Auth::user()->id) }}">{{ Auth::user()->nombre; }}</a></li>
-                                    <li><a href="{{ route('users.index') }}">Usuarios</a></li>
-                                @else
-                                    <li><a href="#">{{ Auth::user()->nombre; }}</a></li>
-                                @endif
-                                <li><a href="{{ route('logout_path') }}">Salir<span></span></a></li>
-                            @endif
+							<li>
+								<a href="#">
+									Cuenta
+									<span>Cuenta de Usuario</span>
+								</a>
+								<span class="sf-sub-indicator"> »</span>
+								<ul class="sub-menu" style="float: none; width: 10em; display: none; visibility: hidden;">
+		                            @if (!$currentUser)
+		                                <li @if(route('register_user_path') == $currentRoute) class="current" @endif><a href="{{ route('register_user_path') }}">Registrarse<span></span></a></li>
+		                                <li @if(route('login_path') == $currentRoute) class="current" @endif><a href="{{ route('login_path') }}">Ingresar<span></span></a></li>
+		                            @else
+		                                @if($currentUser->isAdmin())
+		                                    <li style="white-space: normal; float: left; width: 100%;"><a href="{{ route('users.show', $currentUser->id) }}">{{ $currentUser->nombre; }}</a></li>
+		                                    <li style="white-space: normal; float: left; width: 100%;"><a href="{{ route('users.index') }}">Usuarios</a></li>
+		                                @else
+		                                    <li style="white-space: normal; float: left; width: 100%;"><a href="#">{{ Auth::user()->nombre; }}</a></li>
+		                                @endif
+		                                <li style="white-space: normal; float: left; width: 100%;"><a href="{{ route('logout_path') }}">Salir<span></span></a></li>
+		                            @endif
+                                </ul>
+							</li>
 						</ul><!-- topnav -->
 						<select id="selectNav" class="tinynav tinynav1">
 							<option @if(route('home') == $currentRoute) selected="selected" @endif value="{{ route('home') }}">Inicio</option>

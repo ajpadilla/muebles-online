@@ -1,14 +1,14 @@
-<?php namespace Muebles\Facturas\Events;
+<?php namespace Muebles\Facturas;
 
 use Muebles\Facturas\Factura;
 
-class FacturaRealizada {
-
-	public $factura;
+class FinishInvoiceCommand  {
 
 	/**
-	 * @param Factura $factura
+	 * @var Factura
 	 */
+	public $factura;
+
 	function __construct(Factura $factura)
 	{
 		$this->factura = $factura;

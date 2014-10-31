@@ -1,13 +1,17 @@
 <?php
 
+use Muebles\Core\CommandBus;
 use Muebles\Facturas\FacturasRepository;
+use Muebles\Facturas\FinishInvoiceCommand;
 
 class FacturasController extends \BaseController {
+
+	use CommandBus;
 
 	private $repository;
 
 	/**
-	 * @param FacturasRepository $repository
+	 * @param FacturasRepository $repositoryw
 	 */
 	function __construct(FacturasRepository $repository)
 	{
@@ -34,8 +38,8 @@ class FacturasController extends \BaseController {
 	public function show($id)
 	{
 		$factura = $this->repository->get($id);
-		$factura->finish = true;
-		$factura->save();
+		if(!$factura->finished())
+			$factura = $this->execute(new FinishInvoiceCommand($factura));
 		$pedidos = $factura->pedidos;
 		$client = $factura->client;
 		return View::make('facturas.show', compact('pedidos','client', 'factura'));

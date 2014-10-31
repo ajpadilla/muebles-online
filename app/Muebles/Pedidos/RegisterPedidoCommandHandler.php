@@ -1,13 +1,8 @@
 <?php namespace Muebles\Pedidos;
 
 use Laracasts\Commander\CommandHandler;
-use Laracasts\Commander\Events\DispatchableTrait;
 
 class RegisterPedidoCommandHandler implements CommandHandler {
-
-	use DispatchableTrait;
-
-
 	/**
 	 * @var Repository
 	 */
@@ -37,7 +32,6 @@ class RegisterPedidoCommandHandler implements CommandHandler {
 		$pedido->cantidad = $command->cantidad;
 		$pedido->observacion = $command->observacion;
 		$this->repository->save($pedido);
-		$this->dispatchEventsFor($pedido);
 		return $pedido;
 	}
 

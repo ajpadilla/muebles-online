@@ -64,7 +64,7 @@
 	                <section class="twelve columns">
 	                    <section class="eleven columns positionleft"></section>
 	                    <section class="one columns positionright">
-	                        <a href="{{ route('pdf_invoice_path', $factura->id) }}" class="button">PDF</a>
+	                        <a target="_blank" href="{{ route('pdf_invoice_path', $factura->id) }}" class="button">PDF</a>
 	                    </section>
 	                </section>
                 </div>
