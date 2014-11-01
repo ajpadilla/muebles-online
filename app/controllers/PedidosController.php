@@ -33,8 +33,8 @@ class PedidosController extends \BaseController {
 		$this->registerRequestForm = $registerRequestForm;
 	}
 
-	public function index(){
-
+	public function index($facturaId){
+		echo $facturaId;
 	}
 
 	public function create($productId){
