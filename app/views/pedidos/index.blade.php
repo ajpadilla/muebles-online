@@ -5,7 +5,7 @@
 	    <div class="container">
 	        <div class="row">
 	            <div id="afterheader" class="twelve columns">
-	                <h1 class="pagetitle nodesc">Lista de pedidos </h1>
+	                <h1 class="pagetitle nodesc">Pedidos de {{$factura->client->nombre}}</h1>
 	            </div>
 	        </div>
 	    </div>
