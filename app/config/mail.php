@@ -54,7 +54,7 @@ return array(
 	| used globally for all e-mails that are sent by your application.
 	|
 	*/
-	'from' => array('address' => 'web@grupo2.net', 'name' => 'Grupo Dos S.L.'),
+	'from' => array('address' => getenv('SYSTEM_EMAIL'), 'name' => getenv('SYSTEM_EMAIL_NAME')),
 
 	/*
 	|--------------------------------------------------------------------------
