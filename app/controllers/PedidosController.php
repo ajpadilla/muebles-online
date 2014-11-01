@@ -48,12 +48,12 @@ class PedidosController extends \BaseController {
 	{
 		//return Session::get('facturaId');
 		$collection = Datatable::collection($this->repository->ordersForInvoice(Session::get('facturaId')))
-			->showColumns('color','cantidad','observacion')
-			->searchColumns('Fecha del pedido')
-			->orderColumns('Fecha del pedido');
+			->showColumns('created_at')
+			->searchColumns('created_at')
+			->orderColumns('created_at');
 
 		
-		$collection->addColumn('Fecha del pedido', function($model)
+		$collection->addColumn('created_at', function($model)
 		{
 			return date("Y-m-d H:i:s",strtotime($model->created_at));
 		});
@@ -62,6 +62,21 @@ class PedidosController extends \BaseController {
 		{
 			$links = '';
 			return $links .= "<a href='" . route('products.show', $model->product->id) . "'>Ver</a>";
+		});
+
+		$collection->addColumn('color', function($model)
+		{
+			return $model->color;
+		});
+
+		$collection->addColumn('cantidad', function($model)
+		{
+			return $model->cantidad;
+		});
+
+		$collection->addColumn('descripcion', function($model)
+		{
+			return $model->observacion;
 		});
 
 
