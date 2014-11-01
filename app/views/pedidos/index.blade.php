@@ -25,6 +25,7 @@
 		                <section id="content" class="twelve columns positionleft">
 		                    <div class="page articlecontainer">
 		                        <article class="entry-content">
+		                          @include('flash::message');
 		                            <?php
 		                                $columns = [
 		                                				'Fecha del pedido',
