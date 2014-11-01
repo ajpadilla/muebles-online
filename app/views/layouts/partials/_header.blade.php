@@ -66,6 +66,7 @@
 						</select>
 						<div class="clear"></div>
 					</nav><!-- nav -->
+					<br/>
 					<div class="row">
 						<section class="seven columns"></section>
 						<section class="five columns">

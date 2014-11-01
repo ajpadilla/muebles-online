@@ -28,7 +28,7 @@
 	================================================== -->
 	<link rel="shortcut icon" href="images/favicon.ico" />
 </head>
-<body @if($currentRoute == '/') class="home" @endif>
+<body @if($currentRoute == 'home') class="home" @endif>
 	<div id="bodychild">
 		<div id="outercontainer">
             @include('layouts.partials._header')
