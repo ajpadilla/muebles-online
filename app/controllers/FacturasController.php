@@ -68,23 +68,22 @@ class FacturasController extends \BaseController {
 	public function getDatatable()
 	{
 		$collection = Datatable::collection($this->repository->getAll())
-			->showColumns('created_at')
-			->searchColumns('Fecha de la Factura', 'Estado','Nombre del Cliente')
-			->orderColumns('Fecha de la Factura', 'Estado','Nombre del Cliente');
+			->showColumns('created_at','client_id','finish')
+			->searchColumns('created_at', 'client_id','finish')
+			->orderColumns('created_at', 'client_id','finish');
 
 		
-
-		$collection->addColumn('Fecha de la Factura', function($model)
+		$collection->addColumn('created_at', function($model)
 		{
 			return date("Y-m-d H:i:s",strtotime($model->created_at));
 		});
 
-		$collection->addColumn('Nombre Cliente', function($model)
+		$collection->addColumn('client_id', function($model)
 		{
 			 return $model->client->nombre;
 		});
 
-		$collection->addColumn('Estado', function($model)
+		$collection->addColumn('finish', function($model)
 		{
 			 return $this->repository->getStatus($model);
 		});
