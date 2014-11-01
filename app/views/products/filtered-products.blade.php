@@ -78,14 +78,6 @@
 <!-- END MAIN CONTENT -->
 @stop
 
-@section('styles')
-<style>
-td {
-	vertical-align: middle;
-}
-</style>
-@stop
-
 @section('in-situ-css')
     <link rel="stylesheet" href="{{ asset('css/vendor/jquery.dataTables.min.css') }}"/>
 @stop

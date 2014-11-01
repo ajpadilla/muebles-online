@@ -18,6 +18,10 @@
 		/*margin: 0 auto;*/
 		margin-right: 14px;
 	}
+
+	td {
+	    vertical-align: middle;
+	}
 </style>
 
 @yield('styles')

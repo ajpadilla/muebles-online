@@ -407,8 +407,8 @@ ul.sf-menu li li li.sfHover ul {
 
 /* CONTENT
 -------------------------------------------------------------- */
+.home #outermain{ margin-top:-360px;}
 #outermain{ margin-top:-191px;}
-.home #outermain{ margin-top:-475px;}
 
 #maincontent{ padding-top:41px; }
 #maincontainer .container{ margin-bottom:46px;}
