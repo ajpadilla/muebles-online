@@ -94,9 +94,6 @@ class FacturasController extends \BaseController {
 				foreach ($model->pedidos as $pedido) {
 					return $links .= "<a href='" . route('pedidos.index', $model->id) . "'>Ver</a>";
 				}
-				if (count($model->pedidos) == 0) {
-					return $links .= "<a href=''>No hay pedidos</a>";
-				}
 			}
 			
 		});
@@ -134,9 +131,6 @@ class FacturasController extends \BaseController {
 			if(Auth::check() AND Auth::user()->rol == 'cliente') {
 				foreach ($model->pedidos as $pedido) {
 					return $links .= "<a href='" . route('pedidos.index', $model->id) . "'>Ver</a>";
-				}
-				if (count($model->pedidos) == 0) {
-					return $links .= "<a href=''>No hay pedidos</a>";
 				}
 			}
 			
