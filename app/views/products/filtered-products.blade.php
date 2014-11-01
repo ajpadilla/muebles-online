@@ -97,3 +97,11 @@
 </div>
 <!-- END MAIN CONTENT -->
 @stop
+
+@section('styles')
+<style>
+td {
+	vertical-align: middle;
+}
+</style>
+@stop
