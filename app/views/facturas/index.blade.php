@@ -30,6 +30,7 @@
 		                    <div class="page articlecontainer">
 		                    	@if($currentUser AND $currentUser->isAdmin())
 		                        	<article class="entry-content">
+		                        	  @include('flash::message');
 		                           		<?php
 		                                	$columns = [
 			                                            'Fecha de la Factura',
@@ -48,6 +49,7 @@
                                 	</article>
                                  @else
                                  	<article class="entry-content">
+                                 	  @include('flash::message');
 		                           		<?php
 		                                	$columns = [
 			                                            'Fecha de la Factura',
