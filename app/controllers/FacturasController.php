@@ -69,7 +69,7 @@ class FacturasController extends \BaseController {
 		$collection = Datatable::collection($this->repository->getAll())
 			->showColumns('id')
 			->searchColumns('Fecha de la Factura', 'Estado','Nombre del Cliente')
-			->orderColumns('nombre', 'email');
+			->orderColumns('Fecha de la Factura', 'Estado','Nombre del Cliente');
 
 		$collection->addColumn('id', function($model)
 		{
