@@ -32,7 +32,8 @@ class FacturasController extends \BaseController {
 			return View::make('facturas.index');
 		} else {
 			if(Auth::user()->isClient()){
-				echo "client";
+				Session::put('idCliente',Auth::user()->id);
+				return View::make('facturas.index');
 			}
 		}
 		
@@ -95,6 +96,48 @@ class FacturasController extends \BaseController {
 			$links = '';
 
 			if(Auth::check() AND Auth::user()->rol == 'admin') {
+				foreach ($model->pedidos as $pedido) {
+					return $links .= "<a href='" . route('pedidos.index', $model->id) . "'>Ver</a>";
+				}
+			}
+			
+		});
+
+		return $collection->make();
+	}
+
+	public function getDatatableCliente()
+	{
+		//echo Session::get('idCliente');
+		$collection = Datatable::collection($this->repository->invoicesForCustomer(Session::get('idCliente')))
+			->showColumns('id')
+			->searchColumns('Fecha de la Factura', 'Estado','Nombre del Cliente')
+			->orderColumns('Fecha de la Factura', 'Estado','Nombre del Cliente');
+
+		$collection->addColumn('id', function($model)
+		{
+			 return $model->id;
+		});
+
+		$collection->addColumn('Fecha de la Factura', function($model)
+		{
+			return date("Y-m-d H:i:s",strtotime($model->created_at));
+		});
+
+		$collection->addColumn('Nombre Cliente', function($model)
+		{
+			 return $model->client->nombre;
+		});
+
+		$collection->addColumn('Estado', function($model)
+		{
+			 return $this->repository->getStatus($model);
+		});
+		
+		$collection->addColumn('Acciones',function($model){
+			$links = '';
+
+			if(Auth::check() AND Auth::user()->rol == 'cliente') {
 				foreach ($model->pedidos as $pedido) {
 					return $links .= "<a href='" . route('pedidos.index', $model->id) . "'>Ver</a>";
 				}

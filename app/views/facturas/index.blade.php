@@ -24,24 +24,45 @@
 		                </section>
 		                <section id="content" class="twelve columns positionleft">
 		                    <div class="page articlecontainer">
-		                        <article class="entry-content">
-		                            <?php
-		                                $columns = [
+		                    	@if($currentUser AND $currentUser->isAdmin())
+		                        	<article class="entry-content">
+		                           		<?php
+		                                	$columns = [
 		                                				'id',
 			                                            'Fecha de la Factura',
 	                                                    'Nombre Cliente',
 	                                                    'Estado',
                                                     ];
-                                        if($currentUser AND $currentUser->rol == 'admin')
-                                            $columns[] = 'Acciones';
-	                                    $table = Datatable::table()
-                                            ->addColumn($columns)
-                                            ->setUrl(route('api.facturas'))
-                                            ->noScript();
-                                    ?>
-                                    <div class="row"><br/></div>
-							        {{ $table->render() }}
-                                </article>
+                                        	if($currentUser AND $currentUser->rol == 'admin')
+                                            	$columns[] = 'Acciones';
+	                                    	$table = Datatable::table()
+                                            	->addColumn($columns)
+                                            	->setUrl(route('api.facturas'))
+                                            	->noScript();
+                                    	?>
+                                    	<div class="row"><br/></div>
+							        	{{ $table->render() }}
+                                	</article>
+                                 @else
+                                 	<article class="entry-content">
+		                           		<?php
+		                                	$columns = [
+		                                				'id',
+			                                            'Fecha de la Factura',
+	                                                    'Nombre Cliente',
+	                                                    'Estado',
+                                                    ];
+                                        	if($currentUser AND $currentUser->rol == 'cliente')
+                                            	$columns[] = 'Acciones';
+	                                    	$table = Datatable::table()
+                                            	->addColumn($columns)
+                                            	->setUrl(route('api.facturasCliente'))
+                                            	->noScript();
+                                    	?>
+                                    	<div class="row"><br/></div>
+							        	{{ $table->render() }}
+                                	</article>
+                                 @endif
                             </div>
                         </section><!-- content -->
                     </section>

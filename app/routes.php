@@ -196,6 +196,7 @@ Route::get('pedidos', [
 ]);
 
 Route::get('api/facturas', array('as'=>'api.facturas', 'uses'=>'FacturasController@getDatatable'));
+Route::get('api/facturasCliente', array('as'=>'api.facturasCliente', 'uses'=>'FacturasController@getDatatableCliente'));
 
 
 /**
