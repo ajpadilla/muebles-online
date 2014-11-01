@@ -180,6 +180,7 @@ Route::get('pedidos-por-factura/{facturaId}', [
  * Facturas routes
  */
 Route::resource('facturas', 'FacturasController', ['except' => ['index']]);
+
 Route::get('pdf-factura/{facturaId}', [
 	'as' => 'pdf_invoice_path',
 	'uses' => 'FacturasController@getPdf'
