@@ -15,4 +15,9 @@ class FacturasRepository {
 	public function getAll(){
 		return Factura::all();
 	}
+
+	public function invoicesForCustomer($clientId)
+	{
+		return Factura::select()->where('client_id', '=' , $clientId)->get();
+	}
 }
