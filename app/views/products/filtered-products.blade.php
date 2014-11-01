@@ -61,7 +61,6 @@
                                     @foreach ($products as $product)
                                     <tr role="row">
                                         <td>
-                                            <a href="">{{{$product->hasPhotos()}}}</a>
                                             @foreach ($product->photos as $k => $photo)
                                                 @if($k <= 2)
                                                     <a href="{{URL::to('products/.', $product->id)}}">
