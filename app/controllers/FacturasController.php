@@ -36,7 +36,6 @@ class FacturasController extends \BaseController {
 				return View::make('facturas.index');
 			}
 		}
-		
 
 	}
 
@@ -87,13 +86,16 @@ class FacturasController extends \BaseController {
 		{
 			 return $this->repository->getStatus($model);
 		});
-		
+
 		$collection->addColumn('Acciones',function($model){
 			$links = '';
 
 			if(Auth::check() AND Auth::user()->rol == 'admin') {
 				foreach ($model->pedidos as $pedido) {
 					return $links .= "<a href='" . route('pedidos.index', $model->id) . "'>Ver</a>";
+				}
+				if (count($model->pedidos) == 0) {
+					return $links .= "<a href=''>No ha pedidos</a>";
 				}
 			}
 			
@@ -132,6 +134,9 @@ class FacturasController extends \BaseController {
 			if(Auth::check() AND Auth::user()->rol == 'cliente') {
 				foreach ($model->pedidos as $pedido) {
 					return $links .= "<a href='" . route('pedidos.index', $model->id) . "'>Ver</a>";
+				}
+				if (count($model->pedidos) == 0) {
+					return $links .= "<a href=''>No hay pedidos</a>";
 				}
 			}
 			
