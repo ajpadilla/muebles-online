@@ -51,9 +51,9 @@
                                         <th align="center" valign="middle" class="head0 sorting_asc" tabindex="0" rowspan="1" colspan="1" aria-sort="ascending" style="width: 56px;">
                                             Medidas
                                         </th>
-
-                                        <th align="center" valign="middle" class="head0 sorting_asc" tabindex="0" rowspan="1" colspan="1"  style="width: 56px;">    Acciones
-                                        </th>
+                                        @if(Auth::check() AND Auth::user()->isAdmin())
+                                            <th align="center" valign="middle" class="head0 sorting_asc" tabindex="0" rowspan="1" colspan="1"  style="width: 56px;">Acciones</th>
+                                        @endif
                                     </tr>
                                 </thead>
 
@@ -61,32 +61,32 @@
                                     @foreach ($products as $product)
                                     <tr role="row">
                                         <td>
-                                            @foreach ($product->photos as $photo)
-                                                <a href="{{URL::to('products/.', $product->id)}}">
-
+                                            @foreach ($product->photos as $k => $photo)
+                                                @if($k <= 2)
+                                                    <a href="{{URL::to('products/.', $product->id)}}">
                                                     <img class='mini-photo' alt="{{$photo->filename}}" src="{{asset($photo->path.$photo->filename)}}">
-                                                </a>
+                                                    </a>
+                                                @endif
                                             @endforeach
                                         </td>
                                         <td>{{{ $product->codigo }}}</td>
                                         <td>{{{ $product->nombre }}}</td>
                                         <td>{{{ $product->medidas }}}</td>
-                                        
+                                        @if(Auth::check() AND Auth::user()->isAdmin())
                                             <td>
-                                                @if(Auth::check() AND Auth::user()->isAdmin())
-                                                    <a href="{{URL::to('products/'.$product->id.'/edit')}}">Editar</a>
-                                                    <br />
-                                                    <a href="{{URL::to('borrarProduct/'.$product->id)}}">Eliminar</a>
-                                                @endif
+                                                <a href="{{URL::to('products/'.$product->id.'/edit')}}">Editar</a>
+                                                <br />
+                                                <a href="{{URL::to('borrarProduct/'.$product->id)}}">Eliminar</a>
                                                 <br />
                                                 <a href="{{URL::to('photos/create/'.$product->id)}}">Agregar Fotos</a>
                                             </td>
+                                        @endif
                                     </tr>
                                     @endforeach
                                 </tbody>
                             </table>
                             @else
-                                No hay productos registrados
+                            No hay productos registrados
                             @endif
                         </article>
                     </div>
