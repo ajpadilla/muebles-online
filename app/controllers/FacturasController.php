@@ -95,7 +95,7 @@ class FacturasController extends \BaseController {
 					return $links .= "<a href='" . route('pedidos.index', $model->id) . "'>Ver</a>";
 				}
 				if (count($model->pedidos) == 0) {
-					return $links .= "<a href=''>No ha pedidos</a>";
+					return $links .= "<a href=''>No hay pedidos</a>";
 				}
 			}
 			
