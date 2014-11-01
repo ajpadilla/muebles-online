@@ -33,13 +33,40 @@ class PedidosController extends \BaseController {
 		$this->registerRequestForm = $registerRequestForm;
 	}
 
-	public function index(){
-
+	public function index($facturaId){
+		Session::put('facturaId',$facturaId);
+		//echo "id:".$this->facturaId;
+		return View::make('pedidos.index');
 	}
 
 	public function create($productId){
 		$product = $this->productRepository->get($productId);
 		return View::make('pedidos.create', compact('product'));
+	}
+
+	public function getDatatable()
+	{
+		//return Session::get('facturaId');
+		$collection = Datatable::collection($this->repository->ordersForInvoice(Session::get('facturaId')))
+			->showColumns('color','cantidad','observacion')
+			->searchColumns('Fecha del pedido')
+			->orderColumns('Fecha del pedido');
+
+		
+		$collection->addColumn('Fecha del pedido', function($model)
+		{
+			return date("Y-m-d H:i:s",strtotime($model->created_at));
+		});
+
+		$collection->addColumn('Codigo del pedido', function($model)
+		{
+			$links = '';
+			return $links .= "<a href='" . route('products.show', $model->product->id) . "'>Ver</a>";
+		});
+
+
+		return $collection->make();
+
 	}
 
 	/**

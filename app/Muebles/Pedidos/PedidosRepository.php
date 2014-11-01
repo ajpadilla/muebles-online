@@ -15,4 +15,8 @@ class PedidosRepository {
 		return Pedido::findOrFail($id);
 	}
 
+	public function ordersForInvoice($facturaId)
+	{
+		return Pedido::select()->where('factura_id', '=' , $facturaId)->get();
+	}
 } 
