@@ -156,13 +156,8 @@ Route::get('logout', [
 Route::resource('products', 'ProductsController');
 Route::get('borrarProduct/{id}','ProductsController@destroy');
 
-Route::post('products/filtered', [
+Route::post('productos-filtrados', [
 	'as' => 'filtered_products_path',
-	'uses' => 'ProductsController@filteredProducts'
-]);
-
-Route::get('filtered', [
-	'as' => 'filtered_path',
 	'uses' => 'ProductsController@filteredProducts'
 ]);
 

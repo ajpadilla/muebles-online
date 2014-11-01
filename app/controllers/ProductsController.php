@@ -210,7 +210,7 @@ class ProductsController extends \BaseController {
 		if (!$products->isEmpty()) {
 			return View::make('products.filtered-products', compact('products'));
 		}else{
-			Flash::warning('No se encontraron productos que coincidan con la información suministrada para la busqueda:'.$filterWord);
+			Flash::warning('No se encontraron productos que coincidan con la información suministrada para la búsqueda: '.$filterWord);
 			return Redirect::intended();
 		}
 	}

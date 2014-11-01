@@ -42,7 +42,7 @@ class ProductRepository {
 	{
 		$query = Product::select();
 		if (!empty($filterWord)) {
-			$query->where('codigo', 'LIKEE', '%'.$filterWord.'%')->orWhere('descripcion','LIKE', '%'.$filterWord.'%');
+			$query->where('codigo', 'LIKE', '%'.$filterWord.'%')->orWhere('descripcion','LIKE', '%'.$filterWord.'%');
 		}
 		return $query->get();
 	}
