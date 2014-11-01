@@ -21,7 +21,7 @@
                         <div class="twelve page articlecontainer">
                             <article class="entry-content">
                                 @if (!$products->isEmpty())
-                                <table class="table" frame="below" role="grid" style="width: 1128px;">
+                                <table class="table" role="grid" style="width: 1128px;">
                                     <colgroup>
                                     <col class="con0">
                                     <col class="con1">
@@ -39,8 +39,8 @@
                                         <th align="center" valign="middle" class="head0 sorting_asc" tabindex="0" aria-controls="zWjUje86" rowspan="1" colspan="1" aria-sort="ascending" aria-label="nombre: activate to sort column descending" style="width: 56px;">Foto</th>
                                         <th align="center" valign="middle" class="head0 sorting_asc" tabindex="0" aria-controls="zWjUje86" rowspan="1" colspan="1" aria-sort="ascending" aria-label="nombre: activate to sort column descending" style="width: 56px;">Codigo</th>
                                         <th align="center" valign="middle" class="head0 sorting_asc" tabindex="0" aria-controls="zWjUje86" rowspan="1" colspan="1" aria-sort="ascending" aria-label="nombre: activate to sort column descending" style="width: 56px;">Nombre</th>
-                                        <th align="center" valign="middle" class="head0 sorting_asc" tabindex="0" aria-controls="zWjUje86" rowspan="1" colspan="1" aria-sort="ascending" aria-label="nombre: activate to sort column descending" style="width: 56px;">Medidas</th>
-                                        <th align="center" valign="middle" class="head0 sorting_asc" tabindex="0" aria-controls="zWjUje86" rowspan="1" colspan="1" aria-sort="ascending" aria-label="nombre: activate to sort column descending" style="width: 56px;">Acciones</th>
+                                        <th align="center" valign="middle" class="head0 sorting_asc" tabindex="0" aria-controls="zWjUje86" rowspan="1" colspan="1" aria-sort="ascending" style="width: 56px;">Medidas</th>
+                                        <th align="center" valign="middle" class="head0 sorting_asc" tabindex="0" aria-controls="zWjUje86" rowspan="1" colspan="1"  style="width: 56px;">Acciones</th>
                                     </tr>
                                 </thead>
 
