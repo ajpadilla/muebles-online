@@ -5,11 +5,7 @@
         <div class="container">
             <div class="row">
                 <div id="afterheader" class="twelve columns">
-                    <h4 class="pagetitle nodesc">Nos es grato presentarles una nueva edición de nuestro catálogo general, el cual comtempla tanto los modelos ya conocidos por Vds. como las últmas novedades.
-
-                                                 Lo hacemos con la ilusión de que siga teniendo la misma aceptación que nos han dispensado hasta ahora.
-
-                                                 Deseando que les sea de gran utilidad y les facilite su trabajo, reciban nuestro más sincero agradecimiento.</h4>
+                    <h4 class="pagetitle nodesc">Nuestra Empresa</h4>
                 </div>
             </div>
         </div>
@@ -22,7 +18,13 @@
 	            <div class="row">
 	                <section id="maincontent">
 	                    <section class="twelve columns">
-	                    
+	                        <div class="row" style="margin-bottom: 10px;">
+	                            <article style="border-color: #ffffff; border-style: solid; border-width: 5px; margin: 3px; padding: 5px 5px;">
+	                                <p style="margin: 5px; padding: 5px; font-size: 110%">
+	                                    <em>Nos es grato presentarles una nueva edición de nuestro catálogo general, el cual comtempla tanto los modelos ya conocidos por Vds. como las últmas novedades. Lo hacemos con la ilusión de que siga teniendo la misma aceptación que nos han dispensado hasta ahora. Deseando que les sea de gran utilidad y les facilite su trabajo, reciban nuestro más sincero agradecimiento.</em>
+                                    </p>
+	                            </article>
+                            </div>
 	                    </section>
 	                    <section id="content" class="twelve columns">
 	                        <div id="ts-portfolio">
