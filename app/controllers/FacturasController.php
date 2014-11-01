@@ -27,7 +27,16 @@ class FacturasController extends \BaseController {
 	 */
 	public function index()
 	{
-		//
+
+		if (Auth::user()->isAdmin()) {
+			echo "Admin";
+		} else {
+			if(Auth::user()->isClient()){
+				echo "client";
+			}
+		}
+		
+
 	}
 
 	/**
