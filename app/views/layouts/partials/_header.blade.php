@@ -71,7 +71,7 @@
 						<section class="five columns">
 							{{ Form::open(['route' => 'filtered_products_path', 'id' => 'filterForm']) }}
 								<div class="ten columns">
-									{{ Form::text('filter_word', null, ['class' => 'text-input', 'style' => 'font-size: 20px; width: 9em', 'placeholder' => 'Busqueda', 'id' => 'filter_word']) }}
+									{{ Form::text('filter_word', null, ['class' => 't ext-input', 'style' => 'font-size: 20px; width: 9em', 'placeholder' => 'Busqueda', 'id' => 'filter_word']) }}
 								</div>
 								<div class="two columns">
 									{{ Form::submit('>', ['class' => 'button', 'style' => 'font-size: 20px; padding: 16px;']) }}
