@@ -20,7 +20,7 @@
                                         <div class="textcontainer">
                                             Praesent vestibulum aenean non ummy hendrerit mauris. Hasellus porta. Fusce suscipit varius mi cum sociis natoque penatibus et. Duis elementum risus non vulputate venenatis.
                                         </div>
-                                        <div class="more-container"><a href="room-detail.html" class="more-link">Read More</a></div>
+                                        {{--<div class="more-container"><a href="room-detail.html" class="more-link">Read More</a></div>--}}
                                     </div>
                                     <div class="clear"></div>
                                 </div>
@@ -38,7 +38,7 @@
                                         <div class="textcontainer">
                                             Praesent vestibulum aenean non ummy hendrerit mauris. Hasellus porta. Fusce suscipit varius mi cum sociis natoque penatibus et. Duis elementum risus non vulputate venenatis.
                                         </div>
-                                        <div class="more-container"><a href="room-detail.html" class="more-link">Read More</a></div>
+                                        {{--<div class="more-container"><a href="room-detail.html" class="more-link">Read More</a></div>--}}
                                     </div>
                                     <div class="clear"></div>
                                 </div>
@@ -56,7 +56,7 @@
                                         <div class="textcontainer">
                                             Praesent vestibulum aenean non ummy hendrerit mauris. Hasellus porta. Fusce suscipit varius mi cum sociis natoque penatibus et. Duis elementum risus non vulputate venenatis.
                                         </div>
-                                        <div class="more-container"><a href="room-detail.html" class="more-link">Read More</a></div>
+                                        {{--<div class="more-container"><a href="room-detail.html" class="more-link">Read More</a></div>--}}
                                     </div>
                                     <div class="clear"></div>
                                 </div>

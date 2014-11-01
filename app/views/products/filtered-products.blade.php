@@ -21,38 +21,18 @@
                         <div class="twelve page articlecontainer">
                             <article class="entry-content">
                                 @if (!$products->isEmpty())
-                                <table class="table" role="grid" style="width: 1128px;">
-                                    <colgroup>
-                                    <col class="con0">
-                                    <col class="con1">
-                                    <col class="con2">
-                                    <col class="con3">
-                                    <col class="con4">
-                                    <col class="con5">
-                                    <col class="con6">
-                                    <col class="con7">
-                                    <col class="con8">
-                                    <col class="con9">
-                                </colgroup>
+                                <table class="row-border dataTable no-footer" cellspacing="0" width="100%">
                                 <thead>
                                     <tr role="row">
-                                        <th align="center" valign="middle" class="head0 sorting_asc" tabindex="0" rowspan="1" colspan="1" aria-sort="ascending" style="width: 56px;">
-                                            Foto
-                                        </th>
+                                        <th>Foto</th>
 
-                                        <th align="center" valign="middle" class="head0 sorting_asc" tabindex="0" rowspan="1" colspan="1" aria-sort="ascending" style="width: 56px;">
-                                            Codigo
-                                        </th>
+                                        <th>Codigo</th>
 
-                                        <th align="center" valign="middle" class="head0 sorting_asc" tabindex="0"  rowspan="1" colspan="1" aria-sort="ascending" style="width: 56px;">
-                                            Nombre
-                                        </th>
+                                        <th>Nombre</th>
 
-                                        <th align="center" valign="middle" class="head0 sorting_asc" tabindex="0" rowspan="1" colspan="1" aria-sort="ascending" style="width: 56px;">
-                                            Medidas
-                                        </th>
+                                        <th>Medidas</th>
                                         @if(Auth::check() AND Auth::user()->isAdmin())
-                                            <th align="center" valign="middle" class="head0 sorting_asc" tabindex="0" rowspan="1" colspan="1"  style="width: 56px;">Acciones</th>
+                                            <th>Acciones</th>
                                         @endif
                                     </tr>
                                 </thead>
@@ -96,4 +76,8 @@
     </div>
 </div>
 <!-- END MAIN CONTENT -->
+@stop
+
+@section('in-situ-css')
+    <link rel="stylesheet" href="{{ asset('css/vendor/jquery.dataTables.min.css') }}"/>
 @stop

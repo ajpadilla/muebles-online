@@ -18,6 +18,20 @@
 		/*margin: 0 auto;*/
 		margin-right: 14px;
 	}
+
+	td {
+	    vertical-align: middle;
+	}
+
+	.sub-menu-own {
+		padding: 10px;
+		margin-right: 15px;
+		list-style: none;
+		font-size: 13px;
+		font-weight: bold;
+		text-transform: uppercase;
+		color: #777;
+	}
 </style>
 
 @yield('styles')

@@ -25,7 +25,7 @@
 </div>
 </div>
 <div id="outerafterheader">
-    <div class="container" style="background-color:#3d79b4;">
+    <div class="container">
         <div class="row">
             <div class="twelve columns" id="afterheader"></div>
         </div>

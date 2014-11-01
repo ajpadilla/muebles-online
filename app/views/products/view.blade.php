@@ -29,9 +29,12 @@
 		                                        @else
 		                                            <li style="width: 100%; float: left; margin-right: -100%; position: relative; display: none;" class="">
 		                                        @endif
-		                                            <a class="pfzoom" data-rel="prettyPhoto[mixed]" rel="prettyPhoto[mixed]" href="{{ asset($photo->path . $photo->filename) }}">
+		                                            {{--<a class="pfzoom" data-rel="prettyPhoto[mixed]" rel="prettyPhoto[mixed]" href="{{ asset($photo->path . $photo->filename) }}">
 														<img class="" alt="{{ $photo->filename }}" src="{{ asset($photo->path . $photo->filename) }}">
-													</a>
+													</a>--}}
+													<div id="img-{{ $photo->id }}">
+														<img alt="{{ $photo->filename }}" src="{{ asset($photo->path . $photo->filename) }}">
+													</div>
 		                                        </li>
                                         @endforeach
                                      </ul>
@@ -113,7 +116,9 @@
 @stop
 
 @section('in-situ-js')
-	<script src="/js/vendor/jquery.flexslider-min.js"></script>
+	<script src="{{ asset('js/vendor/jquery.flexslider-min.js') }}"></script>
+	<script src="{{ asset('js/vendor/jquery.zoom.min.js') }}"></script>
+
 @stop
 
 @section('script')
@@ -124,8 +129,17 @@
 			touch:true,
 			animationDuration: 6000,
 			directionNav: true,
-			controlNav: false
+			controlNav: true,
+			slideshow: false
 		});
+
+		@foreach($product->photos as $photo)
+		    $("#img-{{ $photo->id }}").zoom(
+		    {
+		        url: "{{ asset($photo->path . $photo->filename) }}",
+		        magnify: 2
+		    });
+        @endforeach
 	});
 </script>
 @stop

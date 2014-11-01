@@ -14,22 +14,16 @@
 Event::listen('Muebles.Users.Events.UserRegistered', function($event) {
 	$user = $event->user;
 	if(!$user->activo) {
-		Mail::send('users.emails.activate-user', array('user' => $user), function ($message) {
-			$message->to('nightzpy@gmail.com', 'Lenyn')
-				->from('informacion@presentatenlaweb.com', 'Presentatenlaweb Atención al cliente')
-				->subject('Un nuevo usuario se ha registrado!');
-		});
-		Mail::send('users.emails.activate-user', array('user' => $event->user), function($message)
-		{
-			$message->to('jose@grupo2.net', 'José Luis Urbano Lopez')
-				->from('web@grupo2.net', 'Grupo Dos S.L.')
+		Mail::send('users.emails.activate-user', array('user' => $user), function ($message)  use ($user) {
+			$message->to(getenv('SYSTEM_EMAIL'), getenv('SYSTEM_EMAIL_NAME'))
+				->from($user->email, $user->nombre)
 				->subject('Un nuevo usuario se ha registrado!');
 		});
 	} else {
 		Mail::send('users.emails.user-activate', array('user' => $user), function($message) use ($user)
 		{
 			$message->to($user->email, $user->nombre)
-				->from('web@grupo2.net', 'Grupo Dos S.L.')
+				->from(getenv('SYSTEM_EMAIL'), getenv('SYSTEM_EMAIL_NAME'))
 				->subject('Felicitaciones: Hemos admitido tu ingreso!');
 		});
 	}
@@ -40,7 +34,7 @@ Event::listen('Muebles.Users.Events.UserActivate', function($event) {
 	Mail::send('users.emails.user-activate', array('user' => $user), function($message) use ($user)
 	{
 		$message->to($user->email, $user->nombre)
-			->from('web@grupo2.net', 'Grupo Dos S.L.')
+			->from(getenv('SYSTEM_EMAIL'), getenv('SYSTEM_EMAIL_NAME'))
 			->subject('Felicitaciones: Hemos admitido tu ingreso!');
 	});
 });
@@ -52,14 +46,12 @@ Event::listen('Muebles.Facturas.Events.FacturaRealizada', function($event) {
 	Mail::send('facturas.emails.factura-realizada', compact('pedidos', 'client', 'factura'), function($message) use ($client)
 	{
 		$message->to($client->email, $client->nombre)
-			->from('web@grupo2.net', 'Grupo Dos S.L.')
+			->from(getenv('SYSTEM_EMAIL'), getenv('SYSTEM_EMAIL_NAME'))
 			->subject('Su pedido ha sido procesado!');
 	});
-
 	Mail::send('facturas.emails.factura-realizada', compact('pedidos', 'client', 'factura'), function($message) use ($client)
 	{
-		$message->to('nightzpy@gmail.com', 'Lenyn')
-		//$message->to('jose@grupo2.net', 'José Luis Urbano Lopez')
+		$message->to(getenv('SYSTEM_EMAIL'), getenv('SYSTEM_EMAIL_NAME'))
 			->from($client->email, $client->nombre)
 			->subject('Un pedido ha sido realizado!');
 	});

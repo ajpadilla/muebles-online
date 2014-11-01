@@ -22,7 +22,7 @@ class BaseController extends Controller {
 		}
 		$currentMenu = 'current';
 		$currentUser = Auth::user();
-		$currentRoute = Request::url();
+		$currentRoute = Route::currentRouteName();
 		$products = new ProductRepository();
 		$products = $products->getRandom();
 
