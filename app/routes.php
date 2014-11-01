@@ -176,6 +176,10 @@ Route::get('pedidos-por-factura/{facturaId}', [
 	'uses' => 'PedidosController@index'
 ]);
 
+
+Route::get('api/pedidos', array('as'=>'api.pedidos', 'uses'=>'PedidosController@getDatatable'));
+
+
 /**
  * Facturas routes
  */
