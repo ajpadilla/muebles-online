@@ -151,8 +151,6 @@ class ProductsController extends \BaseController {
 	public function getDatatable()
 	{
 		$collection = Datatable::collection($this->repository->getAll());
-			//->showColumns('codigo', 'nombre', 'modelo', 'medidas', 'lacado', 'precio_lacado', 'pulimento', 'precio_pulimento', 'cantidad', 'precio')
-
 		$collection->addColumn('foto', function($model)
 		{
 			$links = '';
