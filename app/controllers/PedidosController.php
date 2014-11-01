@@ -36,7 +36,13 @@ class PedidosController extends \BaseController {
 	public function index($facturaId){
 		Session::put('facturaId',$facturaId);
 		$factura = Factura::find($facturaId);
-		return View::make('pedidos.index',compact('factura'));
+
+		if (count($factura->pedidos) == 0) {
+			Flash::warning("no hay pedidos");
+			return Redirect::intended();
+		}else{
+			return View::make('pedidos.index',compact('factura'));
+		}
 	}
 
 	public function create($productId){
