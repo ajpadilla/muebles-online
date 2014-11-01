@@ -11,4 +11,8 @@ class FacturasRepository {
 	{
 		return $factura->finished() ? 'Finalizada' : 'Sin Finalizar';
 	}
+
+	public function getAll(){
+		return Factura::all();
+	}
 }
