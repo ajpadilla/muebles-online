@@ -32,7 +32,6 @@
 		                        	<article class="entry-content">
 		                           		<?php
 		                                	$columns = [
-		                                				'id',
 			                                            'Fecha de la Factura',
 	                                                    'Nombre Cliente',
 	                                                    'Estado',
@@ -51,7 +50,6 @@
                                  	<article class="entry-content">
 		                           		<?php
 		                                	$columns = [
-		                                				'id',
 			                                            'Fecha de la Factura',
 	                                                    'Nombre Cliente',
 	                                                    'Estado',
