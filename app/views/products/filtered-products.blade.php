@@ -62,9 +62,9 @@
                                     <tr role="row">
                                         <td>
                                             @foreach ($product->photos as $photo)
-                                                <a href="{{URL::to('products.show', $product->id)}}">
+                                                <a href="{{URL::to('products/.', $product->id)}}">
 
-                                                    <img class='mini-photo' alt="{{$photo->filename}}" src="{{asset('$photo->path.$photo->filename')}}">
+                                                    <img class='mini-photo' alt="{{$photo->filename}}" src="{{asset($photo->path.$photo->filename)}}">
                                                 </a>
                                             @endforeach
                                         </td>
