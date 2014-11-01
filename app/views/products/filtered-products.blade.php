@@ -48,21 +48,26 @@
                                     @foreach ($products as $product)
                                     <tr role="row">
                                         <td>
-                                            <a href="{{URL::to('products.show',$product->id)}}">
-                                                <img
-                                                class='mini-photo' src="" alt="$product->getFirstPhoto()->filename" src="asset($product->getFirstPhoto()->path . $product->getFirstPhoto()->filename)">
-                                            </a>
+                                            @foreach ($product->photos as $photo)
+                                                <a href="{{URL::to('products.show', $product->id)}}">
+
+                                                    <img class='mini-photo' alt="{{$photo->filename}}" src="{{asset('$photo->path.$photo->filename')}}">
+                                                </a>
+                                            @endforeach
                                         </td>
                                         <td>{{{ $product->codigo }}}</td>
                                         <td>{{{ $product->nombre }}}</td>
                                         <td>{{{ $product->medidas }}}</td>
-                                        <td>
-                                            <a href="{{URL::to('products/edit',$product->id)">Editar</a>
-                                            <br />
-                                            <a href="URL::to('borrarProduct/'.$product->id)">Eliminar</a>
-                                            <br />
-                                            <a href="URL::to('photos.create',$product->id)">Agregar Fotos</a>
-                                        </td>
+                                        
+                                            <td>
+                                                @if(Auth::check() AND Auth::user()->isAdmin())
+                                                    <a href="{{URL::to('products/'.$product->id.'/edit')}}">Editar</a>
+                                                    <br />
+                                                    <a href="{{URL::to('borrarProduct/'.$product->id)}}">Eliminar</a>
+                                                @endif
+                                                <br />
+                                                <a href="{{URL::to('photos/create/'.$product->id)}}">Agregar Fotos</a>
+                                            </td>
                                     </tr>
                                     @endforeach
                                 </tbody>
