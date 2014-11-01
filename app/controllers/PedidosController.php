@@ -35,7 +35,8 @@ class PedidosController extends \BaseController {
 
 	public function index($facturaId){
 		Session::put('facturaId',$facturaId);
-		return View::make('pedidos.index');
+		$factura = Factura::find($facturaId);
+		return View::make('pedidos.index',compact('factura'));
 	}
 
 	public function create($productId){
