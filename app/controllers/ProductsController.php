@@ -207,9 +207,11 @@ class ProductsController extends \BaseController {
 		$filterWord = (Input::has('filter_word') ? Input::get('filter_word') : '');
 		//aquí van los productos que encuentre de la búsqueda, y el método filterProducts tiene que hacerlo dentro del ProductRepository
 		$products = $this->repository->filterProducts($filterWord);
-		return View::make('products.filtered-products', compact('products'));
-		
-		//echo Input::get('filter_word').'<br>';
-		//echo $filterWord.'<br>';
+		if (!$products->isEmpty()) {
+			return View::make('products.filtered-products', compact('products'));
+		}else{
+			Flash::warning('No se encontraron productos que coincidan con la información suministrada para la busqueda:'.$filterWord);
+			return Redirect::intended();
+		}
 	}
 }
