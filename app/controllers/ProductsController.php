@@ -155,14 +155,18 @@ class ProductsController extends \BaseController {
 
 		$collection->addColumn('foto', function($model)
 		{
+			$links = '';
+			$i = 0;
 			foreach ($model->photos as $photo) {
-				$links = "<a href='" . route('products.show', $model->id) . "'>
-						<img class='mini-photo' alt='" . $photo->filename . "' src='" . asset($photo->path . $photo->filename) . "'>
-					</a>
-					<br />";
-
-				return $links;
+				if ($i < 3) {
+					$links .= "<a href='" . route('products.show', $model->id) . "'>
+								<img class='mini-photo' alt='" . $photo->filename . "' src='" . asset($photo->path . $photo->filename) . "'>
+							</a>";
+				} else {
+					break;
+				}
 			}
+			return $links;
 		});
 
 		$collection->addColumn('codigo', function($model)
