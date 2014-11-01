@@ -163,6 +163,7 @@ class ProductsController extends \BaseController {
 				} else {
 					break;
 				}
+				$i++;
 			}
 			return $links;
 		});
