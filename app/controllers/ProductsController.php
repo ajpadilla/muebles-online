@@ -151,18 +151,20 @@ class ProductsController extends \BaseController {
 	public function getDatatable()
 	{
 		$collection = Datatable::collection($this->repository->getAll());
-			//->showColumns('codigo', 'nombre', 'modelo', 'medidas', 'lacado', 'precio_lacado', 'pulimento', 'precio_pulimento', 'cantidad', 'precio')
-
 		$collection->addColumn('foto', function($model)
 		{
+			$links = '';
+			$i = 0;
 			foreach ($model->photos as $photo) {
-				$links = "<a href='" . route('products.show', $model->id) . "'>
-						<img class='mini-photo' alt='" . $photo->filename . "' src='" . asset($photo->path . $photo->filename) . "'>
-					</a>
-					<br />";
-
-				return $links;
+				if ($i < 3) {
+					$links .= "<a href='" . route('products.show', $model->id) . "'>
+								<img class='mini-photo' alt='" . $photo->filename . "' src='" . asset($photo->path . $photo->filename) . "'>
+							</a>";
+				} else {
+					break;
+				}
 			}
+			return $links;
 		});
 
 		$collection->addColumn('codigo', function($model)
@@ -210,7 +212,7 @@ class ProductsController extends \BaseController {
 		if (!$products->isEmpty()) {
 			return View::make('products.filtered-products', compact('products'));
 		}else{
-			Flash::warning('No se encontraron productos que coincidan con la información suministrada para la busqueda:'.$filterWord);
+			Flash::warning('No se encontraron productos que coincidan con la información suministrada para la búsqueda: '.$filterWord);
 			return Redirect::intended();
 		}
 	}

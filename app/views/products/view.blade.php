@@ -23,16 +23,16 @@
                                      <ul class="slides">
                                         <?php $i=0; ?>
                                         @foreach($product->photos as $photo)
-                                            <a class="pfzoom" data-rel="prettyPhoto[mixed]" rel="prettyPhoto[mixed]" href="{{ asset($photo->path . $photo->filename) }}">
 	                                            @if($i==0)
 		                                            <li style="width: 100%; float: left; margin-right: -100%; position: relative; display: list-item;" class="flex-active-slide">
 		                                            <?php $i=1; ?>
 		                                        @else
 		                                            <li style="width: 100%; float: left; margin-right: -100%; position: relative; display: none;" class="">
 		                                        @endif
-													<img class="" alt="{{ $photo->filename }}" src="{{ asset($photo->path . $photo->filename) }}">
+		                                            <a class="pfzoom" data-rel="prettyPhoto[mixed]" rel="prettyPhoto[mixed]" href="{{ asset($photo->path . $photo->filename) }}">
+														<img class="" alt="{{ $photo->filename }}" src="{{ asset($photo->path . $photo->filename) }}">
+													</a>
 		                                        </li>
-	                                        </a>
                                         @endforeach
                                      </ul>
                                      <div class="clear"></div>

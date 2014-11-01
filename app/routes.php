@@ -156,13 +156,8 @@ Route::get('logout', [
 Route::resource('products', 'ProductsController');
 Route::get('borrarProduct/{id}','ProductsController@destroy');
 
-Route::post('products/filtered', [
+Route::post('productos-filtrados', [
 	'as' => 'filtered_products_path',
-	'uses' => 'ProductsController@filteredProducts'
-]);
-
-Route::get('filtered', [
-	'as' => 'filtered_path',
 	'uses' => 'ProductsController@filteredProducts'
 ]);
 
@@ -176,7 +171,7 @@ Route::get('pedidos/create/{productId}', [
 	'uses' => 'PedidosController@create'
 ]);
 
-Route::get('pedidos/{facturaId}', [
+Route::get('pedidos-por-factura/{facturaId}', [
 	'as' => 'pedidos.index',
 	'uses' => 'PedidosController@index'
 ]);
@@ -184,10 +179,15 @@ Route::get('pedidos/{facturaId}', [
 /**
  * Facturas routes
  */
-Route::resource('facturas', 'FacturasController');
+Route::resource('facturas', 'FacturasController', ['except' => ['index']]);
 Route::get('pdf-factura/{facturaId}', [
 	'as' => 'pdf_invoice_path',
 	'uses' => 'FacturasController@getPdf'
+]);
+
+Route::get('pedidos', [
+	'as' => 'facturas.index',
+	'uses' => 'FacturasController@index'
 ]);
 
 /**
