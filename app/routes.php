@@ -191,6 +191,9 @@ Route::get('pedidos', [
 	'uses' => 'FacturasController@index'
 ]);
 
+Route::get('api/facturas', array('as'=>'api.facturas', 'uses'=>'FacturasController@getDatatable'));
+
+
 /**
  * Photos routes
  */
