@@ -35,7 +35,6 @@ class PedidosController extends \BaseController {
 
 	public function index($facturaId){
 		Session::put('facturaId',$facturaId);
-		//echo "id:".$this->facturaId;
 		return View::make('pedidos.index');
 	}
 
