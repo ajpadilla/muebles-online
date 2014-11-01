@@ -14,9 +14,9 @@
 Event::listen('Muebles.Users.Events.UserRegistered', function($event) {
 	$user = $event->user;
 	if(!$user->activo) {
-		Mail::send('users.emails.activate-user', array('user' => $user), function ($message) {
-			$message->to(getenv('NEW_USER_EMAIL'), getenv('NEW_USER_EMAIL_NAME'))
-				->from(getenv('SYSTEM_EMAIL'), getenv('SYSTEM_EMAIL_NAME'))
+		Mail::send('users.emails.activate-user', array('user' => $user), function ($message)  use ($user) {
+			$message->to(getenv('SYSTEM_EMAIL'), getenv('SYSTEM_EMAIL_NAME'))
+				->from($user->email, $user->nombre)
 				->subject('Un nuevo usuario se ha registrado!');
 		});
 	} else {
@@ -49,10 +49,9 @@ Event::listen('Muebles.Facturas.Events.FacturaRealizada', function($event) {
 			->from(getenv('SYSTEM_EMAIL'), getenv('SYSTEM_EMAIL_NAME'))
 			->subject('Su pedido ha sido procesado!');
 	});
-
 	Mail::send('facturas.emails.factura-realizada', compact('pedidos', 'client', 'factura'), function($message) use ($client)
 	{
-		$message->to(getenv('NEW_USER_EMAIL'), getenv('NEW_USER_EMAIL_NAME'))
+		$message->to(getenv('SYSTEM_EMAIL'), getenv('SYSTEM_EMAIL_NAME'))
 			->from($client->email, $client->nombre)
 			->subject('Un pedido ha sido realizado!');
 	});

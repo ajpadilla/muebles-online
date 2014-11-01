@@ -68,7 +68,13 @@
 					</nav><!-- nav -->
 					<br/>
 					<div class="row">
-						<section class="seven columns"></section>
+						<section class="seven columns">
+							<div class="eight columns"></div>
+							<div class="four columns">
+                                <a class="sub-menu-own" href="{{ route('register_user_path') }}">Registrarse<span></span></a>
+                                <a class="sub-menu-own" href="{{ route('login_path') }}">Ingresar<span></span></a>
+                            </div>
+						</section>
 						<section class="five columns">
 							{{ Form::open(['route' => 'filtered_products_path', 'id' => 'filterForm']) }}
 								<div class="ten columns">

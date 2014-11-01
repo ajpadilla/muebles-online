@@ -16,49 +16,51 @@
 		    <div class="container">
 		        <div class="row">
 		            <section id="maincontent">
-		                <section class="twelve columns">
-		                    <fieldset>
-		                        <legend>
-		                            <h3>Datos del cliente</h3>
-		                        </legend>
-								<p><em>Nombre: </em> <strong>{{ $client->nombre }}</strong></p>
-								<p><em>Email: </em> <strong>{{ $client->email }}</strong></p>
-								<p><em>Código Postal: </em> <strong>{{ $client->codigo_postal }}</strong></p>
-								<p><em>Fax: </em> <strong>{{ $client->fax }}</strong></p>
-								<p><em>Teléfono: </em> <strong>{{ $client->telefono_fijo }}</strong></p>
-								<p><em>Población: </em> <strong>{{ $client->provincia->poblacion->nombre }}</strong></p>
-								<p><em>Provincia: </em> <strong>{{ $client->provincia->nombre }}</strong></p>
-								<p><em>Dirección: </em> <strong>{{ $client->direccion }}</strong></p>		                        
-		                    </fieldset>
-		                </section>
 		                <section id="content" class="twelve columns positionleft">
-		                    <div class="page articlecontainer">
-		                        <h3>Detalles de los pedidos</h3>
-		                        <article class="entry-content">
-		                            <table>
-		                                <thead>
-			                                <th>CODIGO</th>
-			                                <th>NOMBRE</th>
-			                                <th>CANTIDAD</th>
-			                                <th>COLOR</th>
-			                                <th>MEDIDAS</th>
-			                                <th>OBSERVACIONES</th>
-		                                </thead>
-		                                <tbody>
-		                                    @foreach($pedidos as $pedido)
-		                                    <tr>
-			                                    <th>{{ $pedido->product->codigo }}</th>
-	                                            <th>{{ $pedido->product->nombre }}</th>
-	                                            <th>{{ $pedido->cantidad }}</th>
-	                                            <th>{{ $pedido->color }}</th>
-	                                            <th>{{ $pedido->product->medidas }}</th>
-	                                            <th>{{ $pedido->observacion }}</th>
-                                            </tr>
-                                            @endforeach
-		                                </tbody>
-		                            </table>
-                                </article>
-                            </div>
+		                    <article>
+			                    <div class="page articlecontainer">
+			                        <article class="entry-content">
+							            <br/>
+							            <h2>Cliente</h2>
+							            <ul class="listborder">
+											<li><p><em>Nombre: </em> <strong>{{ $client->nombre }}</strong></p></li>
+									        <li><p><em>Email: </em> <strong>{{ $client->email }}</strong></p></li>
+									        <li><p><em>Código Postal: </em> <strong>{{ $client->codigo_postal }}</strong></p></li>
+									        <li><p><em>Fax: </em> <strong>{{ $client->fax }}</strong></p></li>
+									        <li><p><em>Teléfono: </em> <strong>{{ $client->telefono_fijo }}</strong></p></li>
+									        <li><p><em>Población: </em> <strong>{{ $client->provincia->poblacion->nombre }}</strong></p></li>
+									        <li><p><em>Provincia: </em> <strong>{{ $client->provincia->nombre }}</strong></p></li>
+									        <li><p><em>Dirección: </em> <strong>{{ $client->direccion }}</strong></p></li>
+							            </ul>
+	                                    <div class="clear"></div>
+							            <h2>Pedidos</h2>
+			                            <table class="row-border dataTable no-footer" cellspacing="0" width="100%">
+			                                <thead>
+			                                    <tr>
+					                                <th>CODIGO</th>
+					                                <th>NOMBRE</th>
+					                                <th>CANTIDAD</th>
+					                                <th>COLOR</th>
+					                                <th>MEDIDAS</th>
+					                                <th>OBSERVACIONES</th>
+					                            </tr>
+			                                </thead>
+			                                <tbody>
+			                                    @foreach($pedidos as $pedido)
+			                                    <tr>
+				                                    <td>{{ $pedido->product->codigo }}</td>
+		                                            <td>{{ $pedido->product->nombre }}</td>
+		                                            <td>{{ $pedido->cantidad }}</td>
+		                                            <td>{{ $pedido->color }}</td>
+		                                            <td>{{ $pedido->product->medidas }}</td>
+		                                            <td>{{ $pedido->observacion }}</td>
+	                                            </tr>
+	                                            @endforeach
+			                                </tbody>
+			                            </table>
+	                                </article>
+	                            </div>
+	                        </article>
                         </section><!-- content -->
                     </section>
 	                <section class="twelve columns">
@@ -72,4 +74,17 @@
         </div>
     </div>
     <!-- END MAIN CONTENT -->
+@stop
+
+@section('in-situ-css')
+    <link rel="stylesheet" href="{{ asset('css/vendor/jquery.dataTables.min.css') }}"/>
+@stop
+
+@section('styles')
+	<style>
+		ul.listborder li:before {
+			content: "";
+			padding-right: 7px;
+		}
+	</style>
 @stop
