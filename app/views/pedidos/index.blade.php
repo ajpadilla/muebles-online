@@ -27,11 +27,11 @@
 		                        <article class="entry-content">
 		                            <?php
 		                                $columns = [
+		                                				'Fecha del pedido',
+		                                				'Codigo del pedido',
 	                                                    'color',
 	                                                    'cantidad',
-	                                                    'observacion',
-	                                                    'Fecha del pedido',
-	                                                    'Codigo del pedido',
+	                                                    'descripcion',
                                                     ];
 	                                    $table = Datatable::table()
                                             ->addColumn($columns)
