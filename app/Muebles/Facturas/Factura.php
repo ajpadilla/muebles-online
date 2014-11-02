@@ -19,7 +19,7 @@ class Factura extends Eloquent{
 	}
 
 	public function getUpdatedAtAttribute($date) {
-		return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d-m-Y');
+		return Carbon::createFromFormat('Y-m-d H:i:s', $date)->format('d/m/Y - H:i:s');
 	}
 
 	public function finished(){

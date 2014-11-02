@@ -78,6 +78,14 @@ Route::filter('cliente', function () {
 	}
 });
 
+Route::filter('pedidos-autorizados', function() {
+	if(Auth::check()) {
+		if(!Auth::user()->isClient()) {
+
+		}
+	}
+});
+
 
 
 /*

@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div id="afterheader" class="twelve columns">
-                <h1 class="pagetitle nodesc">{{ $product->nombre }}</h1>
+                <h1 class="pagetitle nodesc">{{ $product->codigo . ' - ' . $product->nombre }}</h1>
             </div>
         </div>
     </div>
@@ -19,27 +19,19 @@
                      <section class="eight columns positionleft" id="content">
                         <article>
                             <div class="articlecontainer">
-                                <div class="black-background img-slider flexslider" id="roomslider">
-                                     <ul class="slides">
-                                        <?php $i=0; ?>
-                                        @foreach($product->photos as $photo)
-	                                            @if($i==0)
-		                                            <li style="width: 100%; float: left; margin-right: -100%; position: relative; display: list-item;" class="flex-active-slide">
-		                                            <?php $i=1; ?>
-		                                        @else
-		                                            <li style="width: 100%; float: left; margin-right: -100%; position: relative; display: none;" class="">
-		                                        @endif
-		                                            {{--<a class="pfzoom" data-rel="prettyPhoto[mixed]" rel="prettyPhoto[mixed]" href="{{ asset($photo->path . $photo->filename) }}">
-														<img class="" alt="{{ $photo->filename }}" src="{{ asset($photo->path . $photo->filename) }}">
-													</a>--}}
-													<div id="img-{{ $photo->id }}">
-														<img alt="{{ $photo->filename }}" src="{{ asset($photo->path . $photo->filename) }}">
-													</div>
-		                                        </li>
-                                        @endforeach
-                                     </ul>
-                                     <div class="clear"></div>
-                                <ul class="flex-direction-nav"><li><a href="#" class="flex-prev">Anterior</a></li><li><a href="#" class="flex-next">Siguiente</a></li></ul></div>
+								<div class="flexslider black-background img-slider">
+								  <ul class="slides">
+								    @foreach($product->photos as $photo)
+								        @if($product->photos->count() == 1)
+								            <li data-thumb="{{ asset($photo->path . $photo->filename) }}" class="flex-active-slide">
+								        @else
+							                <li data-thumb="{{ asset($photo->path . $photo->filename) }}">
+							            @endif
+								      <img id="img-{{ $photo->id }}" src="{{ asset($photo->path . $photo->filename) }}" data-zoom-image="{{ asset($photo->path . $photo->filename) }}" />
+								    </li>
+								    @endforeach
+								  </ul>
+								</div>
 
                                 <div class="entry-content">
                                     <br/>
@@ -48,10 +40,8 @@
                                         <li><strong>Código: </strong><em>{{ $product->codigo }}</em></li>
                                         <li><strong>Medidas: </strong><em>{{ $product->medidas }}</em></li>
                                         @if($currentUser)
-	                                        {{--<li><strong>Lacado: </strong><em>{{ $product->lacado }}</em></li>--}}
 	                                        <li><strong>Precio del Lacado: </strong><em>{{ $product->precio_lacado }}</em></li>
 	                                        <li><strong>Precio en Puntos del Lacado: </strong><em>{{ $product->precio_lacado_puntos }}</em></li>
-	                                        {{--<li><strong>Pulimento: </strong><em>{{ $product->pulimento }}</em></li>--}}
 	                                        <li><strong>Precio del Pulimento: </strong><em>{{ $product->precio_pulimento }}</em></li>
 	                                        <li><strong>Precio en Puntos del Pulimento: </strong><em>{{ $product->precio_pulimento_puntos }}</em></li>
 	                                    @endif
@@ -59,7 +49,6 @@
                                     <div class="clear"></div>
                                     <ul class="line">
                                         <li>
-                                        {{--<div class="price">€{{ $product->precio }}--}}{{--<span>/-->night</span>--}}{{--</div>--}}
                                         </li>
                                         @if($currentUser)
                                             @if($currentUser->isClient())
@@ -104,42 +93,50 @@
 @section('in-situ-css')
 <style>
 	.img-slider .slides img {
-	    width: 550px;
-	    height: auto;
+	    width: 580px;
+	    height: 700px;
 	    margin: 0 auto;
 	}
 
 	.black-background {
-		background-color: #0c0c0c;
+		background-color: #e7e7e7;
+	}
+
+	ol img {
+		width: 150px;
+		height: 170px;
+		margin-right: 5px;
+		margin-left: 5px;
 	}
 </style>
 @stop
 
 @section('in-situ-js')
 	<script src="{{ asset('js/vendor/jquery.flexslider-min.js') }}"></script>
-	<script src="{{ asset('js/vendor/jquery.zoom.min.js') }}"></script>
-
+	<script src="{{ asset('js/vendor/jquery.elevatezoom.min.js') }}"></script>
 @stop
 
 @section('script')
 <script>
 	jQuery(window).load(function() {
-		jQuery('#roomslider').flexslider({
-			animation: "fade",
-			touch:true,
-			animationDuration: 6000,
-			directionNav: true,
-			controlNav: true,
-			slideshow: false
-		});
+		jQuery('.flexslider').flexslider({
+            animation: "slide",
+            directionNav: true,
+			prevText: "Anterior",           //String: Set the text for the "previous" directionNav item
+			nextText: "Siguiente",
+            keyboard: true,
+            startAt: {{ $startAt }},
+            slideshow: false
+          });
 
-		@foreach($product->photos as $photo)
-		    $("#img-{{ $photo->id }}").zoom(
-		    {
-		        url: "{{ asset($photo->path . $photo->filename) }}",
-		        magnify: 2
-		    });
-        @endforeach
+          jQuery('ul.slides').mouseover(function() {
+	        jQuery('.flex-active-slide img').elevateZoom(
+	        {
+	            zoomType    : "lens",
+	            lensShape   : "round",
+	            lensSize    : 280
+	        });
+          });
 	});
 </script>
 @stop

@@ -43,8 +43,8 @@
                                         <td>
                                             @foreach ($product->photos as $k => $photo)
                                                 @if($k <= 2)
-                                                    <a href="{{URL::to('products/.', $product->id)}}">
-                                                    <img class='mini-photo' alt="{{$photo->filename}}" src="{{asset($photo->path.$photo->filename)}}">
+                                                    <a href="{{ route('products.show', [$product->id, $photo->id]) }}">
+                                                        <img class='mini-photo' alt="{{$photo->filename}}" src="{{asset($photo->path.$photo->filename)}}">
                                                     </a>
                                                 @endif
                                             @endforeach

@@ -145,12 +145,17 @@ Route::get('logout', [
 /**
  * Catalogo routes
  */
-Route::resource('products', 'ProductsController');
+Route::resource('products', 'ProductsController', ['except' => ['show']]);
 Route::get('borrarProduct/{id}','ProductsController@destroy');
 
 Route::post('productos-filtrados', [
 	'as' => 'filtered_products_path',
 	'uses' => 'ProductsController@filteredProducts'
+]);
+
+Route::get('products/{id}/{photoId?}', [
+	'as' => 'products.show',
+	'uses' => 'ProductsController@show'
 ]);
 
 /**
@@ -177,7 +182,7 @@ Route::get('api/pedidos', array('as'=>'api.pedidos', 'uses'=>'PedidosController@
  */
 Route::resource('facturas', 'FacturasController', ['except' => ['index']]);
 
-Route::get('pdf-factura/{facturaId}', [
+Route::get('pdf-pedidos/{facturaId}', [
 	'as' => 'pdf_invoice_path',
 	'uses' => 'FacturasController@getPdf'
 ]);

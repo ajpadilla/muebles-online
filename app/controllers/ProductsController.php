@@ -83,10 +83,20 @@ class ProductsController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id)
+	public function show($id, $photoId = null)
 	{
 		$product = Product::findOrFail($id);
-		return View::make('products.view', compact('product'));
+
+		$startAt = 0;
+		foreach($product->photos as $photo) {
+			if ($photo->id != $photoId) {
+				$startAt++;
+			} else {
+				break;
+			}
+	    }
+
+		return View::make('products.view', compact('product', 'photoId', 'startAt'));
 	}
 
 
@@ -157,7 +167,7 @@ class ProductsController extends \BaseController {
 			$i = 0;
 			foreach ($model->photos as $photo) {
 				if ($i < 3) {
-					$links .= "<a href='" . route('products.show', $model->id) . "'>
+					$links .= "<a href='" . route('products.show', [$model->id, $photo->id]) . "'>
 								<img class='mini-photo' alt='" . $photo->filename . "' src='" . asset($photo->path . $photo->filename) . "'>
 							</a>";
 				} else {
