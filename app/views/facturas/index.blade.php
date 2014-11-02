@@ -5,7 +5,11 @@
 	    <div class="container">
 	        <div class="row">
 	            <div id="afterheader" class="twelve columns">
-	                <h1 class="pagetitle nodesc">Lista de factura</h1>
+	            	@if($currentUser AND $currentUser->isAdmin())
+	                	<h1 class="pagetitle nodesc">Pedidos</h1>
+	                @else
+	                	<h1 class="pagetitle nodesc">Mis pedidos</h1>
+	                @endif
 	            </div>
 	        </div>
 	    </div>
@@ -26,9 +30,9 @@
 		                    <div class="page articlecontainer">
 		                    	@if($currentUser AND $currentUser->isAdmin())
 		                        	<article class="entry-content">
+		                        	  @include('flash::message');
 		                           		<?php
 		                                	$columns = [
-		                                				'id',
 			                                            'Fecha de la Factura',
 	                                                    'Nombre Cliente',
 	                                                    'Estado',
@@ -45,9 +49,9 @@
                                 	</article>
                                  @else
                                  	<article class="entry-content">
+                                 	  @include('flash::message');
 		                           		<?php
 		                                	$columns = [
-		                                				'id',
 			                                            'Fecha de la Factura',
 	                                                    'Nombre Cliente',
 	                                                    'Estado',

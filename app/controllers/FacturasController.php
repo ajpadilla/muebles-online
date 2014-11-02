@@ -1,6 +1,8 @@
 <?php
 
 use Muebles\Core\CommandBus;
+use Muebles\Facturas\Factura;
+use Muebles\Users\User;
 use Muebles\Facturas\FacturasRepository;
 use Muebles\Facturas\FinishInvoiceCommand;
 
@@ -28,15 +30,27 @@ class FacturasController extends \BaseController {
 	public function index()
 	{
 
-		if (Auth::user()->isAdmin()) {
-			return View::make('facturas.index');
-		} else {
-			if(Auth::user()->isClient()){
-				Session::put('idCliente',Auth::user()->id);
+		if (Auth::user()->isAdmin()) 
+		{
+			$facturas = Factura::all();
+			if (count($facturas) == 0) {
+				Flash::warning('No hay pedidos');
+				return Redirect::intended();
+			} else {
 				return View::make('facturas.index');
 			}
+		} else {
+			if(Auth::user()->isClient())
+			{
+				if (count(Auth::user()->facturas) == 0) {
+					Flash::warning('No hay pedidos');
+					return Redirect::intended();
+				} else {
+					Session::put('idCliente',Auth::user()->id);
+					return View::make('facturas.index');
+				}
+			}
 		}
-		
 
 	}
 
@@ -68,30 +82,26 @@ class FacturasController extends \BaseController {
 	public function getDatatable()
 	{
 		$collection = Datatable::collection($this->repository->getAll())
-			->showColumns('id')
-			->searchColumns('Fecha de la Factura', 'Estado','Nombre del Cliente')
-			->orderColumns('Fecha de la Factura', 'Estado','Nombre del Cliente');
+			->showColumns('created_at','client_id','finish')
+			->searchColumns('created_at', 'client_id','finish')
+			->orderColumns('created_at', 'client_id','finish');
 
-		$collection->addColumn('id', function($model)
-		{
-			 return $model->id;
-		});
-
-		$collection->addColumn('Fecha de la Factura', function($model)
+		
+		$collection->addColumn('created_at', function($model)
 		{
 			return date("Y-m-d H:i:s",strtotime($model->created_at));
 		});
 
-		$collection->addColumn('Nombre Cliente', function($model)
+		$collection->addColumn('client_id', function($model)
 		{
 			 return $model->client->nombre;
 		});
 
-		$collection->addColumn('Estado', function($model)
+		$collection->addColumn('finish', function($model)
 		{
 			 return $this->repository->getStatus($model);
 		});
-		
+
 		$collection->addColumn('Acciones',function($model){
 			$links = '';
 
@@ -110,26 +120,22 @@ class FacturasController extends \BaseController {
 	{
 		//echo Session::get('idCliente');
 		$collection = Datatable::collection($this->repository->invoicesForCustomer(Session::get('idCliente')))
-			->showColumns('id')
-			->searchColumns('Fecha de la Factura', 'Estado','Nombre del Cliente')
-			->orderColumns('Fecha de la Factura', 'Estado','Nombre del Cliente');
+			->showColumns('created_at','client_id','finish')
+			->searchColumns('created_at', 'client_id','finish')
+			->orderColumns('created_at', 'client_id','finish');
 
-		$collection->addColumn('id', function($model)
-		{
-			 return $model->id;
-		});
-
-		$collection->addColumn('Fecha de la Factura', function($model)
+		
+		$collection->addColumn('created_at', function($model)
 		{
 			return date("Y-m-d H:i:s",strtotime($model->created_at));
 		});
 
-		$collection->addColumn('Nombre Cliente', function($model)
+		$collection->addColumn('client_id', function($model)
 		{
 			 return $model->client->nombre;
 		});
 
-		$collection->addColumn('Estado', function($model)
+		$collection->addColumn('finish', function($model)
 		{
 			 return $this->repository->getStatus($model);
 		});

@@ -5,7 +5,7 @@
 	    <div class="container">
 	        <div class="row">
 	            <div id="afterheader" class="twelve columns">
-	                <h1 class="pagetitle nodesc">Lista de pedidos </h1>
+	                <h1 class="pagetitle nodesc">Pedidos de {{$factura->client->nombre}}</h1>
 	            </div>
 	        </div>
 	    </div>
@@ -25,13 +25,14 @@
 		                <section id="content" class="twelve columns positionleft">
 		                    <div class="page articlecontainer">
 		                        <article class="entry-content">
+		                          @include('flash::message');
 		                            <?php
 		                                $columns = [
+		                                				'Fecha del pedido',
+		                                				'Codigo del pedido',
 	                                                    'color',
 	                                                    'cantidad',
-	                                                    'observacion',
-	                                                    'Fecha del pedido',
-	                                                    'Codigo del pedido',
+	                                                    'descripcion',
                                                     ];
 	                                    $table = Datatable::table()
                                             ->addColumn($columns)
