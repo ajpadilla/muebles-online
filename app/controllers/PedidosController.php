@@ -67,7 +67,7 @@ class PedidosController extends \BaseController {
 		$collection->addColumn('Codigo del pedido', function($model)
 		{
 			$links = '';
-			return $links .= "<a href='" . route('products.show', $model->product->id) . "'>Ver</a>";
+			return $links .= "<a href='" . route('products.show', $model->product->id) . "'>".$model->product->codigo."</a>";
 		});
 
 		$collection->addColumn('color', function($model)
