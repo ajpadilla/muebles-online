@@ -32,9 +32,7 @@
 		                                            {{--<a class="pfzoom" data-rel="prettyPhoto[mixed]" rel="prettyPhoto[mixed]" href="{{ asset($photo->path . $photo->filename) }}">
 														<img class="" alt="{{ $photo->filename }}" src="{{ asset($photo->path . $photo->filename) }}">
 													</a>--}}
-													<div id="img-{{ $photo->id }}">
-														<img alt="{{ $photo->filename }}" src="{{ asset($photo->path . $photo->filename) }}">
-													</div>
+													<img id="img-{{ $photo->id }}" src="{{ asset($photo->path . $photo->filename) }}" data-zoom-image="{{ asset($photo->path . $photo->filename) }}"/>
 		                                        </li>
                                         @endforeach
                                      </ul>
@@ -102,9 +100,10 @@
 @stop
 
 @section('in-situ-css')
+{{--<link rel="stylesheet" href="{{ asset('css/vendor/jquery.loupe.css') }}"/>--}}
 <style>
 	.img-slider .slides img {
-	    width: 550px;
+	    width: 420px;
 	    height: auto;
 	    margin: 0 auto;
 	}
@@ -117,8 +116,7 @@
 
 @section('in-situ-js')
 	<script src="{{ asset('js/vendor/jquery.flexslider-min.js') }}"></script>
-	<script src="{{ asset('js/vendor/jquery.zoom.min.js') }}"></script>
-
+	<script src="{{ asset('js/vendor/jquery.elevatezoom.min.js') }}"></script>
 @stop
 
 @section('script')
@@ -129,17 +127,19 @@
 			touch:true,
 			animationDuration: 6000,
 			directionNav: true,
-			controlNav: true,
+			controlNav: "thumbnails",
 			slideshow: false
 		});
 
-		@foreach($product->photos as $photo)
-		    $("#img-{{ $photo->id }}").zoom(
-		    {
-		        url: "{{ asset($photo->path . $photo->filename) }}",
-		        magnify: 2
-		    });
+       @foreach($product->photos as $photo)
+	        $("#img-{{ $photo->id }}").elevateZoom(
+	        {
+	            zoomType    : "lens",
+	            lensShape   : "round",
+	            lensSize    : 200
+	        });
         @endforeach
+
 	});
 </script>
 @stop
