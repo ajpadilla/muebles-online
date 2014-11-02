@@ -62,6 +62,6 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
 	}
 
 	public function facturas(){
-		return $this->hasMany('Muebles\Facturas\Factura', 'factura_id');
+		return $this->hasMany('Muebles\Facturas\Factura', 'client_id');
 	}
 }
