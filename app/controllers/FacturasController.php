@@ -1,6 +1,8 @@
 <?php
 
 use Muebles\Core\CommandBus;
+use Muebles\Facturas\Factura;
+use Muebles\Users\User;
 use Muebles\Facturas\FacturasRepository;
 use Muebles\Facturas\FinishInvoiceCommand;
 
@@ -28,12 +30,25 @@ class FacturasController extends \BaseController {
 	public function index()
 	{
 
-		if (Auth::user()->isAdmin()) {
-			return View::make('facturas.index');
-		} else {
-			if(Auth::user()->isClient()){
-				Session::put('idCliente',Auth::user()->id);
+		if (Auth::user()->isAdmin()) 
+		{
+			$facturas = Factura::all();
+			if (count($facturas) == 0) {
+				Flash::warning('No hay pedidos');
+				return Redirect::intended();
+			} else {
 				return View::make('facturas.index');
+			}
+		} else {
+			if(Auth::user()->isClient())
+			{
+				if (count(Auth::user()->facturas) == 0) {
+					Flash::warning('No hay pedidos');
+					return Redirect::intended();
+				} else {
+					Session::put('idCliente',Auth::user()->id);
+					return View::make('facturas.index');
+				}
 			}
 		}
 
