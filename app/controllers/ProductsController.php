@@ -89,10 +89,11 @@ class ProductsController extends \BaseController {
 
 		$startAt = 0;
 		foreach($product->photos as $photo) {
-			if ($photo->id != $photoId)
-				$startAt ++;
-			else
+			if ($photo->id != $photoId) {
+				$startAt++;
+			} else {
 				break;
+			}
 	    }
 
 		return View::make('products.view', compact('product', 'photoId', 'startAt'));

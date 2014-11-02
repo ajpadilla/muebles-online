@@ -22,7 +22,11 @@
 								<div class="flexslider black-background img-slider">
 								  <ul class="slides">
 								    @foreach($product->photos as $photo)
-							        <li data-thumb="{{ asset($photo->path . $photo->filename) }}">
+								        @if($product->photos->count() == 1)
+								            <li data-thumb="{{ asset($photo->path . $photo->filename) }}" class="flex-active-slide">
+								        @else
+							                <li data-thumb="{{ asset($photo->path . $photo->filename) }}">
+							            @endif
 								      <img id="img-{{ $photo->id }}" src="{{ asset($photo->path . $photo->filename) }}" data-zoom-image="{{ asset($photo->path . $photo->filename) }}" />
 								    </li>
 								    @endforeach
@@ -126,16 +130,14 @@
             slideshow: false
           });
 
-       @foreach($product->photos as $photo)
-            jQuery('ul.slides').mouseover(function() {
-		        jQuery('.flex-active-slide img').elevateZoom(
-		        {
-		            zoomType    : "lens",
-		            lensShape   : "round",
-		            lensSize    : 280
-		        });
-            });
-       @endforeach
+          jQuery('ul.slides').mouseover(function() {
+	        jQuery('.flex-active-slide img').elevateZoom(
+	        {
+	            zoomType    : "lens",
+	            lensShape   : "round",
+	            lensSize    : 280
+	        });
+          });
 	});
 </script>
 @stop
