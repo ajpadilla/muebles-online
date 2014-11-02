@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div id="afterheader" class="twelve columns">
-                <h1 class="pagetitle nodesc">{{ $product->nombre }}</h1>
+                <h1 class="pagetitle nodesc">{{ $product->codigo . ' - ' . $product->nombre }}</h1>
             </div>
         </div>
     </div>
@@ -22,7 +22,7 @@
 								<div class="flexslider black-background img-slider">
 								  <ul class="slides">
 								    @foreach($product->photos as $photo)
-								    <li data-thumb="{{ asset($photo->path . $photo->filename) }}">
+							        <li data-thumb="{{ asset($photo->path . $photo->filename) }}">
 								      <img id="img-{{ $photo->id }}" src="{{ asset($photo->path . $photo->filename) }}" data-zoom-image="{{ asset($photo->path . $photo->filename) }}" />
 								    </li>
 								    @endforeach
@@ -121,7 +121,9 @@
             directionNav: true,
 			prevText: "Anterior",           //String: Set the text for the "previous" directionNav item
 			nextText: "Siguiente",
-            keyboard: true
+            keyboard: true,
+            startAt: {{ $startAt }},
+            slideshow: false
           });
 
        @foreach($product->photos as $photo)

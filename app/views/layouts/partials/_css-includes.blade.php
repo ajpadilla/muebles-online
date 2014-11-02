@@ -21,6 +21,7 @@
 
 	td {
 	    vertical-align: middle;
+	    text-align: left;
 	}
 
 	.sub-menu-own {
