@@ -119,21 +119,18 @@
 		            <article class="entry-content">
 		            <br/>
 		            <h2>Cliente</h2>
-		            <ul class="listborder">
-						<li><p><em>Nombre: </em> <strong>{{ $client->nombre }}</strong></p></li>
-						<li><p><em>Nombre Comercial: </em> <strong>{{ $client->nombre_comercial }}</strong></p></li>
-				        <li><p><em>Dirección: </em> <strong>{{ $client->direccion }}</strong></p></li>
-				        <li>
-				            <ul>
-				                <li><p><em>Código Postal: </em> <strong>{{ $client->codigo_postal }}</strong></p></li>
-				                <li><p><em>Población: </em> <strong>{{ $client->provincia->poblacion->nombre }}</strong></p></li>
-				                <li><p><em>Provincia: </em> <strong>{{ $client->provincia->nombre }}</strong></p></li>
-				            </ul>
-				        </li>
-				        <li><p><em>Teléfono: </em> <strong>{{ $client->telefono_fijo }}</strong></p></li>
-				        <li><p><em>Fax: </em> <strong>{{ $client->fax }}</strong></p></li>
-				        <li><p><em>Email: </em> <strong>{{ $client->email }}</strong></p></li>
-		            </ul>
+					<p><em>Nombre: </em> <strong>{{ $client->nombre }}</strong></p>
+					<p><em>Nombre Comercial: </em> <strong>{{ $client->nombre_comercial }}</strong></p>
+			        <p><em>Dirección: </em> <strong>{{ $client->direccion }}</strong></p>
+
+	                <p><em>Código Postal: </em> <strong>{{ $client->codigo_postal }}</strong>
+	                <em>Población: </em> <strong>{{ $client->provincia->poblacion->nombre }}</strong>
+	                <em>Provincia: </em> <strong>{{ $client->provincia->nombre }}</strong></p>
+
+			        <p><em>Teléfono: </em> <strong>{{ $client->telefono_fijo }}</strong></p>
+			        <p><em>Fax: </em> <strong>{{ $client->fax }}</strong></p>
+			        <p><em>Email: </em> <strong>{{ $client->email }}</strong></p>
+			        <hr/>
 		            <h2>Pedidos</h2>
 		            <table class="CSSTableGenerator">
 		                <thead>
@@ -167,8 +164,8 @@
 	<hr/>
 	<div>
 		<div style="float: left;"></div>
-		<div class="footer">
-			<em>{{ $factura->updated_at }}</em>
+		<div style="float: left;">
+			<em>[<strong>PEDIDO WEB: </strong><em>{{ $factura->id }}</em>] - {{ $factura->updated_at }}</em>
 		</div>
 	</div>
 

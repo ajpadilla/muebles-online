@@ -63,6 +63,12 @@ class FacturasController extends \BaseController {
 	public function show($id)
 	{
 		$factura = $this->repository->get($id);
+
+		if (!$factura || $factura->pedidos->count() == 0) {
+			Flash::warning("No hay pedidos!");
+			return Redirect::intended();
+		}
+
 		if(!$factura->finished())
 			$factura = $this->execute(new FinishInvoiceCommand($factura));
 		$pedidos = $factura->pedidos;
@@ -72,6 +78,11 @@ class FacturasController extends \BaseController {
 
 	public function getPdf($id){
 		$factura = $this->repository->get($id);
+
+		if (!$factura || $factura->pedidos->count() == 0) {
+			Flash::warning("No hay pedidos!");
+			return Redirect::intended();
+		}
 		$pedidos = $factura->pedidos;
 		$client = $factura->client;
 		$fileName = $client->nombre. '-' . $factura->updated_at . '.pdf';

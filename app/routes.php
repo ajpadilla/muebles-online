@@ -182,7 +182,7 @@ Route::get('api/pedidos', array('as'=>'api.pedidos', 'uses'=>'PedidosController@
  */
 Route::resource('facturas', 'FacturasController', ['except' => ['index']]);
 
-Route::get('pdf-factura/{facturaId}', [
+Route::get('pdf-pedidos/{facturaId}', [
 	'as' => 'pdf_invoice_path',
 	'uses' => 'FacturasController@getPdf'
 ]);

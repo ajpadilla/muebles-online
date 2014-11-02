@@ -93,8 +93,8 @@
 @section('in-situ-css')
 <style>
 	.img-slider .slides img {
-	    width: 420px;
-	    height: 580px;
+	    width: 580px;
+	    height: 700px;
 	    margin: 0 auto;
 	}
 
@@ -121,7 +121,6 @@
 	jQuery(window).load(function() {
 		jQuery('.flexslider').flexslider({
             animation: "slide",
-            controlNav: "thumbnails",
             directionNav: true,
 			prevText: "Anterior",           //String: Set the text for the "previous" directionNav item
 			nextText: "Siguiente",

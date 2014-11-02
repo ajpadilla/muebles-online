@@ -1,10 +1,18 @@
 <?php namespace Muebles\Facturas;
 
 
+use Illuminate\Support\Facades\Auth;
+
 class FacturasRepository {
 
 	public function get($id){
-		return Factura::findOrFail($id);
+		$user = Auth::user();
+		if($user->isClient())
+			$factura = $user->facturas()->findOrFail($id);
+		else
+			$factura = Factura::findOrFail($id);
+
+		return $factura;
 	}
 
 	public function getStatus(Factura $factura)
