@@ -8,4 +8,8 @@ class ProvinciaRepository{
 		return Provincia::all();
 	}
 
+	public function save(Provincia $provincia){
+		return $provincia->save();
+	}
+
 }
