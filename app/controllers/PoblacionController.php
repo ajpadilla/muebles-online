@@ -1,15 +1,32 @@
 <?php
 use Muebles\Poblaciones\Poblacion;
+use Muebles\Poblaciones\PoblacionesReposotory;
 use Muebles\Forms\PoblacionRegistrationForm;
+use Muebles\Regiones\Region;
 
 class PoblacionController extends \BaseController {
 
 
 	private $poblacionRegistrationForm;
+	private $poblacionReposotory;
 
-	function __construct(PoblacionRegistrationForm $poblacionRegistrationForm) {
+	function __construct(PoblacionRegistrationForm $poblacionRegistrationForm,PoblacionesReposotory $poblacionReposotory){
 		$this->poblacionRegistrationForm = $poblacionRegistrationForm;
-		$this->beforeFilter('admin');
+		$this->poblacionReposotory = $poblacionReposotory;
+		//$this->beforeFilter('admin');
+	}
+
+	public function cargarPoblaciones()
+	{
+		$regiones = Region::all();
+		//var_dump($regiones);
+		foreach ($regiones as $key => $region) {
+			$poblacion = new Poblacion;
+			$poblacion->id = $region->pk_i_id;
+			$poblacion->nombre = $region->s_name;
+			$this->poblacionReposotory->save($poblacion);
+		}
+		echo "Poblaciones cargadas";
 	}
 
 	/**
