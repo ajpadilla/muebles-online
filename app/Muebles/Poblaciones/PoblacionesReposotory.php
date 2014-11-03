@@ -8,4 +8,7 @@ class PoblacionesReposotory{
 		return Poblacion::all();
 	}
 
+	public function save(Poblacion $poblacion){
+		return $poblacion->save();
+	}
 }
