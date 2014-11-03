@@ -14,7 +14,7 @@ class ProvinciasController extends \BaseController {
 	function __construct(ProvinciasRegistration $provinciasRegistration, ProvinciaRepository $provinciaRepository) {
 		$this->provinciasRegistration = $provinciasRegistration;
 		$this->provinciaRepository = $provinciaRepository;
-		//$this->beforeFilter('admin');
+		$this->beforeFilter('admin');
 	}
 
 	public function cargarProvincias()
