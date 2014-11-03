@@ -13,7 +13,7 @@ class PoblacionController extends \BaseController {
 	function __construct(PoblacionRegistrationForm $poblacionRegistrationForm,PoblacionesReposotory $poblacionReposotory){
 		$this->poblacionRegistrationForm = $poblacionRegistrationForm;
 		$this->poblacionReposotory = $poblacionReposotory;
-		//$this->beforeFilter('admin');
+		$this->beforeFilter('admin');
 	}
 
 	public function cargarPoblaciones()
