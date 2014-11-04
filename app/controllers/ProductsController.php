@@ -23,10 +23,11 @@ class ProductsController extends \BaseController {
 	private $productRegistrationForm;
 
 	private $editProductForm;
+
 	/**
-	 * @var ImportCSVForm
+	 * @var CSVImport
 	 */
-	private $importCSVForm;
+	private $csvImport;
 
 	/**
 	 * @param ProductRegistrationForm $productRegistrationForm
@@ -40,7 +41,7 @@ class ProductsController extends \BaseController {
 		$this->repository = $repository;
 		$this->editProductForm = $editProductForm;
 		$this->importCSVForm = $importCSVForm;
-		$this->beforeFilter('admin', ['only' => ['create', 'store', 'edit', 'update', 'destroy', 'importCSV']]);
+		$this->beforeFilter('admin', ['only' => ['create', 'store', 'edit', 'update', 'destroy', 'importCSV', 'importCSVForm']]);
 	}
 
 	/**
@@ -244,14 +245,17 @@ class ProductsController extends \BaseController {
 	public function importCSV()
 	{
 		$formData = Input::all();
-		$this->importCSVForm->validate($formData);
+		//$this->importCSVForm->validate($formData);
 		extract($formData);
-		Excel::load($csv->getRealPath(), function ($reader) {
-			$reader->each(function($sheet) {
-				//return Response::json($sheet->);
-				dd($sheet->toArray());
-				DB::table('products')->insert($sheet->toArray());
+		if ($csv->getClientOriginalExtension() == 'csv' || $csv->getClientOriginalExtension() == 'xls') {
+			Excel::load($csv->getRealPath(), function ($reader) {
+				$reader->each(function ($sheet) {
+					DB::table('products')->insert($sheet->toArray());
+				});
 			});
-		});
+			return 'true';
+		} else {
+			return 'false';
+		}
 	}
 }

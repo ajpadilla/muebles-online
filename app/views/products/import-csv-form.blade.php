@@ -133,6 +133,10 @@
 		  document.querySelector("#total-progress").style.opacity = "0";
 		});
 
+		myDropzone.on("success", function(file, responseText) {
+                    jQuery('.name').text(responseText.name);
+        });
+
 		// Setup the buttons for all transfers
 		// The "add files" button doesn't need to be setup because the config
 		// `clickable` has already been specified.
