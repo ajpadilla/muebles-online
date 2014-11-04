@@ -1,6 +1,7 @@
 <?php
 
 use Muebles\Core\CommandBus;
+use Muebles\Forms\ImportCSVForm;
 use Muebles\Forms\ProductRegistrationForm;
 use Muebles\Products\Product;
 use Muebles\Products\ProductRepository;
@@ -23,15 +24,23 @@ class ProductsController extends \BaseController {
 
 	private $editProductForm;
 	/**
+	 * @var ImportCSVForm
+	 */
+	private $importCSVForm;
+
+	/**
 	 * @param ProductRegistrationForm $productRegistrationForm
 	 * @param ProductRepository $repository
+	 * @param EditProductForm $editProductForm
+	 * @param ImportCSVForm $importCSVForm
 	 */
-	function __construct(ProductRegistrationForm $productRegistrationForm, ProductRepository $repository,EditProductForm $editProductForm)
+	function __construct(ProductRegistrationForm $productRegistrationForm, ProductRepository $repository, EditProductForm $editProductForm, ImportCSVForm $importCSVForm)
 	{
 		$this->productRegistrationForm = $productRegistrationForm;
 		$this->repository = $repository;
 		$this->editProductForm = $editProductForm;
-		$this->beforeFilter('admin', ['only' => ['create', 'store', 'edit', 'update', 'destroy']]);
+		$this->importCSVForm = $importCSVForm;
+		$this->beforeFilter('admin', ['only' => ['create', 'store', 'edit', 'update', 'destroy', 'importCSV']]);
 	}
 
 	/**
@@ -226,5 +235,18 @@ class ProductsController extends \BaseController {
 			Flash::warning('No se encontraron productos que coincidan con la información suministrada para la búsqueda: '.$filterWord);
 			return Redirect::intended();
 		}
+	}
+
+	public function importCSV()
+	{
+		$formData = Input::all();
+		$this->importCSVForm->validate($formData);
+		extract('formData');
+		Excel::load($csv->getRealPath(), function ($reader) {
+			$reader->each(function($sheet) {
+				DB::table('products')->insert($sheet->toArray());
+			});
+		});
+		
 	}
 }
