@@ -10,6 +10,6 @@ class ImportCSVForm extends FormValidator {
 	 * @var array
 	 */
 	protected $rules = [
-		'csv' => 'required|mimes:csv'
+		'csv' => 'required|mimes:csv,xls'
 	];
 }

@@ -237,16 +237,21 @@ class ProductsController extends \BaseController {
 		}
 	}
 
+	public function importCSVForm(){
+		return View::make('products.import-csv-form');
+	}
+
 	public function importCSV()
 	{
 		$formData = Input::all();
 		$this->importCSVForm->validate($formData);
-		extract('formData');
+		extract($formData);
 		Excel::load($csv->getRealPath(), function ($reader) {
 			$reader->each(function($sheet) {
+				//return Response::json($sheet->);
+				dd($sheet->toArray());
 				DB::table('products')->insert($sheet->toArray());
 			});
 		});
-		
 	}
 }
