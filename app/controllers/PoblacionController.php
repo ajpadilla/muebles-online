@@ -2,7 +2,6 @@
 use Muebles\Poblaciones\Poblacion;
 use Muebles\Poblaciones\PoblacionesReposotory;
 use Muebles\Forms\PoblacionRegistrationForm;
-use Muebles\Regiones\Region;
 
 class PoblacionController extends \BaseController {
 
@@ -16,19 +15,7 @@ class PoblacionController extends \BaseController {
 		$this->beforeFilter('admin');
 	}
 
-	public function cargarPoblaciones()
-	{
-		$regiones = Region::all();
-		//var_dump($regiones);
-		foreach ($regiones as $key => $region) {
-			$poblacion = new Poblacion;
-			$poblacion->id = $region->pk_i_id;
-			$poblacion->nombre = $region->s_name;
-			$this->poblacionReposotory->save($poblacion);
-		}
-		echo "Poblaciones cargadas";
-	}
-
+	
 	/**
 	 * Display a listing of the resource.
 	 *
