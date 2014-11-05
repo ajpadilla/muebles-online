@@ -4,7 +4,6 @@ use Muebles\Provincias\Provincia;
 use Muebles\Poblaciones\Poblacion;
 use Muebles\Provincias\ProvinciaRepository;
 use Muebles\Forms\ProvinciasRegistration;
-use Muebles\Ciudades\Ciudad;
 
 class ProvinciasController extends \BaseController {
 
@@ -17,43 +16,7 @@ class ProvinciasController extends \BaseController {
 		$this->beforeFilter('admin');
 	}
 
-	public function cargarProvincias()
-	{
-		set_time_limit(600);
-		echo count(Ciudad::all()).'<br>';
-		echo (count(Ciudad::all())/2).'<br>';
-		foreach (Ciudad::all() as $key => $ciudad) {
-			if ($key <= 12846) {
-				echo $key.'<br>';
-				$provincia = new Provincia;
-				$provincia->nombre = $ciudad->s_name;
-				$provincia->poblacion_id = $ciudad->fk_i_region_id;
-				$provincia->save();
-			}
-		}
-
-		echo "Provincias Cargardas";
-	}
-
-
-	public function cargarProvincias2()
-	{
-		set_time_limit(600);
-
-		echo count(Ciudad::all()).'<br>';
-		echo (count(Ciudad::all())/2).'<br>';
-		foreach (Ciudad::all() as $key => $ciudad) {
-			if ($key > 12846) {
-				echo $key.'<br>';
-				$provincia = new Provincia;
-				$provincia->nombre = $ciudad->s_name;
-				$provincia->poblacion_id = $ciudad->fk_i_region_id;
-				$provincia->save();
-			}
-		}
-
-		echo "Provincias 2 Cargardas";
-	}
+	
 
 	/**
 	 * Display a listing of the resource.
