@@ -228,6 +228,7 @@ Route::get('poblaciones', [
 ]);
 
 
+
 //Provincias
 Route::get('provincias/register', [
 	'as' => 'provincias_register_path',
@@ -238,6 +239,7 @@ Route::post('provincias/register', [
 	'as' => 'provincias_register_path',
 	'uses' => 'ProvinciasController@store'
 ]);
+
 
 
 Route::get('provincias', [
