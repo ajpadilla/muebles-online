@@ -237,7 +237,7 @@ Route::get('poblaciones', [
 	'uses' => 'PoblacionController@index'
 ]);
 
-Route::get('cargarPoblaciones','PoblacionController@cargarPoblaciones');
+
 
 //Provincias
 Route::get('provincias/register', [
@@ -250,9 +250,7 @@ Route::post('provincias/register', [
 	'uses' => 'ProvinciasController@store'
 ]);
 
-Route::get('cargarProvincias','ProvinciasController@cargarProvincias');
 
-Route::get('cargarProvincias2','ProvinciasController@cargarProvincias2');
 
 Route::get('provincias', [
 	'as' => 'provincias_path',
