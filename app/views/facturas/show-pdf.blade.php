@@ -149,7 +149,7 @@
 		                        <th>{{ $pedido->product->codigo }}</th>
 		                        <th>{{ $pedido->product->nombre }}</th>
 		                        <th>{{ $pedido->cantidad }}</th>
-		                        <th>{{ $pedido->color }}</th>
+		                        <th>{{ $pedido->color }}Pero d</th>
 		                        <th>{{ $pedido->product->medidas }}</th>
 		                        <th>{{ $pedido->observaciones }}</th>
 		                    </tr>

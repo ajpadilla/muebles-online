@@ -129,6 +129,7 @@ return array(
 		'Andrew13\Cabinet\CabinetServiceProvider',
 		'Chumper\Datatable\DatatableServiceProvider',
 		'Barryvdh\DomPDF\ServiceProvider',
+		'Maatwebsite\Excel\ExcelServiceProvider',
 	),
 
 	/*
@@ -200,6 +201,7 @@ return array(
 		'Cabinet'    => 'Andrew13\Cabinet\CabinetFacade',
 		'Datatable' => 'Chumper\Datatable\Facades\DatatableFacade',
 		'PDF' => 'Barryvdh\DomPDF\Facade',
+		'Excel' => 'Maatwebsite\Excel\Facades\Excel',
 	),
 
 );

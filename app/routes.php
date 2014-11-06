@@ -158,6 +158,16 @@ Route::get('products/{id}/{photoId?}', [
 	'uses' => 'ProductsController@show'
 ]);
 
+Route::get('importCSV', [
+	'as' => 'products.import-csv',
+	'uses' => 'ProductsController@importCSVForm'
+]);
+
+Route::post('importCSV', [
+	'as' => 'products.import-csv',
+	'uses' => 'ProductsController@importCSV'
+]);
+
 /**
  * Pedidos routes
  */
