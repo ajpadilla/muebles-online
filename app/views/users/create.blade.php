@@ -48,7 +48,7 @@
                                           </div>
 										  <div class="twelve columns">
                                             {{ Form::label('provincia', 'Provincia:') }}
-                                            {{ Form::select('provincia', $provincias , null , ['class' => 'text-input']) }}
+                                            {{ Form::select('provincia', ['-- Seleccione --'], null , ['class' => 'text-input', 'disabled']) }}
                                           </div>
 										  <div class="two_fifth columns">
 										    {{ Form::label('telefono_fijo', 'Télefono Fijo:') }}
@@ -90,4 +90,47 @@
         </div>
     </div>
         <!-- END MAIN CONTENT -->
+@stop
+
+@section('in-situ-js')
+	<script src="{{ asset('js/vendor/select2.min.js') }}"></script>
+@stop
+
+@section('in-situ-css')
+	<link rel="stylesheet" href="{{asset('css/vendor/select2.css')}}"/>
+@stop
+
+@section('script')
+	<script>
+		jQuery(document).ready(function(){
+
+			jQuery('#poblacion').select2();
+
+			jQuery('#poblacion').change(function(){
+				var poblacion = jQuery('#poblacion').val();
+				var url = "/api/provincias/get-by-poblacion/" + poblacion;
+
+	            jQuery.ajax({
+	                type: 'GET',
+	                url: url,
+	                dataType:'json',
+	                success: function(response) {
+	                    if (response != null) {
+                            jQuery('#provincia').removeAttr( "disabled" )
+	                        jQuery('#provincia').html('');
+							jQuery.each(response,function (k,v){
+	                            jQuery('#provincia').append('<option value=\"'+k+'\">'+v+'</option>');
+	                        });
+							jQuery("#provincia").select2();
+
+	                    }else{
+	                        jQuery('#provincia').html('');
+	                        jQuery('#provincia').append('<option value=\"\">-- Seleccione --</option>');
+                            jQuery('#provincia').attr( "disabled", 'disabled' );
+	                    }
+	                }
+	            });
+			});
+		});
+	</script>
 @stop

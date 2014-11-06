@@ -256,3 +256,9 @@ Route::get('provincias', [
 	'as' => 'provincias_path',
 	'uses' => 'ProvinciasController@index'
 ]);
+
+// Api json call
+Route::get('api/provincias/get-by-poblacion/{poblacionId}', [
+	'as' => 'provincias.get-by-poblacion',
+	'uses' => 'ProvinciasController@getProvinciasByPoblacion'
+]);

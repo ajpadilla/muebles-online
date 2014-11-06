@@ -12,4 +12,8 @@ class ProvinciaRepository{
 		return $provincia->save();
 	}
 
+	public function getByPoblacion($poblacionId){
+		return Provincia::wherePoblacionId($poblacionId)->orderBy('nombre', 'ASC');
+	}
+
 }

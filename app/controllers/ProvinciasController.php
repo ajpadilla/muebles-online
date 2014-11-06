@@ -13,7 +13,7 @@ class ProvinciasController extends \BaseController {
 	function __construct(ProvinciasRegistration $provinciasRegistration, ProvinciaRepository $provinciaRepository) {
 		$this->provinciasRegistration = $provinciasRegistration;
 		$this->provinciaRepository = $provinciaRepository;
-		$this->beforeFilter('admin');
+		$this->beforeFilter('admin', ['except' => ['getProvinciasByPoblacion']]);
 	}
 
 	
@@ -100,6 +100,13 @@ class ProvinciasController extends \BaseController {
 	public function destroy($id)
 	{
 		//
+	}
+	
+	public function getProvinciasByPoblacion($poblacionId) {
+		if(Request::ajax()) {
+			$provincias = $this->provinciaRepository->getByPoblacion($poblacionId);
+			return Response::json($provincias->lists('nombre', 'id'));
+		}
 	}
 
 

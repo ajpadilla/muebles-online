@@ -65,7 +65,6 @@ class UserController extends \BaseController {
 	public function create()
 	{
 		$poblaciones = Muebles\Poblaciones\Poblacion::all()->lists('nombre', 'id');
-		$provincias = Muebles\Provincias\Provincia::all()->lists('nombre', 'id');
 		return View::make('users.create', compact('poblaciones', 'provincias'));
 	}
 
