@@ -250,12 +250,36 @@ class ProductsController extends \BaseController {
 		if ($csv->getClientOriginalExtension() == 'csv' || $csv->getClientOriginalExtension() == 'xls') {
 			Excel::load($csv->getRealPath(), function ($reader) {
 				$reader->each(function ($sheet) {
-					DB::table('products')->insert($sheet->toArray());
+					$sheet->each(function ($row) {
+						if($this->repository->exists($row->codigo)) {
+							$product = $this->repository->get($row->id);
+							$product->precio_lacado = $row->precio_lacado;
+							$product->precio_lacado_puntos = $row->precio_lacado_puntos;
+							$product->precio_pulimento = $row->precio_pulimento;
+							$product->precio_pulimento_puntos = $row->precio_pulimento_puntos;
+							$product->save();
+						} else {
+							DB::table('products')->insert($row->toArray());
+						}
+					});
 				});
 			});
 			return 'true';
 		} else {
 			return 'false';
 		}
+	}
+
+	public function exportCSV(){
+		Excel::create('productos', function($excel) {
+
+			$excel->sheet('Sheetname', function($sheet) {
+				//$products = $this->repository->getAll()->get(['codigo', 'nombre', 'precio_lacado']);
+				//$products = DB::table('products')->lists('codigo', 'nombre', 'precio_lacado');
+				$products = Product::select('codigo', 'nombre','medidas', 'precio_pulimento_puntos', 'precio_pulimento', 'precio_lacado_puntos', 'precio_lacado', 'cantidad')->get()->toArray();
+				$sheet->fromArray($products);
+			});
+
+		})->download('csv');
 	}
 }

@@ -168,6 +168,11 @@ Route::post('importCSV', [
 	'uses' => 'ProductsController@importCSV'
 ]);
 
+Route::get('exportCSV', [
+	'as' => 'products.export-csv',
+	'uses' => 'ProductsController@exportCSV'
+]);
+
 /**
  * Pedidos routes
  */

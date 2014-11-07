@@ -25,6 +25,9 @@
 			                    <div class="two columns positionright">
 				                    {{ link_to_route('products.import-csv', 'Importar', null, ['class' => 'button']) }}
 			                    </div>
+			                    <div class="two columns positionright">
+				                    {{ link_to_route('products.export-csv', 'Exportar', null, ['class' => 'button']) }}
+			                    </div>
 		                    @endif
 		                </section>
 		                <section id="content" class="twelve columns positionleft">
