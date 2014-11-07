@@ -249,19 +249,20 @@ class ProductsController extends \BaseController {
 		extract($formData);
 		if ($csv->getClientOriginalExtension() == 'csv' || $csv->getClientOriginalExtension() == 'xls') {
 			Excel::load($csv->getRealPath(), function ($reader) {
-				$reader->each(function ($sheet) {
-					$sheet->each(function ($row) {
-						if($this->repository->exists($row->codigo)) {
-							$product = $this->repository->get($row->id);
-							$product->precio_lacado = $row->precio_lacado;
-							$product->precio_lacado_puntos = $row->precio_lacado_puntos;
-							$product->precio_pulimento = $row->precio_pulimento;
-							$product->precio_pulimento_puntos = $row->precio_pulimento_puntos;
-							$product->save();
-						} else {
-							DB::table('products')->insert($row->toArray());
-						}
-					});
+				$rows = $reader->get();
+				$rows->each(function ($row) {
+					if($this->repository->exists($row->codigo)) {
+						$product = $this->repository->getByCodigo($row->codigo);
+						$product->medidas = $row->medidas;
+						$product->precio_lacado = $row->precio_lacado;
+						$product->precio_lacado_puntos = $row->precio_lacado_puntos;
+						$product->precio_pulimento = $row->precio_pulimento;
+						$product->precio_pulimento_puntos = $row->precio_pulimento_puntos;
+						$product->cantidad = $row->cantidad;
+						$product->save();
+					} else {
+						DB::table('products')->insert($row->toArray());
+					}
 				});
 			});
 			return 'true';

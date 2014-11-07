@@ -31,6 +31,10 @@ class ProductRepository {
 		return Product::findOrFail($id);
 	}
 
+	public function getByCodigo($codigo){
+		return Product::whereCodigo($codigo)->first();
+	}
+
 	public function getRandom($limit = 3){
 		return Product::has('photos')
 			->orderBy(DB::raw('RAND()'))
@@ -45,5 +49,9 @@ class ProductRepository {
 			$query->where('codigo', 'LIKE', '%'.$filterWord.'%')->orWhere('descripcion','LIKE', '%'.$filterWord.'%');
 		}
 		return $query->get();
+	}
+
+	public function exists($codigo){
+		return (Product::whereCodigo($codigo)->count());
 	}
 }
