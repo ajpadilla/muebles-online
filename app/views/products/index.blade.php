@@ -17,19 +17,20 @@
 		        <div class="row">
 		            <section id="maincontent">
 		                <section id="empty" class="twelve columns positionleft">
-		                    <div class="eight columns positionleft"></div>
+		                    <div class="nine columns positionleft"></div>
 		                    @if($currentUser AND $currentUser->isAdmin())
-			                    <div class="two columns positionright">
+			                    <div class="one columns positionleft">
 				                    {{ link_to_route('products.create', 'Nuevo', null, ['class' => 'button']) }}
 			                    </div>
-			                    <div class="two columns positionright">
+			                    <div class="one columns positionleft">
 				                    {{ link_to_route('products.import-csv', 'Importar', null, ['class' => 'button']) }}
 			                    </div>
-			                    <div class="two columns positionright">
+			                    <div class="one columns positionleft">
 				                    {{ link_to_route('products.export-csv', 'Exportar', null, ['class' => 'button']) }}
 			                    </div>
 		                    @endif
 		                </section>
+		                <div class="row"><br/></div>
 		                <section id="content" class="twelve columns positionleft">
 		                    <div class="page articlecontainer">
 		                        <article class="entry-content">
