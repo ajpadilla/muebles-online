@@ -275,8 +275,6 @@ class ProductsController extends \BaseController {
 		Excel::create('productos', function($excel) {
 
 			$excel->sheet('Sheetname', function($sheet) {
-				//$products = $this->repository->getAll()->get(['codigo', 'nombre', 'precio_lacado']);
-				//$products = DB::table('products')->lists('codigo', 'nombre', 'precio_lacado');
 				$products = Product::select('codigo', 'nombre','medidas', 'precio_pulimento_puntos', 'precio_pulimento', 'precio_lacado_puntos', 'precio_lacado', 'cantidad')->get()->toArray();
 				$sheet->fromArray($products);
 			});

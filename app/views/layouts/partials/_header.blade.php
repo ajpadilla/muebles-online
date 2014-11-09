@@ -15,10 +15,6 @@
 							<li @if( 'about_path' == $currentRoute) class="current" @endif><a href="{{ route('about_path') }}">Empresa<span>Conoce la empresa</span></a></li>
 							<li @if( 'address_path' == $currentRoute) class="current" @endif><a href="{{ route('address_path') }}">Donde estamos<span>Como localizarnos</span></a></li>
 							<li @if( 'contact_path' == $currentRoute) class="current" @endif><a href="{{ route('contact_path') }}">Contacto<span>Direccion y email</span></a></li>
-							@if($currentUser)
-                                <li><a href="{{ route('users.show', $currentUser->id) }}">{{ $currentUser->nombre; }}</a></li>
-                                <li><a href="{{ route('logout_path') }}">Salir<span></span></a></li>
-                            @endif
 						</ul><!-- topnav -->
 						<select id="selectNav" class="tinynav tinynav1">
 							<option @if('home' == $currentRoute) selected="selected" @endif value="{{ route('home') }}">Inicio</option>
@@ -36,18 +32,26 @@
 					<br/>
 					<div class="row">
 						<section class="seven columns">
-							<div class="eight columns"></div>
-							<div class="four columns">
+							<div class="five columns"></div>
+							<div class="seven columns">
 								@if (!$currentUser)
-                                    <a class="sub-menu-own" href="{{ route('register_user_path') }}">Registrarse<span></span></a>
-                                    <a class="sub-menu-own" href="{{ route('login_path') }}">Ingresar<span></span></a>
+									<div class="twelve columns">
+	                                    <a class="sub-menu-own" href="{{ route('register_user_path') }}">Registrarse<span></span></a>
+	                                    <a class="sub-menu-own" href="{{ route('login_path') }}">Ingresar<span></span></a>
+                                    </div>
                                 @else
-	                                @if($currentUser->isAdmin())
-	                                    <a class="sub-menu-own" href="{{ route('users.index') }}">Usuarios</a>
-	                                    <a class="sub-menu-own" href="{{ route('facturas.index') }}">Pedidos</a>
-	                                @else
-	                                    <a class="sub-menu-own" href="{{ route('facturas.index') }}">Mis Pedidos</a>
-	                                @endif
+                                    <div class="six columns">
+		                                @if($currentUser->isAdmin())
+		                                    <a class="sub-menu-own" href="{{ route('users.index') }}">Usuarios</a>
+		                                    <a class="sub-menu-own" href="{{ route('facturas.index') }}">Pedidos</a>
+		                                @else
+		                                    <a class="sub-menu-own" href="{{ route('facturas.index') }}">Mis Pedidos</a>
+		                                @endif
+	                                </div>
+	                                <div class="six columns">
+										<a class="sub-menu-own" href="{{ route('users.show', $currentUser->id) }}">{{ $currentUser->nombre; }}</a>
+		                                <a class="sub-menu-own" href="{{ route('logout_path') }}">Salir<span></span></a>
+	                                </div>
                                 @endif
                             </div>
 						</section>
