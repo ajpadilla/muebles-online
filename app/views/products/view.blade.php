@@ -77,6 +77,16 @@
                                 <h2 class="widget-title">Información del Producto</h2>
                                 <div class="textwidget">{{ $product->descripcion }}</div>
                             </li>
+                            <li class="widget-container widget_hover">
+                                <h2 class="widget-title">Fotos Relacionadas</h2>
+                                <div class="textwidget" style="display:flex">
+                                    @foreach($product->photos as $photo)
+                                        <a class="frame mini-photo" href="{{ route('products.show', [$product->id, $photo->id]) }}">
+                                            <img id="img-{{ $photo->id }}" src="{{ asset($photo->complete_thumbnail_path) }}" />
+                                        </a>
+                                    @endforeach
+                                </div>
+                            </li>
                             @include('layouts.partials._random-products')
                             {{--@include('layouts.partials._tags')--}}
                         </ul>

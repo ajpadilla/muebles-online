@@ -29,8 +29,10 @@ class PhotosController extends \BaseController {
 	 */
 	public function create($productId)
 	{
-		$nombre = Product::findOrFail($productId)->nombre;
-		return View::make('photos.create', compact('productId', 'nombre'));
+		$product = Product::findOrFail($productId);
+		$nombre = $product->nombre;
+		$codigo = $product->codigo;
+		return View::make('photos.create', compact('productId', 'nombre', 'codigo'));
 	}
 
 

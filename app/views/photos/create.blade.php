@@ -5,7 +5,7 @@
 	    <div class="container">
 	        <div class="row">
 	            <div id="afterheader" class="twelve columns">
-	                <h1 class="pagetitle nodesc">Adjuntar fotos al producto ({{ $nombre }})</h1>
+	                <h1 class="pagetitle nodesc">Adjuntar fotos al producto ({{ $codigo . ' - ' . $nombre }})</h1>
 	            </div>
 	        </div>
 	    </div>
