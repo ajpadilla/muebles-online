@@ -39,7 +39,7 @@ class Upload {
 		$this->thumbnailFileNameInDir = $thumbnailFileName;
 
 		Image::make($this->file)->save($this->getUploadPath() . $this->fileNameInDir);
-		Image::make($this->getUploadPath() . $this->fileNameInDir)->fit($this->thumbnailWidth, $this->thumbnailHeight)->save($this->getUploadPath() . $this->thumbnailFileNameInDir);
+		Image::make($this->getUploadPath() . $this->fileNameInDir)->resize($this->thumbnailWidth, $this->thumbnailHeight)->save($this->getUploadPath() . $this->thumbnailFileNameInDir);
 		return true;
 	}
 

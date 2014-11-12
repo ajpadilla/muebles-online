@@ -10,11 +10,16 @@
                 <section id="navigation">
                     <nav id="nav-wrap">
                         <ul id="topnav" class="sf-menu">
-							<li @if( 'home' == $currentRoute) class="current" @endif><a href="{{ route('home') }}">Inicio<span>Pagina Principal</span></a></li>
+                            @if(!$currentUser)
+								<li @if( 'home' == $currentRoute) class="current" @endif><a href="{{ route('home') }}">Inicio<span>Pagina Principal</span></a></li>
+							@endif
 							<li @if( 'products.index' == $currentRoute) class="current" @endif><a href="{{ route('products.index') }}">Catálogo{{--<span>Nuestros productos</span>--}}</a></li>
 							<li @if( 'about_path' == $currentRoute) class="current" @endif><a href="{{ route('about_path') }}">Empresa<span>Conoce la empresa</span></a></li>
 							<li @if( 'address_path' == $currentRoute) class="current" @endif><a href="{{ route('address_path') }}">Donde estamos<span>Como localizarnos</span></a></li>
 							<li @if( 'contact_path' == $currentRoute) class="current" @endif><a href="{{ route('contact_path') }}">Contacto<span>Direccion y email</span></a></li>
+							@if($currentUser)
+								<li><a href="{{ route('users.show', $currentUser->id) }}">{{ $currentUser->email; }}</a></li>
+							@endif
 						</ul><!-- topnav -->
 						<select id="selectNav" class="tinynav tinynav1">
 							<option @if('home' == $currentRoute) selected="selected" @endif value="{{ route('home') }}">Inicio</option>
@@ -30,17 +35,17 @@
 						<div class="clear"></div>
 					</nav><!-- nav -->
 					<br/>
-					<div class="row">
-						<section class="seven columns">
-							<div class="five columns"></div>
-							<div class="seven columns">
+					<div class="row" style="max-width: 590px;margin: 0 auto;">
+						<section class="six columns">
+							<div class="two columns"></div>
+							<div class="ten columns">
 								@if (!$currentUser)
 									<div class="twelve columns">
 	                                    <a class="sub-menu-own" href="{{ route('register_user_path') }}">Registrarse<span></span></a>
 	                                    <a class="sub-menu-own" href="{{ route('login_path') }}">Ingresar<span></span></a>
                                     </div>
                                 @else
-                                    <div class="six columns">
+                                    <div class="ten columns" style="padding-left: 0;padding-right: 0;">
 		                                @if($currentUser->isAdmin())
 		                                    <a class="sub-menu-own" href="{{ route('users.index') }}">Usuarios</a>
 		                                    <a class="sub-menu-own" href="{{ route('facturas.index') }}">Pedidos</a>
@@ -48,14 +53,13 @@
 		                                    <a class="sub-menu-own" href="{{ route('facturas.index') }}">Mis Pedidos</a>
 		                                @endif
 	                                </div>
-	                                <div class="six columns">
-										<a class="sub-menu-own" href="{{ route('users.show', $currentUser->id) }}">{{ $currentUser->nombre; }}</a>
-		                                <a class="sub-menu-own" href="{{ route('logout_path') }}">Salir<span></span></a>
+	                                <div class="two columns" style="padding-left: 0;padding-right: 0;">
+										<a class="sub-menu-own" href="{{ route('logout_path') }}">Salir<span></span></a>
 	                                </div>
                                 @endif
                             </div>
 						</section>
-						<section class="five columns">
+						<section class="six columns">
 							{{ Form::open(['route' => 'filtered_products_path', 'id' => 'filterForm']) }}
 								<div class="ten columns">
 									{{ Form::text('filter_word', null, ['class' => 't ext-input', 'style' => 'font-size: 20px; width: 9em', 'placeholder' => 'Busqueda', 'id' => 'filter_word']) }}

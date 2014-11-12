@@ -222,7 +222,7 @@ code {
     position: relative;
     z-index: 10;
 	padding: 		34px 0 0 0px;
-	margin-left:30px;
+	margin-left: 10px;
 }
 .sf-menu > li span{ display:block; font-size:11px; text-transform:none; font-weight:normal; padding-top:6px;}
 .sf-menu > li:hover, .sf-menu > li.current{ padding-top:34px;}
