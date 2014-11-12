@@ -64,7 +64,7 @@
 									      <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>
 									    </div>
 									</div>
-									<div class="four columns">
+									<div class="five columns">
 									  <button class="btn btn-primary start">
 									      <i class="glyphicon glyphicon-upload"></i>
 									      <span>Iniciar</span>
