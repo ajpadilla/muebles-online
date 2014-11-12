@@ -33,6 +33,10 @@
 		text-transform: uppercase;
 		color: #777;
 	}
+
+	#topnav li a {
+        font-size: 90%;
+    }
 </style>
 
 @yield('styles')
