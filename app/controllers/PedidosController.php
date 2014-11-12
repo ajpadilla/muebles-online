@@ -57,6 +57,7 @@ class PedidosController extends \BaseController {
 	public function getDatatable($facturaId)
 	{
 		//return Session::get('facturaId');
+		dd($this->repository->ordersForInvoice($facturaId));
 		$collection = Datatable::collection($this->repository->ordersForInvoice($facturaId))
 			->showColumns('created_at')
 			->searchColumns('created_at')
