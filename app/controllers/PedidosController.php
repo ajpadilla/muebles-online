@@ -19,7 +19,6 @@ class PedidosController extends \BaseController {
 	 */
 	private $registerRequestForm;
 
-
 	/**
 	 * @param ProductRepository|Product $productRepository
 	 * @param PedidosRepository $repository
@@ -56,8 +55,6 @@ class PedidosController extends \BaseController {
 
 	public function getDatatable($facturaId)
 	{
-		//return Session::get('facturaId');
-		dd($this->repository->ordersForInvoice($facturaId));
 		$collection = Datatable::collection($this->repository->ordersForInvoice($facturaId))
 			->showColumns('created_at')
 			->searchColumns('created_at')
@@ -71,8 +68,7 @@ class PedidosController extends \BaseController {
 
 		$collection->addColumn('Codigo del pedido', function($model)
 		{
-			$links = '';
-			return $links .= "<a href='" . route('products.show', $model->product->id) . "'>".$model->product->codigo."</a>";
+			return "<a href='" . route('products.show', $model->product->id) . "'>".$model->product->codigo."</a>";
 		});
 
 		$collection->addColumn('color', function($model)
