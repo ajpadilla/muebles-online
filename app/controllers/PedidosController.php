@@ -33,9 +33,7 @@ class PedidosController extends \BaseController {
 		$this->registerRequestForm = $registerRequestForm;
 	}
 
-	public function index($facturaId){
-		Session::put('facturaId',$facturaId);
-
+	public function index($facturaId) {
 		$user = Auth::user();
 
 		if($user->isClient())
@@ -56,10 +54,10 @@ class PedidosController extends \BaseController {
 		return View::make('pedidos.create', compact('product'));
 	}
 
-	public function getDatatable()
+	public function getDatatable($facturaId)
 	{
 		//return Session::get('facturaId');
-		$collection = Datatable::collection($this->repository->ordersForInvoice(Session::get('facturaId')))
+		$collection = Datatable::collection($this->repository->ordersForInvoice($facturaId))
 			->showColumns('created_at')
 			->searchColumns('created_at')
 			->orderColumns('created_at');

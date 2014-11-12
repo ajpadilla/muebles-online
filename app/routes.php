@@ -189,7 +189,7 @@ Route::get('pedidos-por-factura/{facturaId}', [
 ]);
 
 
-Route::get('api/pedidos', array('as'=>'api.pedidos', 'uses'=>'PedidosController@getDatatable'));
+Route::get('api/pedidos/{facturaId}', array('as'=>'api.pedidos', 'uses'=>'PedidosController@getDatatable'));
 
 
 /**

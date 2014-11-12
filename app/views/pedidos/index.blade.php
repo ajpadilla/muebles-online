@@ -36,7 +36,7 @@
                                                     ];
 	                                    $table = Datatable::table()
                                             ->addColumn($columns)
-                                            ->setUrl(route('api.pedidos'))
+                                            ->setUrl(route('api.pedidos', $factura->id))
                                             ->noScript();
                                     ?>
                                     <div class="row"><br/></div>

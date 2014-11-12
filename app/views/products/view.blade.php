@@ -23,11 +23,11 @@
 								  <ul class="slides">
 								    @foreach($product->photos as $photo)
 								        @if($product->photos->count() == 1)
-								            <li data-thumb="{{ asset($photo->path . $photo->filename) }}" class="flex-active-slide">
+								            <li data-thumb="{{ asset($photo->complete_path) }}" class="flex-active-slide">
 								        @else
-							                <li data-thumb="{{ asset($photo->path . $photo->filename) }}">
+							                <li data-thumb="{{ asset($photo->complete_path) }}">
 							            @endif
-								      <img id="img-{{ $photo->id }}" src="{{ asset($photo->path . $photo->filename) }}" data-zoom-image="{{ asset($photo->path . $photo->filename) }}" />
+								      <img id="img-{{ $photo->id }}" src="{{ asset($photo->complete_path) }}" data-zoom-image="{{ asset($photo->complete_path) }}" />
 								    </li>
 								    @endforeach
 								  </ul>
