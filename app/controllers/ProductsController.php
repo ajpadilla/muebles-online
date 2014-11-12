@@ -178,7 +178,7 @@ class ProductsController extends \BaseController {
 			foreach ($model->photos as $photo) {
 				if ($i < 3) {
 					$links .= "<a href='" . route('products.show', [$model->id, $photo->id]) . "'>
-								<img class='mini-photo' alt='" . $photo->filename . "' src='" . asset($photo->path . $photo->filename) . "'>
+								<img class='mini-photo' alt='" . $photo->filename . "' src='" . asset($photo->complete_thumbnail_path) . "'>
 							</a>";
 				} else {
 					break;

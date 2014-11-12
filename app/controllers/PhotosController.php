@@ -41,12 +41,11 @@ class PhotosController extends \BaseController {
 	 */
 	public function store()
 	{
-		$file = Input::file('file');
-		$productId = Input::get('product_id');
-		$photo = new Photo();
-
 		try {
-			$photo->process($file, $productId);
+			$file = Input::file('file');
+			$productId = Input::get('product_id');
+			$photo = new Photo();
+			$photo->register($file, $productId, Auth::user()->id);
 		} catch(Exception $exception){
 			// Something went wrong. Log it.
 			Log::error($exception);

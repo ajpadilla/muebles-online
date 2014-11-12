@@ -9,10 +9,11 @@
         "laracasts/commander": "~1.0",
         "laracasts/validation": "1.1.2",
         "laracasts/flash": "~1.0",
-        "andrewelkins/cabinet": "1.1.x",
         "chumper/datatable": "2.*",
         "barryvdh/laravel-dompdf": "0.4.*",
-        "maatwebsite/excel": "~1.2.1"
+        "maatwebsite/excel": "~1.2.1",
+        "intervention/image": "2.*",
+        "intervention/imagecache": "dev-master"
     },
     "autoload": {
         "classmap": [
