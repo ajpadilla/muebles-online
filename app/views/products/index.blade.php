@@ -34,20 +34,22 @@
 		                <section id="content" class="twelve columns positionleft">
 		                    <div class="page articlecontainer">
 		                        <article class="entry-content">
-		                            <?php
-		                                $columns = [
-			                                            'foto',
-	                                                    'codigo',
-	                                                    'nombre',
-	                                                    'medidas'
-                                                    ];
-                                        if($currentUser AND $currentUser->rol == 'admin')
-                                            $columns[] = 'Acciones';
-	                                    $table = Datatable::table()
-                                            ->addColumn($columns)
-                                            ->setUrl(route('api.products'))
-                                            ->noScript();
-                                    ?>
+<?php
+$columns = [
+	'foto',
+	'codigo',
+	'nombre',
+	'medidas'
+];
+if ($currentUser AND $currentUser->rol == 'admin') {
+	$columns[] = 'Acciones';
+}
+
+$table = Datatable::table()
+	->addColumn($columns)
+	->setUrl(route('api.products'))
+	->noScript();
+?>
                                     <div class="row"><br/></div>
 							        {{ $table->render() }}
                                 </article>

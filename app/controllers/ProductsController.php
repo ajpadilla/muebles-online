@@ -1,12 +1,12 @@
 <?php
 
 use Muebles\Core\CommandBus;
+use Muebles\Forms\EditProductForm;
 use Muebles\Forms\ImportCSVForm;
 use Muebles\Forms\ProductRegistrationForm;
 use Muebles\Products\Product;
 use Muebles\Products\ProductRepository;
 use Muebles\Products\RegisterProductCommand;
-use Muebles\Forms\EditProductForm;
 
 class ProductsController extends \BaseController {
 
@@ -35,8 +35,7 @@ class ProductsController extends \BaseController {
 	 * @param EditProductForm $editProductForm
 	 * @param ImportCSVForm $importCSVForm
 	 */
-	function __construct(ProductRegistrationForm $productRegistrationForm, ProductRepository $repository, EditProductForm $editProductForm, ImportCSVForm $importCSVForm)
-	{
+	function __construct(ProductRegistrationForm $productRegistrationForm, ProductRepository $repository, EditProductForm $editProductForm, ImportCSVForm $importCSVForm) {
 		$this->productRegistrationForm = $productRegistrationForm;
 		$this->repository = $repository;
 		$this->editProductForm = $editProductForm;
@@ -49,43 +48,36 @@ class ProductsController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
-	{
-		$products = $this->repository->getAll();
-		return View::make('products.index', compact('products'));
+	public function index() {
+		return View::make('products.index');
 	}
-
 
 	/**
 	 * Show the form for creating a new resource.
 	 *
 	 * @return Response
 	 */
-	public function create()
-	{
+	public function create() {
 		return View::make('products.create');
 	}
-
 
 	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @return Response
 	 */
-	public function store()
-	{
+	public function store() {
 		$formData = Input::all();
 		$this->productRegistrationForm->validate($formData);
 		extract($formData);
 		$product = $this->execute(new RegisterProductCommand($codigo, $nombre, $descripcion, $medidas, $precio_lacado, $precio_lacado_puntos, $precio_pulimento, $precio_pulimento_puntos, $cantidad));
 		Flash::success('El mueble ha sido registrado con éxito!');
-		if($formData['do'] == 1) {
+		if ($formData['do'] == 1) {
 			$id = $product->id;
 			return Redirect::route('photos.create', compact('id'));
 		}
 		return Redirect::route('products.index');
 	}
-
 
 	/**
 	 * Display the specified resource.
@@ -93,22 +85,20 @@ class ProductsController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function show($id, $photoId = null)
-	{
+	public function show($id, $photoId = null) {
 		$product = Product::findOrFail($id);
 
 		$startAt = 0;
-		foreach($product->photos as $photo) {
+		foreach ($product->photos as $photo) {
 			if ($photo->id != $photoId) {
 				$startAt++;
 			} else {
 				break;
 			}
-	    }
+		}
 
 		return View::make('products.view', compact('product', 'photoId', 'startAt'));
 	}
-
 
 	/**
 	 * Show the form for editing the specified resource.
@@ -116,13 +106,11 @@ class ProductsController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function edit($id)
-	{
+	public function edit($id) {
 		$product = Product::find($id);
 		//var_dump($product);
-		return View::make('products.edit',compact('product'));
+		return View::make('products.edit', compact('product'));
 	}
-
 
 	/**
 	 * Update the specified resource in storage.
@@ -130,8 +118,7 @@ class ProductsController extends \BaseController {
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function update($id)
-	{
+	public function update($id) {
 		$this->editProductForm->validate(Input::all());
 		$product = Product::find($id);
 		$product->codigo = Input::get('codigo');
@@ -148,15 +135,13 @@ class ProductsController extends \BaseController {
 		return Redirect::to('products');
 	}
 
-
 	/**
 	 * Remove the specified resource from storage.
 	 *
 	 * @param  int  $id
 	 * @return Response
 	 */
-	public function destroy($id)
-	{
+	public function destroy($id) {
 		$product = Product::find($id);
 		$product->delete();
 		Flash::message('producto borrado  con éxito!');
@@ -168,11 +153,9 @@ class ProductsController extends \BaseController {
 	 *
 	 * @return mixed
 	 */
-	public function getDatatable()
-	{
+	public function getDatatable() {
 		$collection = Datatable::collection($this->repository->getAll());
-		$collection->addColumn('foto', function($model)
-		{
+		$collection->addColumn('foto', function ($model) {
 			$links = '';
 			$i = 0;
 			foreach ($model->photos as $photo) {
@@ -188,27 +171,23 @@ class ProductsController extends \BaseController {
 			return $links;
 		});
 
-		$collection->addColumn('codigo', function($model)
-		{
+		$collection->addColumn('codigo', function ($model) {
 			return strtoupper($model->codigo);
 		});
 
-		$collection->addColumn('nombre', function($model)
-		{
+		$collection->addColumn('nombre', function ($model) {
 			return ucfirst(strtolower($model->nombre));
 		});
 
-		$collection->addColumn('medidas', function($model)
-		{
+		$collection->addColumn('medidas', function ($model) {
 			return $model->medidas;
 		});
 
-		$collection->addColumn('ver', function($model)
-		{
-			if(Auth::check() AND Auth::user()->isAdmin()) {
+		$collection->addColumn('ver', function ($model) {
+			if (Auth::check() AND Auth::user()->isAdmin()) {
 				$links = "<a href='" . route('products.edit', $model->id) . "'>Editar</a>
 					<br />
-					<a href='" . URL::to('borrarProduct/'.$model->id) . "'>Eliminar</a>
+					<a href='" . URL::to('borrarProduct/' . $model->id) . "'>Eliminar</a>
 					<br />
 					<a href='" . route('photos.create', $model->id) . "'>Agregar Fotos</a>";
 				return $links;
@@ -216,7 +195,7 @@ class ProductsController extends \BaseController {
 		});
 
 		$collection->searchColumns('nombre', 'codigo');
-		$collection->orderColumns('codigo','nombre');
+		$collection->orderColumns('codigo', 'nombre');
 
 		return $collection->make();
 	}
@@ -225,25 +204,23 @@ class ProductsController extends \BaseController {
 	 * @param $filterWord
 	 * @return mixed
 	 */
-	public function filteredProducts()
-	{
+	public function filteredProducts() {
 		$filterWord = (Input::has('filter_word') ? Input::get('filter_word') : '');
 		//aquí van los productos que encuentre de la búsqueda, y el método filterProducts tiene que hacerlo dentro del ProductRepository
 		$products = $this->repository->filterProducts($filterWord);
 		if (!$products->isEmpty()) {
 			return View::make('products.filtered-products', compact('products'));
-		}else{
-			Flash::warning('No se encontraron productos que coincidan con la información suministrada para la búsqueda: '.$filterWord);
+		} else {
+			Flash::warning('No se encontraron productos que coincidan con la información suministrada para la búsqueda: ' . $filterWord);
 			return Redirect::intended();
 		}
 	}
 
-	public function importCSVForm(){
+	public function importCSVForm() {
 		return View::make('products.import-csv-form');
 	}
 
-	public function importCSV()
-	{
+	public function importCSV() {
 		$formData = Input::all();
 		//$this->importCSVForm->validate($formData);
 		extract($formData);
@@ -251,7 +228,7 @@ class ProductsController extends \BaseController {
 			Excel::load($csv->getRealPath(), function ($reader) {
 				$rows = $reader->get();
 				$rows->each(function ($row) {
-					if($this->repository->exists($row->codigo)) {
+					if ($this->repository->exists($row->codigo)) {
 						$product = $this->repository->getByCodigo($row->codigo);
 						$product->medidas = $row->medidas;
 						$product->precio_lacado = $row->precio_lacado;
@@ -271,11 +248,11 @@ class ProductsController extends \BaseController {
 		}
 	}
 
-	public function exportCSV(){
-		Excel::create('productos', function($excel) {
+	public function exportCSV() {
+		Excel::create('productos', function ($excel) {
 
-			$excel->sheet('Sheetname', function($sheet) {
-				$products = Product::select('codigo', 'nombre','medidas', 'precio_pulimento_puntos', 'precio_pulimento', 'precio_lacado_puntos', 'precio_lacado', 'cantidad')->get()->toArray();
+			$excel->sheet('Sheetname', function ($sheet) {
+				$products = Product::select('codigo', 'nombre', 'medidas', 'precio_pulimento_puntos', 'precio_pulimento', 'precio_lacado_puntos', 'precio_lacado', 'cantidad')->get()->toArray();
 				$sheet->fromArray($products);
 			});
 

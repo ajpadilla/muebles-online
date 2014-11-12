@@ -20,7 +20,7 @@
                                             <ul>
                                             @foreach($products as $product)
                                                 <li>
-                                                    <a href="{{ route('products.show', [$product->id, $product->getFirstPhoto()->id]) }}">
+                                                    <a href="{{ route('products.show', $product->id) }}">
                                                         {{ $product->nombre }}
                                                     </a>
                                                 </li>
