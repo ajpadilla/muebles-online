@@ -8,7 +8,7 @@
                             <div id="copyright" class="three columns">
                                 <a href="index.html" title="grandhotel"><img src="{{asset('images/logo_18654.png')}}" alt=""></a>
                                 <div class="copyrighttext">
-                                    © 2012 Designed by	<a href="http://www.templatesquare.com/" title="">TemplateSquare.com</a>.
+                                    © 2014 Desarrollada por	<a href="http://www.presentatenlaweb.com/" title="">presentatenlaweb.com</a>.
                                 </div>
                             </div>
 
@@ -16,38 +16,25 @@
                                 <div id="footcol1" class="three columns">
                                     <ul>
                                         <li class="widget-container">
-                                            <h2 class="widget-title">Corporate Sites</h2>
+                                            <h2 class="widget-title">Productos</h2>
                                             <ul>
-                                                <li><a href="#">Search Tearms</a></li>
-                                                <li><a href="#">Mobile</a></li>
-                                                <li><a href="#">Contact Us</a></li>
-                                                <li><a href="#">Site Map</a></li>
+                                            @foreach($products as $product)
+                                                <li>
+                                                    <a href="{{ route('products.show', [$product->id, $product->getFirstPhoto()->id]) }}">
+                                                        {{ $product->nombre }}
+                                                    </a>
+                                                </li>
+                                            @endforeach
                                         	</ul>
                                         </li>
                                     </ul>
                                 </div>
-                                <div id="footcol2" class="three columns">
+                                <div id="footcol2" class="six columns">
                                     <ul>
                                         <li class="widget-container">
-                                            <h2 class="widget-title">Hotel Information</h2>
+                                            <h2 class="widget-title">Dónde ubicarnos</h2>
                                             <ul>
-                                                <li><a href="#">Search Tearms</a></li>
-                                                <li><a href="#">Mobile</a></li>
-                                                <li><a href="#">Contact Us</a></li>
-                                                <li><a href="#">Site Map</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div id="footcol3" class="three columns">
-                                    <ul>
-                                        <li class="widget-container">
-                                            <h2 class="widget-title">Hotel Information</h2>
-                                            <ul>
-                                                <li><a href="#">Search Tearms</a></li>
-                                                <li><a href="#">Mobile</a></li>
-                                                <li><a href="#">Contact Us</a></li>
-                                                <li><a href="#">Site Map</a></li>
+                                                Aquí los detalles de la dirección
                                             </ul>
                                         </li>
                                     </ul>
@@ -55,12 +42,12 @@
                                 <div id="footcol4" class="three columns">
                                     <ul>
                                         <li class="widget-container">
-                                            <h2 class="widget-title">Hotel Information</h2>
+                                            <h2 class="widget-title">Enlaces de Interés</h2>
                                             <ul>
-                                                <li><a href="#">Search Tearms</a></li>
-                                                <li><a href="#">Mobile</a></li>
-                                                <li><a href="#">Contact Us</a></li>
-                                                <li><a href="#">Site Map</a></li>
+                                                <li><a href="{{ route('products.index') }}">Catálogo</a></li>
+                                                <li><a href="{{ route('about_path') }}">Nuestra Empresa</a></li>
+                                                <li><a href="{{ route('address_path') }}">Donde estamos</a></li>
+                                                <li><a href="{{ route('contact_path') }}">Contacto</a></li>
                                             </ul>
 
                                         </li>
