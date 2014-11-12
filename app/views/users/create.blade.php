@@ -98,18 +98,19 @@
 
 @section('in-situ-css')
 	<link rel="stylesheet" href="{{asset('css/vendor/select2.css')}}"/>
+	<style>
+		.width {width: 150px;}
+	</style>
 @stop
 
 @section('script')
 	<script>
 		jQuery(document).ready(function(){
 
-			jQuery('#poblacion').select2();
-
+			jQuery('#poblacion').select2({dropdownAutoWidth : true});
 			jQuery('#poblacion').change(function(){
 				var poblacion = jQuery('#poblacion').val();
 				var url = "/api/provincias/get-by-poblacion/" + poblacion;
-
 	            jQuery.ajax({
 	                type: 'GET',
 	                url: url,
@@ -121,8 +122,7 @@
 							jQuery.each(response,function (k,v){
 	                            jQuery('#provincia').append('<option value=\"'+k+'\">'+v+'</option>');
 	                        });
-							jQuery("#provincia").select2();
-
+							jQuery("#provincia").select2({dropdownAutoWidth : true});
 	                    }else{
 	                        jQuery('#provincia').html('');
 	                        jQuery('#provincia').append('<option value=\"\">-- Seleccione --</option>');

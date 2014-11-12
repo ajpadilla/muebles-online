@@ -58,7 +58,7 @@
 									    <p class="name" data-dz-name></p>
 									    <strong class="error text-danger" data-dz-errormessage></strong>
 									</div>
-									<div class="three columns">
+									<div class="two columns">
 									    <p class="size" data-dz-size></p>
 									    <div class="progress progress-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
 									      <div class="progress-bar progress-bar-success" style="width:0%;" data-dz-uploadprogress></div>

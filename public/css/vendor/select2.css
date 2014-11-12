@@ -167,6 +167,7 @@ html[dir="rtl"] .select2-container .select2-choice > .select2-chosen {
 }
 
 .select2-drop-active {
+    width: 150px;
     border: 1px solid #5897fb;
     border-top: none;
 }
@@ -227,7 +228,7 @@ html[dir="rtl"] .select2-container .select2-choice .select2-arrow b {
 
 .select2-search {
     display: inline-block;
-    width: 100%;
+    width: 140px;
     min-height: 26px;
     margin: 0;
     padding-left: 4px;
@@ -240,7 +241,7 @@ html[dir="rtl"] .select2-container .select2-choice .select2-arrow b {
 }
 
 .select2-search input {
-    width: 100%;
+    width: 140px;
     height: auto !important;
     min-height: 26px;
     padding: 4px 20px 4px 5px;
@@ -352,6 +353,7 @@ html[dir="rtl"] .select2-dropdown-open .select2-choice .select2-arrow b {
 
 /* results */
 .select2-results {
+    width: 140px;
     max-height: 200px;
     padding: 0 0 0 4px;
     margin: 4px 4px 4px 0;
