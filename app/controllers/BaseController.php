@@ -22,10 +22,12 @@ class BaseController extends Controller {
 		$currentUser = Auth::user();
 		$fontSize = '100%';
 		if($currentUser) {
-			if (strlen($currentUser->email) > 27 && strlen($currentUser->email) <= 29) $fontSize = '95%';
-			if (strlen($currentUser->email) > 31 && strlen($currentUser->email) <= 32) $fontSize = '90%';
-			if (strlen($currentUser->email) > 32 && strlen($currentUser->email) <= 34) $fontSize = '88%';
-			if (strlen($currentUser->email) > 34) $fontSize = '86%';
+			if (strlen($currentUser->email) > 22 && strlen($currentUser->email) <= 24) $fontSize = '95%';
+			if (strlen($currentUser->email) > 24 && strlen($currentUser->email) <= 26) $fontSize = '90%';
+			if (strlen($currentUser->email) > 27 && strlen($currentUser->email) <= 29) $fontSize = '83%';
+			if (strlen($currentUser->email) > 31 && strlen($currentUser->email) <= 32) $fontSize = '75%';
+			if (strlen($currentUser->email) > 32 && strlen($currentUser->email) <= 34) $fontSize = '71%';
+			if (strlen($currentUser->email) > 34) $fontSize = '60%';
 		}
 
 
