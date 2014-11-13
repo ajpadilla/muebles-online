@@ -1,7 +1,7 @@
 @extends('layouts.default')
 
 @section('content')
-<div id="outerafterheader">
+<div id="outerafterheader" xmlns="http://www.w3.org/1999/html">
 	<div class="container">
 		<div class="row">
 			<div id="afterheader" class="twelve columns">
@@ -45,7 +45,7 @@
 											<div class="six columns">
 												{{ Form::label('do', 'Qué desea hacer:') }}
 												{{ Form::radio('do', '1', null,  ['id' => 'do', 'checked']) }}
-												Agregar más productos
+												Agregar más productos</br>
 												{{ Form::radio('do', '0', null,  ['id' => 'do']) }}
 												Finalizar Pedido
 											</div>
