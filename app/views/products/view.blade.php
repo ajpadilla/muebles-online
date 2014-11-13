@@ -126,6 +126,14 @@
 	<script src="{{ asset('js/vendor/jquery.elevatezoom.min.js') }}"></script>
 @stop
 
+@section('styles')
+<style>
+.textwidget a {
+	float: left;
+	margin: 0;
+}
+</style>
+
 @section('script')
 <script>
 	jQuery(window).load(function() {
