@@ -52,7 +52,8 @@
                                         </li>
                                         @if($currentUser)
                                             @if($currentUser->isClient())
-                                                <li><a href="{{ route('pedidos.create', $product->id) }}" class="button">Realizar pedido</a></li>
+                                                {{--<li><a href="{{ route('pedidos.create', $product->id) }}" class="button">Realizar pedido</a></li>--}}
+                                                <li><a id="create-pedido" href="#fancybox" class="button" width="600">Realizar pedido</a></li>
                                             @endif
 
                                             @if($currentUser->isAdmin())
@@ -79,12 +80,14 @@
                             </li>
                             <li class="widget-container widget_hover">
                                 <h2 class="widget-title">Fotos Relacionadas</h2>
-                                <div class="textwidget" style="display:flex">
+                                <div class="textwidget">
+                                    <div>
                                     @foreach($product->photos as $photo)
                                         <a class="frame mini-photo" href="{{ route('products.show', [$product->id, $photo->id]) }}">
                                             <img id="img-{{ $photo->id }}" src="{{ asset($photo->complete_thumbnail_path) }}" />
                                         </a>
                                     @endforeach
+                                    </div>
                                 </div>
                             </li>
                             @include('layouts.partials._random-products')
@@ -95,12 +98,76 @@
 
                 </section>
             </div>
+
+            {{-- Section for Fancybox Window --}}
+            <div class="row" style="display: none">
+                <section id="fancybox">
+                    <section class="three columns positionleft"></section>
+					<section id="content" class="six columns positionleft">
+						<div class="page articlecontainer">
+							<article class="entry-content">
+								<h2>RELLENA LOS SIGUIENTES CAMPOS</h2>
+								<div id="contactform">
+									{{ Form::open(['id' => 'frmPedidoRequest', 'url' => 'pedidos']) }}
+									{{ Form::hidden('product_id', $product->id) }}
+									<fieldset>
+										<div id ="div-errors" class="alert alert-danger" style="display: none">
+											<ul id="ul-errors">
+
+											</ul>
+										</div>
+										<div class="row">
+											<div class="six columns">
+												{{ Form::label('color', 'Color:') }}
+												{{ Form::text('color', null, ['size' => '10', 'class' => 'text-input']) }}
+											</div>
+											<div class="six columns">
+												{{ Form::label('cantidad', 'Cantidad:') }}
+												{{ Form::number('cantidad', 1, ['size' => '10', 'class' => 'text-input', 'placeholder' => '1', 'min' => 1]) }}
+											</div>
+											<div class="clear"></div>
+                                            <div class="twelve columns">
+                                                {{ Form::label('direccion', 'Dirección Cliente:') }}
+                                                {{ Form::text('direccion', null, ['class' => 'text-input']) }}
+                                            </div>
+                                            <div class="clear"></div>
+                                            <div class="six columns">
+                                                {{ Form::label('nombre_cliente', 'Nombre del Cliente:') }}
+                                                {{ Form::text('nombre_cliente', null, ['class' => 'text-input']) }}
+                                            </div>
+											<div class="clear"></div>
+											<div class="twelve columns">
+                                                {{ Form::label('observacion', 'Observaciones:') }}
+                                                {{ Form::text('observacion', null, ['class' => 'text-input']) }}
+                                            </div>
+											<div class="clear"></div>
+											{{--<div class="three columns"></div>--}}
+											<div class="six columns">
+												{{ Form::label('do', 'Qué desea hacer:') }}
+												{{ Form::radio('do', '1', null,  ['id' => 'do', 'checked']) }}
+												Agregar más productos</br>
+												{{ Form::radio('do', '0', null,  ['id' => 'do']) }}
+												Finalizar Pedido
+											</div>
+											<div class="four columns">
+												{{ Form::submit('Continuar', ['class' => 'button']) }}
+											</div>
+										</div>
+									</fieldset>
+									{{ Form::close() }}
+								</div><!-- end contactform -->
+							</article>
+						</div>
+					</section>
+                </section>
+            </div>
         </div>
     </div>
 </div>
 @stop
 
 @section('in-situ-css')
+<link rel="stylesheet" href="{{ asset('css/vendor/jquery.fancybox-1.3.4.css') }}"/>
 <style>
 	.img-slider .slides img {
 	    width: 580px;
@@ -118,12 +185,20 @@
 		margin-right: 5px;
 		margin-left: 5px;
 	}
+
+	.fancybox-nav span {
+		visibility: visible;
+	}
 </style>
 @stop
 
 @section('in-situ-js')
 	<script src="{{ asset('js/vendor/jquery.flexslider-min.js') }}"></script>
 	<script src="{{ asset('js/vendor/jquery.elevatezoom.min.js') }}"></script>
+	<script src="{{ asset('js/vendor/jquery.elevatezoom.min.js') }}"></script>
+	<script src="{{ asset('js/vendor/jquery.form.js') }}"></script>
+	<script src="{{ asset('js/vendor/jquery.fancybox-1.3.4.pack.js') }}"></script>
+	<script src="{{ asset('js/vendor/jquery-easing-1.3.js') }}"></script>
 @stop
 
 @section('styles')
@@ -155,6 +230,81 @@
 	            lensSize    : 280
 	        });
           });
+
+		jQuery("#create-pedido").fancybox({
+            centerOnScroll: true,
+            hideOnOverlayClick: true
+        });
+
+	    var options = {
+	        //target:        '#output2',   // target element(s) to be updated with server response
+	        beforeSubmit:  showRequest,  // pre-submit callback
+	        success:       showResponse  // post-submit callback
+
+	        // other available options:
+	        //url:       url         // override for form's 'action' attribute
+	        //type:      type        // 'get' or 'post', override for form's 'method' attribute
+	        //dataType:  null        // 'xml', 'script', or 'json' (expected server response type)
+	        //clearForm: true        // clear all form fields after successful submit
+	        //resetForm: true        // reset the form after successful submit
+
+	        // $.ajax options can be used here too, for example:
+	        //timeout:   3000
+	    };
+
+	    // bind to the form's submit event
+	    jQuery('#frmPedidoRequest').submit(function() {
+	        // inside event callbacks 'this' is the DOM element so we first
+	        // wrap it in a jQuery object and then invoke ajaxSubmit
+	        jQuery(this).ajaxSubmit(options);
+
+	        // !!! Important !!!
+	        // always return false to prevent standard browser submit and page navigation
+	        return false;
+	    });
 	});
+
+	// pre-submit callback
+	function showRequest(formData, jqForm, options) {
+	    // formData is an array; here we use $.param to convert it to a string to display it
+	    // but the form plugin does this for you automatically when it submits the data
+	    var queryString = $.param(formData);
+
+	    // jqForm is a jQuery object encapsulating the form element.  To access the
+	    // DOM element for the form do this:
+	    // var formElement = jqForm[0];
+
+	    alert('About to submit: \n\n' + queryString);
+
+	    // here we could return false to prevent the form from being submitted;
+	    // returning anything other than false will allow the form submit to continue
+	    return true;
+	}
+
+	// post-submit callback
+	function showResponse(responseText, statusText, xhr, $form)  {
+	    // for normal html responses, the first argument to the success callback
+	    // is the XMLHttpRequest object's responseText property
+
+	    // if the ajaxSubmit method was passed an Options Object with the dataType
+	    // property set to 'xml' then the first argument to the success callback
+	    // is the XMLHttpRequest object's responseXML property
+
+	    // if the ajaxSubmit method was passed an Options Object with the dataType
+	    // property set to 'json' then the first argument to the success callback
+	    // is the json data object returned by the server
+
+	    /*alert('status: ' + statusText + '\n\nresponseText: \n' + responseText +
+	        '\n\nThe output div should have already been updated with the responseText.');*/
+
+	    var ulErrors = jQuery('#ul-errors');
+	    var errors = responseText.errors;
+	    if(!responseText.success) {
+	        jQuery.each(responseText.errors, function(key, value){
+                ulErrors.append('<li>' + key.toUpperCase() + ': ' + value + '</li>');
+            });
+            jQuery('#div-errors').show();
+	    }
+	}
 </script>
 @stop

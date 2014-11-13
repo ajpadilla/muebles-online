@@ -1,5 +1,6 @@
 <?php
 
+use Laracasts\Validation\FormValidationException;
 use Muebles\Core\CommandBus;
 use Muebles\Facturas\Factura;
 use Muebles\Forms\RegisterRequestForm;
@@ -108,20 +109,38 @@ class PedidosController extends \BaseController {
 		}
 		$factura->save();
 		$formData = Input::all();
-		$this->registerRequestForm->validate($formData);
-		extract($formData);
-		$product = $this->productRepository->get($product_id);
-		$pedido = $this->execute(new RegisterPedidoCommand($product, $factura, $cantidad, $color, $observacion));
-		Flash::success('Su pedido ha sido procesado con éxito!');
-		if($formData['do'] == 1) {
-			return Redirect::to(route('products.index'));
-		}
-		if(!Session::has('factura'))
+
+		try
 		{
-			Flash::warning('No tiene productos para realizar el pedido, por favor, agregue un producto!');
-			return Redirect::to(route('products.index'));
+			$this->registerRequestForm->validate($formData);
+
+			extract($formData);
+			$product = $this->productRepository->get($product_id);
+			$pedido = $this->execute(new RegisterPedidoCommand($product, $factura, $cantidad, $color, $observacion));
+
+			//Flash::success('Su pedido ha sido procesado con éxito!');
+
+			if($formData['do'] == 1) {
+				$flashMsg = 'Su pedido ha sido procesado con éxito!';
+				return Response::json();
+				//return Redirect::to(route('products.index'));
+			}
+
+			if(!Session::has('factura'))
+			{
+				//Flash::warning('No tiene productos para realizar el pedido, por favor, agregue un producto!');
+				$flashMsg = 'No tiene productos para realizar el pedido, por favor, agregue un producto!';
+				return Response::json();
+				//return Redirect::to(route('products.index'));
+			}
+
+			Session::forget('factura');
+			return Redirect::to(route('facturas.show', $factura->id));
 		}
-		Session::forget('factura');
-		return Redirect::to(route('facturas.show', $factura->id));
+		catch (FormValidationException $e)
+		{
+			$response = ['success' => false, 'errors' => $e->getErrors()];
+			return Response::json($response);
+		}
 	}
 }
