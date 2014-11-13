@@ -35,7 +35,7 @@
 	}
 
 	#topnav li a {
-        font-size: 90%;
+        font-size: {{ $fontSize }};
     }
 </style>
 
