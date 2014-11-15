@@ -19,6 +19,8 @@ class CreateTablePedidos extends Migration {
 			$table->integer('factura_id');
 			$table->string('color', 64);
 			$table->integer('cantidad')->nullable()->default(0);
+			$table->string('nombre_cliente', 64)->nullable();
+			$table->string('direccion', 256)->nullable();
 			$table->string('observacion', '256')->nullable();
 			$table->timestamps();
 		});

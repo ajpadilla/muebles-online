@@ -116,6 +116,9 @@
 
 											</ul>
 										</div>
+										<div id="div-flash" class="alert" style="display: none">
+
+										</div>
 										<div class="row">
 											<div class="six columns">
 												{{ Form::label('color', 'Color:') }}
@@ -268,7 +271,7 @@
 	function showRequest(formData, jqForm, options) {
 	    // formData is an array; here we use $.param to convert it to a string to display it
 	    // but the form plugin does this for you automatically when it submits the data
-	    var queryString = $.param(formData);
+	    //var queryString = $.param(formData);
 
 	    // jqForm is a jQuery object encapsulating the form element.  To access the
 	    // DOM element for the form do this:
@@ -278,6 +281,9 @@
 
 	    // here we could return false to prevent the form from being submitted;
 	    // returning anything other than false will allow the form submit to continue
+	    jQuery('#div-errors').hide();
+	    jQuery('#div-flash').hide();
+	    jQuery('#div-flash').removeClass().addClass('alert');
 	    return true;
 	}
 
@@ -298,12 +304,24 @@
 	        '\n\nThe output div should have already been updated with the responseText.');*/
 
 	    var ulErrors = jQuery('#ul-errors');
+	    var flash = jQuery('#div-flash');
+		if(responseText.flashMsg) {
+			var styleClass = (responseText.errors) ? 'alert-warning' : 'alert-success';
+            flash.append('<p>' + responseText.flashMsg + '</p>');
+            jQuery('#div-flash').addClass(styleClass).show();
+	    }
 	    var errors = responseText.errors;
 	    if(!responseText.success) {
-	        jQuery.each(responseText.errors, function(key, value){
-                ulErrors.append('<li>' + key.toUpperCase() + ': ' + value + '</li>');
-            });
-            jQuery('#div-errors').show();
+	        if(responseText.errors) {
+		        jQuery.each(responseText.errors, function(key, value){
+	                ulErrors.append('<li>' + value + '</li>');
+	            });
+	            jQuery('#div-errors').show();
+	        }
+	    } else {
+	        if(responseText.redirect) {
+	            document.location = responseText.redirect;
+	        }
 	    }
 	}
 </script>

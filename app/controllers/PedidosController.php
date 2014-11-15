@@ -113,29 +113,33 @@ class PedidosController extends \BaseController {
 		try
 		{
 			$this->registerRequestForm->validate($formData);
-
+			$nombre_cliente = null;
+			$direccion = null;
 			extract($formData);
 			$product = $this->productRepository->get($product_id);
-			$pedido = $this->execute(new RegisterPedidoCommand($product, $factura, $cantidad, $color, $observacion));
 
-			//Flash::success('Su pedido ha sido procesado con éxito!');
+			if(!$direccion)
+				$direccion = Auth::user()->direccion;
+			$this->execute(new RegisterPedidoCommand($product, $factura, $cantidad, $color, $observacion, $nombre_cliente, $direccion));
 
 			if($formData['do'] == 1) {
 				$flashMsg = 'Su pedido ha sido procesado con éxito!';
-				return Response::json();
+				Flash::success($flashMsg);
+				return Response::json(['success' => true, 'flashMsg' => $flashMsg]);
 				//return Redirect::to(route('products.index'));
 			}
 
 			if(!Session::has('factura'))
 			{
-				//Flash::warning('No tiene productos para realizar el pedido, por favor, agregue un producto!');
 				$flashMsg = 'No tiene productos para realizar el pedido, por favor, agregue un producto!';
-				return Response::json();
+				Flash::warning($flashMsg);
+				return Response::json(['success' => false, 'flashMsg' => $flashMsg]);
 				//return Redirect::to(route('products.index'));
 			}
 
 			Session::forget('factura');
-			return Redirect::to(route('facturas.show', $factura->id));
+			Flash::success('Su pedido ha sido procesado con éxito!');
+			return Response::json(['success' => true, 'redirect' => route('facturas.show', $factura->id)]);
 		}
 		catch (FormValidationException $e)
 		{
