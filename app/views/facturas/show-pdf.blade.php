@@ -140,6 +140,8 @@
 		                        <th>CANTIDAD</th>
 		                        <th>COLOR</th>
 		                        <th>MEDIDAS</th>
+								<th>CLIENTE</th>
+                                <th>DIRECCION</th>
 		                        <th>OBSERVACIONES</th>
 		                   </tr>
 		                </thead>
@@ -151,6 +153,8 @@
 		                        <th>{{ $pedido->cantidad }}</th>
 		                        <th>{{ $pedido->color }}Pero d</th>
 		                        <th>{{ $pedido->product->medidas }}</th>
+		                        <td>{{ $pedido->nombre_cliente }}</td>
+                                <td>{{ $pedido->direccion }}</td>
 		                        <th>{{ $pedido->observaciones }}</th>
 		                    </tr>
 		                    @endforeach

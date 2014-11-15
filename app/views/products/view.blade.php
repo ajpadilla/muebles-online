@@ -129,19 +129,19 @@
 												{{ Form::number('cantidad', 1, ['size' => '10', 'class' => 'text-input', 'placeholder' => '1', 'min' => 1]) }}
 											</div>
 											<div class="clear"></div>
+                                            <div class="clear"></div>
+                                            <div class="six columns">
+                                                {{ Form::label('nombre_cliente', 'Nombre del Cliente:') }}
+                                                {{ Form::text('nombre_cliente', null, ['class' => 'text-input', 'placeholder' => 'Si es para otro cliente, escribe la direccion. Si es para ti, dejalo en blanco.']) }}
+                                            </div>
                                             <div class="twelve columns">
                                                 {{ Form::label('direccion', 'Dirección Cliente:') }}
                                                 {{ Form::text('direccion', null, ['class' => 'text-input']) }}
                                             </div>
-                                            <div class="clear"></div>
-                                            <div class="six columns">
-                                                {{ Form::label('nombre_cliente', 'Nombre del Cliente:') }}
-                                                {{ Form::text('nombre_cliente', null, ['class' => 'text-input']) }}
-                                            </div>
 											<div class="clear"></div>
 											<div class="twelve columns">
                                                 {{ Form::label('observacion', 'Observaciones:') }}
-                                                {{ Form::text('observacion', null, ['class' => 'text-input']) }}
+                                                {{ Form::textarea('observacion', null, ['class' => 'text-input', 'rows' => '2', 'cols' => '50']) }}
                                             </div>
 											<div class="clear"></div>
 											{{--<div class="three columns"></div>--}}
