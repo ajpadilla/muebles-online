@@ -10,15 +10,15 @@
                 <section id="navigation">
                     <nav id="nav-wrap">
                         <ul id="topnav" class="sf-menu">
-                            @if(!$currentUser)
+                            {{--@if(!$currentUser)--}}
 								<li @if( 'home' == $currentRoute) class="current" @endif><a href="{{ route('home') }}">Inicio<span>Pagina Principal</span></a></li>
-							@endif
+							{{--@endif--}}
 							<li @if( 'products.index' == $currentRoute) class="current" @endif><a href="{{ route('products.index') }}">Catálogo{{--<span>Nuestros productos</span>--}}</a></li>
 							<li @if( 'about_path' == $currentRoute) class="current" @endif><a href="{{ route('about_path') }}">Empresa<span>Conoce la empresa</span></a></li>
 							<li @if( 'address_path' == $currentRoute) class="current" @endif><a href="{{ route('address_path') }}">Donde estamos<span>Como localizarnos</span></a></li>
 							<li @if( 'contact_path' == $currentRoute) class="current" @endif><a href="{{ route('contact_path') }}">Contacto<span>Direccion y email</span></a></li>
 							@if($currentUser)
-								<li><a href="{{ route('users.show', $currentUser->id) }}">{{ $currentUser->email; }}</a></li>
+								<li><a href="{{ route('users.show', $currentUser->id) }}">{{ $nombre; }}</a></li>
 							@endif
 						</ul><!-- topnav -->
 						<select id="selectNav" class="tinynav tinynav1">
