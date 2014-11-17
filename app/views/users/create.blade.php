@@ -43,11 +43,11 @@
 										    {{ Form::text('codigo_postal', null, ['size' => '10', 'class' => 'text-input']) }}
 										  </div>
 										  <div class="two_fifth columns">
-                                            {{ Form::label('poblacion', 'Población:') }}
+                                            {{ Form::label('poblacion', 'Provincia:') }}
                                             {{ Form::select('poblacion', $poblaciones , null , ['class' => 'text-input']) }}
                                           </div>
 										  <div class="twelve columns">
-                                            {{ Form::label('provincia', 'Provincia:') }}
+                                            {{ Form::label('provincia', 'Población:') }}
                                             {{ Form::select('provincia', ['-- Seleccione --'], null , ['class' => 'text-input', 'disabled']) }}
                                           </div>
 										  <div class="two_fifth columns">

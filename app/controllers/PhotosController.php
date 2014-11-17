@@ -114,6 +114,8 @@ class PhotosController extends \BaseController {
 	{
 		$photo = Photo::findOrFail($id);
 		$productId = $photo->product()->first()->id;
+		File::delete($photo->complete_thumbnail_path);
+		File::delete($photo->complete_path);
 		$photo->delete();
 		Flash::success('Foto eliminada con éxito!');
 		return Redirect::to(route('photos.index', $productId));

@@ -78,17 +78,17 @@
                                 <h2 class="widget-title">Información del Producto</h2>
                                 <div class="textwidget">{{ $product->descripcion }}</div>
                             </li>
-                            <li class="widget-container widget_hover">
+                            <li class="widget-container">
                                 <h2 class="widget-title">Fotos Relacionadas</h2>
-                                <div class="textwidget">
-                                    <div>
+                                <ul class="rp-widget related-photos">
                                     @foreach($product->photos as $photo)
-                                        <a class="frame mini-photo" href="{{ route('products.show', [$product->id, $photo->id]) }}">
-                                            <img id="img-{{ $photo->id }}" src="{{ asset($photo->complete_thumbnail_path) }}" />
+                                    <li>
+                                        <a href="{{ route('products.show', [$product->id, $photo->id]) }}">
+                                            <img style="margin-right: 0px" id="img-{{ $photo->id }}" class="frame mini-photo" src="{{ asset($photo->complete_thumbnail_path) }}" />
                                         </a>
+                                    </li>
                                     @endforeach
-                                    </div>
-                                </div>
+                                </ul>
                             </li>
                             @include('layouts.partials._random-products')
                             {{--@include('layouts.partials._tags')--}}
@@ -182,11 +182,10 @@
 		background-color: #e7e7e7;
 	}
 
-	ol img {
+	ul img {
 		width: 150px;
 		height: 170px;
-		margin-right: 5px;
-		margin-left: 5px;
+		margin-left: 0px;
 	}
 
 	.fancybox-nav span {
@@ -210,6 +209,11 @@
 	float: left;
 	margin: 0;
 }
+
+ul.related-photos li {
+	display: inline-block;
+}
+
 </style>
 
 @section('script')
