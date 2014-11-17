@@ -16,9 +16,13 @@ class PhotosController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index($productId)
 	{
-		//
+		$product = Product::findOrFail($productId);
+		if($product->photos)
+			return View::make('photos.index', compact('product'));
+		Flash::warning('El producto seleccionado no tiene fotos!');
+		return Redirect::intended();
 	}
 
 
@@ -108,7 +112,11 @@ class PhotosController extends \BaseController {
 	 */
 	public function destroy($id)
 	{
-		//
+		$photo = Photo::findOrFail($id);
+		$productId = $photo->product()->first()->id;
+		$photo->delete();
+		Flash::success('Foto eliminada con éxito!');
+		return Redirect::to(route('photos.index', $productId));
 	}
 
 

@@ -172,15 +172,15 @@ class ProductsController extends \BaseController {
 		});
 
 		$collection->addColumn('codigo', function ($model) {
-			return strtoupper($model->codigo);
+			return '<strong>' . strtoupper($model->codigo) . '</strong>';
 		});
 
 		$collection->addColumn('nombre', function ($model) {
-			return ucfirst(strtolower($model->nombre));
+			return '<strong>' . ucfirst(strtolower($model->nombre)) . '</strong>';
 		});
 
 		$collection->addColumn('medidas', function ($model) {
-			return $model->medidas;
+			return '<strong>' . $model->medidas . '</strong>';
 		});
 
 		$collection->addColumn('ver', function ($model) {
@@ -189,7 +189,10 @@ class ProductsController extends \BaseController {
 					<br />
 					<a href='" . URL::to('borrarProduct/' . $model->id) . "'>Eliminar</a>
 					<br />
-					<a href='" . route('photos.create', $model->id) . "'>Agregar Fotos</a>";
+					<a href='" . route('photos.create', $model->id) . "'>Agregar Fotos</a>
+					<br />
+					<a href='" . route('photos.index', $model->id) . "'>Eliminar Fotos</a>";
+
 				return $links;
 			}
 		});

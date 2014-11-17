@@ -21,16 +21,33 @@ class BaseController extends Controller {
 		$currentMenu = 'current';
 		$currentUser = Auth::user();
 		$fontSize = '100%';
-		$nombre = str_word_count($currentUser->nombre, 1, 'áéíóú')[0];
-		if($currentUser) {
-			if (strlen($nombre) > 22 && strlen($nombre) <= 24) $fontSize = '95%';
-			if (strlen($nombre) > 24 && strlen($nombre) <= 26) $fontSize = '90%';
-			if (strlen($nombre) > 27 && strlen($nombre) <= 29) $fontSize = '83%';
-			if (strlen($nombre) > 31 && strlen($nombre) <= 32) $fontSize = '75%';
-			if (strlen($nombre) > 32 && strlen($nombre) <= 34) $fontSize = '71%';
-			if (strlen($nombre) > 34) $fontSize = '60%';
-		}
 
+		if ($currentUser) {
+			$nombre = str_word_count($currentUser->nombre, 1, 'áéíóú')[0];
+			if (strlen($nombre) > 22 && strlen($nombre) <= 24) {
+				$fontSize = '95%';
+			}
+
+			if (strlen($nombre) > 24 && strlen($nombre) <= 26) {
+				$fontSize = '90%';
+			}
+
+			if (strlen($nombre) > 27 && strlen($nombre) <= 29) {
+				$fontSize = '83%';
+			}
+
+			if (strlen($nombre) > 31 && strlen($nombre) <= 32) {
+				$fontSize = '75%';
+			}
+
+			if (strlen($nombre) > 32 && strlen($nombre) <= 34) {
+				$fontSize = '71%';
+			}
+
+			if (strlen($nombre) > 34) {
+				$fontSize = '60%';
+			}
+		}
 
 		$currentRoute = Route::currentRouteName();
 		$products = new ProductRepository();

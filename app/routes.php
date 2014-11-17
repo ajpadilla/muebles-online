@@ -218,7 +218,13 @@ Route::get('photos/create/{productId}', [
 	'as' => 'photos.create',
 	'uses' => 'PhotosController@create'
 ]);
-Route::resource('photos', 'PhotosController', ['except' => ['create']]);
+
+Route::get('photos-list/{productId}', [
+	'as' => 'photos.index',
+	'uses' => 'PhotosController@index'
+]);
+
+Route::resource('photos', 'PhotosController', ['except' => ['create', 'index', 'show']]);
 
 /**
  * Chumper/Datatables routes
