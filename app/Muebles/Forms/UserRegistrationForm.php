@@ -15,7 +15,7 @@ class UserRegistrationForm extends FormValidator {
 		'codigo_postal' => 'required|digits:5',
 		'telefono_fijo' => 'digits_between:6,15',
 		'fax' => 'digits_between:6,15',
-		'direccion' => 'required|digits_between:10,256',
+		'direccion' => 'required',
 		'rol' => 'required',
 		'activo' => 'required|in:0,1',
 		'provincia' => 'required|numeric',

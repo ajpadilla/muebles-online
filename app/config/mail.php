@@ -29,7 +29,7 @@ return array(
 	 */
 
 	//'host' => 'secure4164.hostgator.com',
-	'host' => 'mail.presentatenlaweb.com',
+	'host' => 'smtp.gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -42,7 +42,7 @@ return array(
 	|
 	 */
 
-	'port' => 25,
+	'port' => 587,
 
 	/*
 	|--------------------------------------------------------------------------
@@ -54,7 +54,7 @@ return array(
 	| used globally for all e-mails that are sent by your application.
 	|
 	 */
-	'from' => array('address' => getenv('SYSTEM_EMAIL'), 'name' => getenv('SYSTEM_EMAIL_NAME')),
+	'from' => array('address' => 'ajpadilla88@gmail.com', 'name' => 'Atención al cliente'),
 
 	/*
 	|--------------------------------------------------------------------------
@@ -80,7 +80,7 @@ return array(
 	|
 	 */
 
-	'username' => 'informacion@presentatenlaweb.com',
+	'username' => 'ajpadilla88@gmail.com',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -93,7 +93,7 @@ return array(
 	|
 	 */
 
-	'password' => 'informacion',
+	'password' => 'Irali19234099',
 
 	/*
 	|--------------------------------------------------------------------------
